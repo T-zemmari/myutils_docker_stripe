@@ -1,0 +1,107 @@
+{% extends 'base_bootstrap.html' %}
+{% load static %}
+{% block extra_css %}
+  <link href="{% static 'css/home.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/acerca-de.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block title %}
+  Listado productos
+{% endblock %}
+{% block main %}
+  <div class="container-fluid">
+    <div class="contenedor-home" style="min-height: 100vh;">
+      <div class="mt-5">
+        {% if user.is_superuser %}
+          <div class="row" style="margin-top: 80px;">
+            <div class="col">
+              <a class="btn btn-outline-danger btn-sm" href="{% url 'product:nuevo_producto' %}">Nuevo producto</a>
+            </div>
+          </div>
+        {% endif %}
+        <div class="row" style="margin-top: 10px;">
+          <div class="col">
+            <section class="subscription-plans">
+              <div class="precio8 py-5">
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-md-8 text-center">
+                      <h3 class="mb-3">Precios para hacer tu trabajo efectivo</h3>
+                      <h6 class="subtitulo font-weight-normal">Trabajamos incansablemente para que valga la pena.</h6>
+                    </div>
+                  </div>
+                  <!-- row -->
+                  <div class="row mt-4">
+                    <!-- column -->
+                    {% for product in products %}
+                      {% if product.name != 'Gratuito' %}
+                        <div class="col-md-4 ml-auto pricing-box align-self-center">
+                          <div class="card mb-4">
+                            <div class="card-body p-4 text-center">
+                              <h5 class="font-weight-normal">{{ product.name }}</h5>
+                              <span class="text-dark display-5">{{ product.price }}</span><sup>€</sup>
+                              <h6 class="font-weight-light font-14">Pago unico</h6>
+                              <p class="mt-4">{{ product.description }}</p>
+                            </div>
+                            <form action="{% url 'checkout' product.id %}" method="POST">
+                              {% csrf_token %}
+                              {% if forloop.counter == 2 %}
+                                <button style="width: 100%;" class="btn btn-danger-gradiant p-3 btn-block border-0 text-white" productid="{{ product.id }}">ESCOGE EL PLAN</button>
+                              {% else %}
+                                <button style="width: 100%;" class="btn btn-info-gradiante p-3 btn-block border-0 text-white" productid="{{ product.id }}">ESCOGE EL PLAN</button>
+                              {% endif %}
+                            </form>
+                          </div>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="{% static 'jquery/jquery-3.7.1.min.js' %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Obtiene el sessionId de tu plantilla Django
+      const sessionId = '{{ sessionId }}'
+      if (sessionId) {
+        // Inicializa Stripe
+        const stripe = Stripe('pk_test_51NwkFmE4CiKYw1fIRgt7lf0iPLCdO6cPeTsQLv5oaRkjeipIijDkz7hd5IWl8ExYftochwF6YRvfMbVJwAqb1Bt700fMJ7JzwS')
+    
+        // Redirige al usuario a la página de Stripe para completar el pago
+        stripe
+          .redirectToCheckout({
+            sessionId: sessionId
+          })
+          .then(function (result) {
+            // Maneja cualquier error que pueda ocurrir durante la redirección
+            if (result.error) {
+              alert('Hubo un error durante la redirección: ' + result.error.message)
+            }
+          })
+      }
+    })
+    
+    $(document).ready(function () {
+      // Encuentra la tarjeta con la altura máxima
+      var maxHeight = 0
+      $('.card').each(function () {
+        var currentHeight = $(this).height()
+        if (currentHeight > maxHeight) {
+          maxHeight = currentHeight
+        }
+      })
+    
+      // Aplica la altura máxima a todas las tarjetas
+      $('.card').height(maxHeight)
+    })
+  </script>
+{% endblock %}

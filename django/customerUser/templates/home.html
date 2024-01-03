@@ -1,0 +1,14 @@
+{% extends 'base_bootstrap.html' %}
+{% load static %}
+{% block extra_css %}
+  <link href="{% static 'css/home.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block main %}
+  <div class="container">
+    <div class="contenedor-home">
+      <div class="row">
+        <div class="col-xl-12 col-md-12 col-sm-12">Estoy en Home customeUser</div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

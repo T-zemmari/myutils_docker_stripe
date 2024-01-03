@@ -1,0 +1,87 @@
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.invoice-header .customer-info,
+.invoice-header .company-info {
+  width: 48%;
+  border: 1px solid #e9ecef;
+  padding: 10px;
+  background-color: #e9ecef;
+  border-radius: 25px 0 100px 0;
+}
+.invoice-header .customer-info input,
+.invoice-header .company-info input {
+  width: 100%;
+  border: none;
+  background: none;
+  font-size: 16px;
+}
+.invoice-header .customer-info h3,
+.invoice-header .company-info h3 {
+  margin: 5px 0;
+}
+.customer-info {
+  border-radius: 6px 0 25px 0 !important;
+  text-align: start;
+  background-color: #dfefff !important;
+}
+#contenedor_factura {
+  page-break-before: always; /* Iniciar factura en una nueva página */
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; */
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #b1c9df;
+}
+.info-numero-factura {
+  display: flex;
+  flex-direction: row;
+}
+.h5-numero-factura {
+  width: 50%;
+}
+.input-numero-factura {
+  width: 40%;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+.contenedor_subtotal,
+.contenedor_iva {
+  padding: 0 15px;
+}
+.contenedor_total {
+  margin-top: 20px;
+  border: 1px solid #cccccc;
+  padding: 15px;
+  border-radius: 5px;
+}
+.label_custom_total {
+  text-align: start;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.contenedor-fecha-numero-factura {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 2px;
+}
+.contenedor-concepto {
+  padding: 10px 2px;
+}
+
+.contenedor_botones {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}

@@ -1,0 +1,41 @@
+{% extends 'base_app.html' %} {% load static %} {% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/img_to_pdf.css' %}" />
+{% endblock %} {% block title %}
+  Imagen a PDF
+{% endblock %} {% block main %}
+  <div class="contenedor-servicios">
+    <div class="container-fluid" style="margin-top: 80px">
+      <div class="row">
+        <div class="col-xl-7 col-md-7 col-sm-12">
+          {% csrf_token %}
+          <h2 class="h2-custom-1">Imagen a PDF</h2>
+          <hr />
+          <div id="image_preview_container" style="width: 100%; height: 430px; border: 1px solid #cfcdcd;border-radius: 10px;"></div>
+          <div class="row">
+            <div class="col-xl-6 col-md-12 col-sm-12">
+              <input style="margin-top: 10px" class="form-control" type="file" id="input_image" accept="image/*" multiple />
+            </div>
+            <div class="col-xl-6 col-md-12 col-sm-12">
+              <button style="margin-top: 11px; width: 100%;height: 36px;" class="btn btn-primary btn-sm" id="convert_to_pdf" disabled>Convertir a PDF</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-5 col-md-5 col-sm-12">
+          <h2 class="h2-custom-2">PDF (previsualización)</h2>
+          <hr />
+          <div class="pdf_previsualizacion" id="pdf_previsualizacion" style="width: 100%;padding: 5px;border: #cfcdcd 1px solid;min-height: 430px;border-radius: 10px;"></div>
+          <div class="centrar-elementos" style="padding: 7px">
+            <div id="loading-spinner" class="spinner"></div>
+          </div>
+          <div id="pdf_download_container" style="display: none"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %} {% block extra_js %}
+<script>
+  var MY_DOMAIN='{{MY_DOMAIN}}';
+</script>
+  <script src="{% static 'js/img_to_pdf.js' %}"></script>
+{% endblock %}

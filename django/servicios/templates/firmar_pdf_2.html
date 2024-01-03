@@ -1,0 +1,250 @@
+{% extends 'base_app.html' %} {% load static %} {% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+
+  <style>
+    #pdf-viewer {
+      border: 2px solid #dddddd;
+      position: relative;
+    }
+  </style>
+{% endblock %} {% block title %}
+  Firmar PDF
+{% endblock %} {% block main %}
+  <div class="contenedor-servicios">
+    <div class="container" style="margin-top: 80px">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div>
+            <button type="button" class="btn btn-danger btn-sm" id="prevPage">Anterior</button>
+            <span>Pagina <span id="page-num"></span> de <span id="page-count"></span></span>
+            <button type="button" class="btn btn-success btn-sm" id="nextPage">Siguiente</button>
+          </div>
+        </div>
+        <div class="col-8" style="margin-top: 10px;">
+          <div id="pdf-viewer">
+            <canvas id="pdfCanvas"></canvas>
+          </div>
+        </div>
+        <div class="col-4">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="custom-file">
+                <label class="custom-file-label" for="pdf-file"><strong>Cargar pdf</strong></label>
+                <input style="margin-top: 10px;" class="form-control" type="file" id="pdf-file" accept=".pdf" />
+              </div>
+              <div class="custom-file">
+                <label class="custom-file-label" for="customFile"><strong>Cargar firma</strong></label>
+                <input style="margin-top: 10px;" class="form-control" type="file" id="image-file" accept="image/*" />
+              </div>
+            </li>
+            <li class="list-group-item">
+              <!-- Botón para agregar la imagen -->
+              <button type="button" id="add-image" class="btn btn-primary btn-sm">Colocar imagen</button>
+            </li>
+            <li class="list-group-item">
+              <!-- Botón para descargar el PDF -->
+              <button type="button" class="btn btn-success btn-sm" style="width: 100%;" id="download-pdf">Descargar pdf con la firma</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.6.347/build/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+
+  <script>
+    // Variables globales
+    var pdfDoc = null,
+      pageNum = 1,
+      pageRendering = false,
+      pageNumPending = null,
+      canvas = document.getElementById('pdfCanvas'),
+      ctx = canvas.getContext('2d')
+    
+    // Funciones de renderizado de página
+    function renderPage(num) {
+      pageRendering = true
+    
+      // Obtener la página
+      pdfDoc.getPage(num).then(function (page) {
+        var viewport = page.getViewport({ scale: 1.5 })
+        canvas.height = viewport.height
+        canvas.width = viewport.width
+        canvas.style.width = '100%'
+        canvas.dataset.page = num
+    
+        // Renderizar la página en el canvas
+        var renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        }
+        page.render(renderContext).promise.then(function () {
+          pageRendering = false
+          if (pageNumPending !== null) {
+            // Hay una página pendiente de renderizar
+            renderPage(pageNumPending)
+            pageNumPending = null
+          }
+        })
+      })
+    
+      // Actualizar los controles de navegación
+      document.getElementById('page-num').textContent = num
+    }
+    
+    // Agregar la imagen al canvas al hacer clic en el botón
+    const addImageButton = document.getElementById('add-image')
+    addImageButton.addEventListener('click', () => {
+      //obtener imagen
+      const imageFile = document.getElementById('image-file').files[0]
+      const imageUrl = URL.createObjectURL(imageFile)
+      const image = new Image(100, 100)
+      image.setAttribute('id', 'imageEle')
+      image.src = imageUrl
+      image.onload = () => {
+        // Crear un contenedor para la imagen
+        const imageContainer = document.createElement('div')
+        imageContainer.setAttribute('id', 'imageContainer')
+        imageContainer.appendChild(image)
+        imageContainer.style.position = 'absolute'
+        imageContainer.style.left = '0px'
+        imageContainer.style.top = '0px'
+        //agregar imagen al contenedor
+        document.getElementById('pdf-viewer').appendChild(imageContainer)
+    
+        // Hacer que la imagen sea interactiva
+        interact(imageContainer)
+          .draggable({
+            onmove: (event) => {
+              const target = event.target
+              const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+              const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+    
+              // Mover la imagen dentro del canvas
+              target.style.transform = `translate(${x}px, ${y}px)`
+              target.setAttribute('data-x', x)
+              target.setAttribute('data-y', y)
+    
+              //pagina donde está siendo colocada
+              var containercanvapage = document.querySelector('#pdf-viewer canvas')
+              image.dataset.page = containercanvapage.dataset.page
+            }
+          })
+          .resizable({})
+      }
+    })
+    
+    // Agregar el evento click al botón de descarga
+    const downloadButton = document.getElementById('download-pdf')
+    downloadButton.addEventListener('click', downloadAllPages)
+    
+    function downloadAllPages() {
+      var totalPages = pdfDoc.numPages
+      var doc = new jsPDF('p', 'pt', 'a4')
+      //selecciona firm
+      const imagepdf = document.querySelector('#imageEle')
+      // Obtener la posición de la imagen
+      const imagePosition = imagepdf.getBoundingClientRect()
+    
+      for (let i = 1; i <= totalPages; i++) {
+        pdfDoc.getPage(i).then(function (page) {
+          var viewport = page.getViewport({ scale: 1.8 })
+          var canvas = document.createElement('canvas')
+          canvas.height = viewport.height
+          canvas.width = viewport.width
+    
+          // Renderizar la página en el canvas
+          var renderContext = {
+            canvasContext: canvas.getContext('2d'),
+            viewport: viewport
+          }
+          page.render(renderContext).promise.then(function () {
+            // Agregar la imagen del canvas al PDF
+            var imgData = canvas.toDataURL('image/jpeg')
+            doc.addImage(imgData, 'JPEG', 0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height)
+            if (imagepdf.dataset.page == i) {
+              const scalaPDF = document.getElementById('pdf-viewer').clientWidth / doc.internal.pageSize.width
+              doc.addImage(imagepdf, 'PNG', imagePosition.left / scalaPDF, imagePosition.top / scalaPDF, imagePosition.width / scalaPDF, imagePosition.height / scalaPDF)
+            }
+            // Si es la última página, descargar el PDF
+            if (i === totalPages) {
+              //selecciona firm
+              doc.save('pdf_with_all_pages.pdf')
+            } else {
+              // Agregar una nueva página al PDF
+              doc.addPage()
+            }
+          })
+        })
+      }
+    }
+    
+    // Funciones de navegación
+    function queueRenderPage(num) {
+      if (pageRendering) {
+        pageNumPending = num
+      } else {
+        renderPage(num)
+      }
+    }
+    
+    function onPrevPage() {
+      if (pageNum <= 1) {
+        return
+      }
+      pageNum--
+      queueRenderPage(pageNum)
+    }
+    
+    function onNextPage() {
+      if (pageNum >= pdfDoc.numPages) {
+        return
+      }
+      pageNum++
+      queueRenderPage(pageNum)
+    }
+    
+    // Cargar el archivo PDF y las páginas iniciales
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.6.347/build/pdf.worker.min.js'
+    /* pdfjsLib.getDocument('https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf').promise.then(function (pdfDoc_) {
+                pdfDoc = pdfDoc_;
+                document.getElementById('page-count').textContent = pdfDoc.numPages;
+        
+                // Renderizar la primera página
+                renderPage(pageNum);
+            });*/
+    
+    // Cargar el archivo PDF y las páginas iniciales
+    function loadNewPDF(file) {
+      var fileReader = new FileReader()
+      fileReader.onload = function () {
+        var typedarray = new Uint8Array(this.result)
+        pdfjsLib.getDocument(typedarray).promise.then(function (pdfDoc_) {
+          pdfDoc = pdfDoc_
+          /* pageNum = 1*/
+          document.getElementById('page-count').textContent = pdfDoc.numPages
+          renderPage(pageNum)
+        })
+      }
+      fileReader.readAsArrayBuffer(file)
+    }
+    
+    // Agregar el evento change al input de carga de PDF
+    var pdfFileInput = document.getElementById('pdf-file')
+    pdfFileInput.addEventListener('change', function (e) {
+      var file = e.target.files[0]
+      if (file) {
+        loadNewPDF(file)
+      }
+    })
+    
+    // Agregar los listeners a los botones de navegación
+    document.getElementById('prevPage').addEventListener('click', onPrevPage)
+    document.getElementById('nextPage').addEventListener('click', onNextPage)
+  </script>
+{% endblock %}

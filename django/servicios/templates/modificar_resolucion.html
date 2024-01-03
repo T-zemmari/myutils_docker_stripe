@@ -1,0 +1,149 @@
+{% extends 'base_app.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+  <style>
+    .centrar-elementos{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 10px solid #f27474;
+      border-top: 10px solid transparent;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+{% endblock %}
+{% block title %}
+  Modificar resolución
+{% endblock %}
+{% block main %}
+  <div class="contenedor-servicios">
+    <div class="tab-pane" id="modificar-resolucion-imagenes">
+      <div class="container" style="margin-top: 80px;">
+        <h4 class="mb-4">Modificar Resolución de Imágenes</h4>
+        {% csrf_token %}
+        <!-- Estructura principal con dos columnas -->
+        <div class="row">
+          <!-- Columna izquierda para previsualización de la imagen -->
+          <div class="col-md-9">
+            <div class="text-center mb-4">
+              <!-- Contenedor para la previsualización de la imagen -->
+              <div class="image-preview-container" style="border: 1px solid #d1c2c2;height: 489px;border-radius: 10px;">
+                <img id="previewImage" src="#" alt="Previsualización de la imagen" style="display: none;" />
+              </div>
+              <input type="file" id="inputImage" accept="image/*" class="form-control mt-2" style="display: none;" />
+              <!-- Botón para realizar la modificación de la imagen -->
+              {% if user.is_authenticated %}
+                <label for="inputImage" class="btn btn-primary" style="width:100%;margin-top: 20px;">Seleccionar Imagen</label>
+              {% else %}
+                <a href="{% url 'customerUser:login' %}" class="btn btn-primary" style="width:100%;margin-top: 20px;">Seleccionar Imagen</a>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Columna derecha para selección de resoluciones y formato -->
+          <div class="col-md-3" style="border: 1px solid #d1c2c2;padding: 20px;border-radius: 10px;">
+            <h5>Seleccionar Resolución y Formato</h5>
+            <!-- Selectores de resolución para diferentes propósitos -->
+            <div class="form-group mb-4">
+              <label for="resolutionWeb">Resolución para Web:</label>
+              <select class="form-control resolution-select" id="resolutionWeb">
+                <option value="" selected>Seleccionar</option>
+                <option value="1920x1080">1920x1080 (Full HD)</option>
+                <option value="1280x720">1280x720 (HD)</option>
+                <option value="800x600">800x600</option>
+                <!-- Agrega más opciones de resolución según tus necesidades -->
+              </select>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="resolutionRedesSociales">Resolución para Redes Sociales:</label>
+              <select class="form-control resolution-select" id="resolutionRedesSociales">
+                <option value="" selected>Seleccionar</option>
+                <option value="180x180">180x180 (Perfil de Facebook)</option>
+                <option value="820x312">820x312 (Portada de Facebook)</option>
+                <option value="400x400">400x400 (Avatar de Twitter)</option>
+                <!-- Agrega más opciones de resolución según tus necesidades -->
+              </select>
+            </div>
+
+            <div class="form-group mb-4">
+              <label>Resolución para Presentaciones:</label>
+              <select class="form-control resolution-select" id="resolutionPresentaciones">
+                <option value="" selected>Seleccionar</option>
+                <option value="1024x768">1024x768 PowerPoint (4:3)</option>
+                <option value="1920x1080">1920x1080 PowerPoint (16:9)</option>
+                <!-- Agrega más opciones de resolución según tus necesidades -->
+              </select>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="resolutionVideos">Resolución para Videos:</label>
+              <select class="form-control resolution-select" id="resolutionVideos">
+                <option value="" selected>Seleccionar</option>
+                <option value="3840x2160">4K Ultra HD: 3840x2160 píxeles</option>
+                <option value="1920x1080">Full HD: 1920x1080 píxeles</option>
+                <option value="1280x720">HD: 1280x720 píxeles</option>
+                <!-- Agrega más opciones de resolución según tus necesidades -->
+              </select>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="format">Formato:</label>
+              <select id="format" class="form-control">
+                <option value="GIF">GIF (gif)</option>
+                <option value="PNG">PNG (png)</option>
+                <option value="WEBP">WEBP (webP)</option>
+                <!-- Agrega más opciones de formato según tus necesidades -->
+              </select>
+            </div>
+              <button id="btnModifyImage" class="btn btn-danger" style="width:100%;">Modificar Imagen</button>
+              <div class="row">
+                <div class="col-12" id="contenedor_btn_descargar_img"></div>
+                <div class="col-12 centrar-elementos" id="contenedor_spinner_img_mod" style="display:none;">
+                  <div class="spinner"></div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <hr>
+        <!-- Explicación profesional -->
+        <div class="mt-5">
+          <h5>¿Qué harás con esta función?</h5>
+          <p>La función "Modificar Resolución de Imágenes" te permite cargar una imagen y ajustar su resolución y formato. Esto puede ser útil para adaptar imágenes a diferentes necesidades, como reducir el tamaño de un archivo o cambiar su formato. Sigue estos pasos:</p>
+          <ol>
+            <li>Selecciona una imagen haciendo clic en el botón "Seleccionar Imagen".</li>
+            <li>La imagen se cargará y se mostrará en la previsualización.</li>
+            <li>Elige la resolución deseada desde el menú desplegable "Resolución".</li>
+            <li>Selecciona el formato de imagen deseado desde el menú desplegable "Formato".</li>
+            <li>Haz clic en el botón "Modificar Imagen" para aplicar los cambios.</li>
+            <li>La imagen modificada estará lista para su descarga.</li>
+          </ol>
+          <p>¡Aprovecha esta herramienta para adaptar tus imágenes de manera profesional y eficiente!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  var MY_DOMAIN='{{MY_DOMAIN}}';
+</script>
+  <script src="{% static 'js/modificar_resol.js' %}"></script>
+{% endblock %}

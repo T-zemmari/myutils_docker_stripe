@@ -1,0 +1,159 @@
+{% extends 'base_bootstrap.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/registro.css' %}" />
+  <style>
+    .password-input {
+      position: relative;
+    }  
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  
+    .password-input-container {
+      position: relative;
+    }
+    input::placeholder{
+      font-size: 12px;
+    }
+  </style>
+{% endblock %}
+{% block main %}
+  {% load socialaccount %}
+  <div class="container" style="height: 100vh;">
+    <div class="row">
+      <!-- Parte izquierda con una imagen -->
+      <div class="col-md-6">
+        <div class="contenedor-imagen-izquierda-registro">
+          <img style="max-width: 97.6%;" src="{% static 'img/imagen_1.jpg' %}" alt="Imagen de Registro" />
+        </div>
+      </div>
+      <!-- Parte derecha con el formulario de registro -->
+      <div class="col-md-6">
+        <div class="custom-register-container">
+          <div class="signup">
+            <h1 class="signup-heading">Registrate</h1>
+            <a href="{% provider_login_url 'google' %}" class="signup-google">
+              <i class="fab fa-google signup-google-icon"></i>
+              <span class="signup-google-text">Entra con tu cuenta google</span>
+            </a>
+            <div class="signup-or">
+              <span class="signup-or-text">Ó</span>
+            </div>
+
+            <form action="" method="post" class="signup-form" autocomplete="off">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-xl-6 col-md-6 col-sm-12">
+                  <div class="form-group" style="width: 98%">
+                    <label for="first_name" class="form-label">{{ form.first_name.label_tag }}</label>
+                    {{ form.first_name }}
+                  </div>
+                </div>
+                <div class="col-xl-6 col-md-6 col-sm-12">
+                  <div class="form-group" style="width: 98%;">
+                    <label for="last_name" class="form-label">{{ form.last_name.label_tag }}</label>
+                    {{ form.last_name }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="email" class="form-label">{{ form.email.label_tag }}</label>
+                    {{ form.email }}
+                    {% if form.errors.email %}
+                      <span class="text-danger" style="padding: 5px;font-size: 13px;">{{ form.errors.email.0 }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="numero_telefono" class="form-label">{{ form.numero_telefono.label_tag }}</label>
+                    {{ form.numero_telefono }}
+                  </div>
+                </div>
+              </div>
+
+              
+
+              <div class="row">
+                <div class="col-xl-6 col-md-6 col-sm-12">
+                  <div class="form-group" style="width: 98%;">
+                    <label for="password1" class="form-label">{{ form.password1.label_tag }}</label>
+                    <div class="password-input">
+                      <input type="password" name="{{ form.password1.name }}" id="password1" class="form-control" placeholder="Contraseña" required />
+                      <span class="toggle-password" id="togglePassword1"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6 col-md-6 col-sm-12">
+                  <div class="form-group" style="width: 98%;">
+                    <label for="password2" class="form-label">{{ form.password2.label_tag }}</label>
+                    <div class="password-input">
+                      <input type="password" name="{{ form.password2.name }}" id="password2" class="form-control" placeholder="Confirmar contraseña" required />
+                      <span class="toggle-password" id="togglePassword2"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="form-submit">Crear cuenta</button>
+            </form>
+            <p class="signup-already">
+              ¿ Ya tienes una cuenta ? <a href="{% url 'customerUser:login' %}" class="signup-already-link">Logeate</a>
+            </p>
+          </div>
+          {% comment %} <h2 class="mt-5">Registro</h2>
+          <form method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="mb-3">{{ form.email.label_tag }}
+              {{ form.email }}</div>
+            <div class="mb-3">{{ form.password1.label_tag }}
+              {{ form.password1 }}</div>
+            <div class="mb-3">{{ form.password2.label_tag }}
+              {{ form.password2 }}</div>
+            <div class="mb-3">{{ form.fecha_nacimiento.label_tag }}
+              {{ form.fecha_nacimiento }}</div>
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+          </form> {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const togglePassword1 = document.getElementById('togglePassword1')
+      const togglePassword2 = document.getElementById('togglePassword2')
+      const password1Input = document.getElementById('password1')
+      const password2Input = document.getElementById('password2')
+    
+      togglePassword1.addEventListener('click', function () {
+        togglePasswordVisibility(password1Input)
+      })
+    
+      togglePassword2.addEventListener('click', function () {
+        togglePasswordVisibility(password2Input)
+      })
+    
+      function togglePasswordVisibility(inputField) {
+        if (inputField.type === 'password') {
+          inputField.type = 'text'
+        } else {
+          inputField.type = 'password'
+        }
+      }
+    })
+  </script>
+{% endblock %}

@@ -1,0 +1,248 @@
+.contenedor-acerca-de {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.contenedor-acerca-de {
+  margin-top: 65px !important;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.key-benefits ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.key-benefits li {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Estilos para la sección de la conclusión */
+
+.conclusion {
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.conclusion p {
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Estilos para los títulos de las secciones */
+
+section h2 {
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+.centrar-elementos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.custom-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilos para las tarjetas de planes de suscripción */
+.subscription-card {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.subscription-card:hover {
+  background-color: #007bff; /* Cambia el fondo en hover */
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.subscription-card h3 {
+  font-size: 24px;
+  color: #333;
+}
+
+.subscription-card p {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Estilos para los enlaces "Más información" (pueden ser eliminados) */
+.subscription-card a {
+  display: block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.2s;
+}
+
+.subscription-card a:hover {
+  color: #0056b3;
+}
+
+/*#############################*/
+.precio8 {
+  font-family: "Montserrat", sans-serif;
+  color: #8d97ad;
+  font-weight: 300;
+}
+
+.precio8 h1,
+.precio8 h2,
+.precio8 h3,
+.precio8 h4,
+.precio8 h5,
+.precio8 h6 {
+  color: #3e4555;
+}
+
+.precio8 h5 {
+  line-height: 22px;
+  font-size: 18px;
+}
+
+.precio8 .subtitulo {
+  color: #8d97ad;
+  line-height: 24px;
+}
+
+.precio8 .display-5 {
+  font-size: 3rem;
+}
+
+.precio8 .font-14 {
+  font-size: 14px;
+}
+
+.precio8 .pricing-box sup {
+  top: -20px;
+  font-size: 16px;
+}
+
+.precio8 .btn-info-gradiante {
+  background: #188ef4;
+  background: -webkit-linear-gradient(
+    legacy-direction(to right),
+    #188ef4 0%,
+    #316ce8 100%
+  );
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#188ef4),
+    to(#316ce8)
+  );
+  background: -webkit-linear-gradient(left, #188ef4 0%, #316ce8 100%);
+  background: -o-linear-gradient(left, #188ef4 0%, #316ce8 100%);
+  background: linear-gradient(to right, #188ef4 0%, #316ce8 100%);
+}
+
+.precio8 .btn-info-gradiante:hover {
+  background: #316ce8;
+  background: -webkit-linear-gradient(
+    legacy-direction(to right),
+    #316ce8 0%,
+    #188ef4 100%
+  );
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#316ce8),
+    to(#188ef4)
+  );
+  background: -webkit-linear-gradient(left, #316ce8 0%, #188ef4 100%);
+  background: -o-linear-gradient(left, #316ce8 0%, #188ef4 100%);
+  background: linear-gradient(to right, #316ce8 0%, #188ef4 100%);
+}
+
+.precio8 .btn-danger-gradiant {
+  background: #ff4d7e;
+  background: -webkit-linear-gradient(
+    legacy-direction(to right),
+    #ff4d7e 0%,
+    #ff6a5b 100%
+  );
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#ff4d7e),
+    to(#ff6a5b)
+  );
+  background: -webkit-linear-gradient(left, #ff4d7e 0%, #ff6a5b 100%);
+  background: -o-linear-gradient(left, #ff4d7e 0%, #ff6a5b 100%);
+  background: linear-gradient(to right, #ff4d7e 0%, #ff6a5b 100%);
+}
+
+.precio8 .btn-danger-gradiant:hover {
+  background: #ff6a5b;
+  background: -webkit-linear-gradient(
+    legacy-direction(to right),
+    #ff6a5b 0%,
+    #ff4d7e 100%
+  );
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#ff6a5b),
+    to(#ff4d7e)
+  );
+  background: -webkit-linear-gradient(left, #ff6a5b 0%, #ff4d7e 100%);
+  background: -o-linear-gradient(left, #ff6a5b 0%, #ff4d7e 100%);
+  background: linear-gradient(to right, #ff6a5b 0%, #ff4d7e 100%);
+}
+
+@media (max-width: 768px) {
+  .imagen-acerca-de {
+    max-width: 210px !important;
+  }
+  ul{
+    margin-left:0px !important
+  }
+  .conclusion p{
+    font-size: 16px !important;
+  }
+}

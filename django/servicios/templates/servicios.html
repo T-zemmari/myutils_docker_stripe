@@ -1,0 +1,102 @@
+{% extends 'base_app.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+  <style>
+    .contenedor-servicios {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    .main-servicios {
+      margin-top: 60px;
+      width: 100%;
+      min-height: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .contenedor-servicios-portada {
+      width: 100%;
+      min-height: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    
+    .menu-item {
+      width: 200px;
+      height: 200px;
+      margin: 10px;
+    }
+    
+    .menu-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .hr-custom {
+      width: 100%;
+      height: 1px;
+      background-color: #ccc;
+      margin: 0px;
+    }
+    .span-titulo {
+      width: 100%;
+      font-size: 24px;
+      font-weight: bold;
+      color: #3498db;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .centrar-elementos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    @media (max-width: 768px) {
+      .contenedor-servicios-portada {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      
+    }
+  </style>
+{% endblock %}
+{% block title %}
+  Servicios
+{% endblock %}
+{% block main %}
+  <div class="contenedor-servicios">
+    <div class="main-servicios">
+      <span class="span-titulo centrar-elementos">CURRICULUMS</span>
+      <hr class="hr-custom" />
+      <div class="contenedor-servicios-portada">
+        <div class="menu-item" style="width: unset;">
+          <a href="{% url 'vista_servicios_curriculumns' %}"><img src="{% static 'img/cvs/cv1.png' %}" alt="ic_cv_1" /></a>
+        </div>
+      </div>
+      <hr class="hr-custom" />
+      <span class="span-titulo centrar-elementos">CONVERTIR</span>
+      <hr class="hr-custom" />
+      <div class="contenedor-servicios-portada">
+        <div class="menu-item" s>
+          <a href="{% url 'vista_servicios_documentos_img_to_pdf' %}"><img style="height:inherit ;border: 1px solid #adadad;" src="{% static 'img/img_to_pdf_2.png' %}" alt="img_to_pdf" /></a>
+        </div>
+        <div class="menu-item">
+          <a href="{% url 'vista_servicios_documentos_convertir_pdf' %}"><img style="height:122px ;border: 1px solid #adadad;" src="{% static 'img/txt_to_pdf_3.png' %}" alt="txt_to_pdf" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+
+{% endblock %}

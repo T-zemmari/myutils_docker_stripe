@@ -1,0 +1,102 @@
+{% extends 'base_bootstrap.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/registro.css' %}" />
+  <style>
+    .password-container {
+      position: relative;
+    }
+    
+    .password-toggle {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+    
+    .password-input-container {
+      position: relative;
+    }
+  </style>
+{% endblock %}
+{% block main %}
+  {% load socialaccount %}
+
+  <div class="container" style="height: 100vh;">
+    <div class="row">
+      <!-- Parte izquierda con el formulario del login -->
+      <div class="col-md-6">
+        <div class="custom-register-container">
+          <div class="signup">
+            <h1 class="signup-heading">Login</h1>
+            <a href="{% provider_login_url 'google' %}" class="signup-google">
+              <i class="fab fa-google signup-google-icon"></i>
+              <span class="signup-google-text">Entra con tu cuenta google</span>
+            </a>
+            {% if form.errors and error_credenciales %}
+              <small style="color:red">Credenciales erroneas</small>
+            {% endif %}
+            <div class="signup-or">
+              <span class="signup-or-text">Ó</span>
+            </div>
+
+            <form action="" method="post" class="signup-form" autocomplete="off">
+              {% csrf_token %}
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="email" class="form-label">{{ form.username.label_tag }}</label>
+                    {{ form.username }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12">
+                  <div class="form-group password-container">
+                    <label for="password" class="form-label">{{ form.password.label_tag }}</label>
+                    <div class="password-input-container">
+                      {{ form.password }}
+                      <span id="show-password" class="password-toggle"><i class="fas fa-eye"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="form-submit">Logeate</button>
+            </form>
+            <p class="signup-already">
+              ¿ No tienes cuenta ? <a href="{% url 'customerUser:registro' %}" class="signup-already-link">Registrate</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Parte derecha con una imagen -->
+      <div class="col-md-6">
+        <div class="contenedor-imagen-izquierda-registro" style="margin-top: 55px !important;">
+          <img style="max-width: 72.6%;" src="{% static 'img/imagen_3.jpg' %}" alt="Imagen de login" />
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_js %}
+  <script>
+    $(document).ready(function () {
+      // Función para alternar la visibilidad de la contraseña
+      $('#show-password').click(function () {
+        var passwordInput = $('#id_password')
+        var passwordFieldType = passwordInput.attr('type')
+    
+        // Cambia el tipo de campo de contraseña según su estado actual
+        if (passwordFieldType === 'password') {
+          passwordInput.attr('type', 'text')
+        } else {
+          passwordInput.attr('type', 'password')
+        }
+      })
+    })
+  </script>
+{% endblock %}

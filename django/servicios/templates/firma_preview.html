@@ -1,0 +1,30 @@
+{% extends 'base_app.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+{% endblock %}
+{% block title %}
+  Firma preview
+{% endblock %}
+{% block main %}
+  <div class="contenedor-servicios">
+    <div class="container" style="margin-top: 80px;">
+            <h2>Firma Preview</h2>
+
+    <p>Usuario: {{ firma.usuario.username }}</p>
+    <p>Fecha de Creación: {{ firma.fecha_creacion }}</p>
+    <!-- Otros detalles del usuario o firma que desees mostrar -->
+
+    <!-- Agrega aquí la lógica para mostrar la firma en el PDF si es necesario -->
+    <!-- Puedes utilizar un visor de PDF en JavaScript, como pdf.js -->
+
+    <!-- Agrega un enlace para volver a la página anterior -->
+    <a href="{% url 'firma_view' %}">Volver a Cargar Firma</a>
+    </div>
+
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+
+{% endblock %}

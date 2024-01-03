@@ -1,0 +1,28 @@
+{% extends 'base_app.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'bootstrap-5-3-2/css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/firmar_stepper.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/pdf/pdf.min.css' %}" />
+{% endblock %}
+{% block title %}
+  Generador de PDF con Firma
+{% endblock %}
+{% block main %}
+  <div class="contenedor-servicios">
+    <div class="container mt-5">
+      <h1>Subir PDF e Imagen y Firmar</h1>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="pdf_file" accept=".pdf" />
+        <input type="file" name="image_file" accept="image/*" />
+        <button type="submit" name="action" value="sign">Firmar</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+
+{% endblock %}

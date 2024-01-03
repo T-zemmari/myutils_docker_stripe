@@ -1,0 +1,489 @@
+.contenedor-general-editor {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  /*border: 1px solid gray*/
+}
+
+.centrar-elementos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.contenedor-menu-izquierdo {
+  width: 5%;
+  height: 100%;
+  background-color: rgb(28, 28, 10);
+  color: white;
+}
+
+/* .contenedor-menu-derecho {
+      width: 3%;
+      height: 100%;
+      background-color: rgb(28, 28, 10);
+      color: white;
+  } */
+
+.contenedor-menu-medios {
+  width: 20%;
+  height: 100%;
+  background-color: rgb(39, 39, 49);
+  color: white;
+}
+
+.contenedor-trabajos {
+  width: 75%;
+  height: 100%;
+  background-color: rgb(28, 28, 38);
+  color: white;
+}
+
+.contenedor-iconos {
+  width: 100%;
+  height: 7%;
+  background: rgb(28, 28, 10);
+  cursor: pointer;
+}
+
+.contenedor-iconos.active {
+  background: rgb(39, 39, 49);
+}
+
+.contenedor-menu-header {
+  width: 100%;
+  height: 7%;
+  border-top: 1px solid #816be0;
+  border-bottom: 1px solid #816be0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contenedor-crear-nuevo-proyecto {
+  border-bottom: 1px solid #816be0;
+  height: 7%;
+  flex-direction: column;
+}
+
+.contenedor-mostrar-archivo {
+  width: 100%;
+  min-height: 236px;
+  max-height: 636px;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 10px;
+  overflow-y: auto;
+  margin-top: 15px;
+  /*border: 1px solid #45452c;*/
+}
+
+.contenedor-mostrar-trabajos {
+  width: 100%;
+  min-height: 236px;
+  max-height: 636px;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 10px;
+  overflow-y: auto;
+  margin-top: 15px;
+  border: 1px solid blue;
+}
+.contenedor-mostrar-archivo-dos,
+.contenedor-mostrar-trabajos-dos {
+  min-height: 236px;
+  max-height: 405px;
+}
+.contenerdor-accion-importar-archivos {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.contenedor-mostrar-proyectos {
+  width: 100%;
+  min-height: 550px;
+  max-height: 550px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  padding: 10px;
+  gap: 10px;
+  overflow-y: auto;
+  margin-top: 15px;
+  /* border: 1px solid violet; */
+}
+.boton-importar-media {
+  /*margin-left: 15px;*/
+  margin-top: 10px;
+  height: 30px;
+  border: none;
+  color: #fff;
+  width: 90%;
+  font-size: 14px;
+  border-radius: 2px;
+  background: #1c1c0a;
+}
+
+.contenedor-elemento-proyecto {
+  width: 80px;
+  height: 100px;
+}
+
+.titulo-crear-y-grabar {
+  font-size: 14px !important;
+}
+
+.contenedor-visualiacion-video {
+  width: 100%;
+  height: 60%;
+  border-bottom: 1px solid #816be0;
+  flex-direction: column;
+  gap: 2%;
+}
+
+.contenedor-manipulacion-video centrar-elementos {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.botones-acciones-cortar-unir-videos {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #816be0;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.join-btn {
+  border: none;
+  color: white;
+  padding: 1px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.join-btn:hover {
+  background-color: #ff8533;
+}
+
+.btn-join-custom-background {
+  background-color: #ffe0cb;
+}
+
+.contenedor-info-video-recortes-etc {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 15px;
+}
+
+.contenedor-manipulacion-video {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.contenedor-icono-proyecto {
+  width: 100%;
+  height: 80%;
+}
+
+.contenedor-nombre-proyecto {
+  width: 100%;
+  height: 20%;
+}
+
+.elemento-video {
+  width: 80%;
+  height: 70%;
+  background: #333;
+}
+
+.contenedor-videos-desplegado {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  min-width: 97%;
+  max-width: 100%;
+  height: 100%;
+  border: 3px dashed #816be0;
+  padding: 10px;
+}
+
+#capturas {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  overflow: auto;
+  height: 60px;
+  background-color: #212529;
+}
+.container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+}
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+.container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.container::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.container::-webkit-scrollbar-thumb:active {
+  background-color: #999999;
+}
+.zona-muerta {
+  width: 10px;
+  border: 4px dashed #816be0;
+}
+
+.elemento-controles {
+  width: 200px;
+  height: 40px;
+}
+
+.formulario-crear-nuevo-proyecto {
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.zona-dropzone {
+  width: 100%;
+  padding: 10px;
+  color: #fff !important;
+}
+
+.zona-dropzone-hijo {
+  min-height: 150px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+.ver-formulario {
+  border-bottom: 1px solid #816be0;
+  height: 180px !important;
+  flex-direction: column;
+}
+
+/* Inicio listar los proyectos */
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.project-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #333333;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.project-name {
+  flex: 1;
+  margin: 0;
+  cursor: pointer;
+}
+
+.btn-delete {
+  border: none;
+  background-color: transparent;
+  color: #cb87ff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+.btn-delete:hover {
+  color: #f00;
+}
+
+#video_visualizaciones {
+  width: 100%;
+  height: 100%;
+}
+#video-container {
+  width: 100px;
+  height: 100px;
+}
+/* Fin listar los proyectos */
+
+/* Barra video tiempo */
+
+#video-bar {
+  position: relative;
+  background-color: #ccc;
+  height: 20px;
+  width: 100%;
+}
+
+#video-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #9926f0;
+}
+
+#video-time {
+  /* position: absolute;
+      top: 0;
+      left: 0; */
+  font-size: 12px;
+  color: white;
+}
+
+#video-handle {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 10px;
+  background-color: #333;
+  cursor: pointer;
+}
+
+.timestamp-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.timestamp {
+  position: absolute;
+  bottom: -20px;
+  /* Ajustar según la posición deseada */
+  font-size: 10px;
+  /* Ajustar según el tamaño deseado */
+  text-align: center;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.video-previsualizacion-custom {
+  display: inline-block;
+  position: relative;
+}
+
+#area-destino {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+}
+
+.force-hide {
+  display: none !important;
+}
+
+.alerta {
+  display: none;
+  padding: 20px;
+  color: #9926f0;
+  margin-top: 115px;
+}
+
+.vista-no-activa {
+  display: none;
+}
+
+.vista-activa {
+  display: flex;
+}
+.carpeta-proyecto {
+  width: 100%;
+  background-color: #2b2f32;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+.btn-eliminar-proyecto {
+  position: absolute;
+  top: 50;
+  right: 0;
+}
+
+.galeria-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: auto; /* Permite desplazar la galería horizontalmente */
+  position: relative;
+}
+
+.boton-derecho,
+.boton-izquierdo {
+  position: absolute;
+  top: 0;
+  width: 1%;
+  height: 100%;
+  background-color: #ad7919;
+}
+
+.boton-derecho {
+  right: 0;
+}
+
+.boton-izquierdo {
+  left: 0;
+}
+/* Fin barra  video tiempo */
+@media (max-width: 768px) {
+  .alerta {
+    margin-top: 80px;
+  }
+}

@@ -1,0 +1,65 @@
+.centrar-elementos {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+#image_preview_container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(200px, 1fr)
+  ); /* Ajusta el tamaño de las columnas según sea necesario */
+  grid-gap: 10px; /* Espacio entre las imágenes */
+  border: 1px solid #cfcdcd;
+  padding: 10px;
+  max-height: 430px;
+  overflow-y: auto;
+  background-image: url("../img/iconos/icono_subir_img_1.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 150px 150px;
+}
+
+#pdf_previsualizacion {
+  background-image: url("../img/iconos/icono_preview_pdf_2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 150px 150px;
+}
+
+#image_preview_container img {
+  max-width: 100%;
+  height: auto; /* Mantén la relación de aspecto original de la imagen */
+  border: 1px solid #ddd; /* Agrega un borde alrededor de cada imagen */
+}
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.3);
+  border-top: 4px solid #007bff; /* Color del spinner (puedes cambiarlo) */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+  display: none; /* Ocultar el spinner inicialmente */
+}
+h2 {
+  font-size: 21px;
+}
+
+/* Animación del spinner */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 768px) {
+  .h2-custom-1 {
+    font-size: 16px;
+  }
+  .h2-custom-2 {
+    margin-top: 15px;
+    font-size: 16px;
+  }
+}

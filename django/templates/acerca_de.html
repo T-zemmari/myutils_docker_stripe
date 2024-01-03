@@ -1,0 +1,123 @@
+{% extends 'base_bootstrap.html' %}
+{% load static %}
+{% block extra_css %}
+  <link href="{% static 'css/acerca-de.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block title %}
+  Acerca-de
+{% endblock %}
+{% block main %}
+  <div class="contenedor-acerca-de">
+    <div class="container">
+      <section class="features">
+        <div class="row custom-space-between">
+          <div class="col-xl-6 col-md-6 col-sm-12 centrar-elementos">
+            <p>MyUtils, es una plataforma en línea que ofrece una variedad de herramientas y servicios útiles para nuestros usuarios. Está diseñado para satisfacer las necesidades de una amplia gama de personas, desde profesionales y creativos hasta usuarios regulares que desean realizar tareas específicas de manera rápida y eficiente.</p>
+          </div>
+          <div class="col-xl-6 col-md-6 col-sm-12 centrar-elementos">
+            <img class="imagen-acerca-de" style="max-width:400px;max-height: 400px;" src="{% static 'img/tools_1.png' %}" alt="" />
+          </div>
+        </div>
+        <h2>Características Destacadas:</h2>
+        <div class="row custom-space-between">
+          <div class="col-xl-6 col-md-6 col-sm-12 centrar-elementos">
+            <img class="imagen-acerca-de" style="max-width:400px;max-height: 400px;" src="{% static 'img/pdf_1.png' %}" alt="" />
+          </div>
+          <div class="col-xl-6 col-md-6 col-sm-12 centrar-elementos">
+            <ul>
+              <li>
+                <strong>Herramientas Versátiles:</strong> MyUtils ofrece una amplia gama de herramientas, incluyendo la capacidad de unir archivos PDF, descargar contenido de YouTube, cambiar la resolución y el formato de imágenes, y muchas más. Estas herramientas están diseñadas para simplificar tareas cotidianas en línea.
+              </li>
+              <li>
+                <strong>Facilidad de Uso:</strong> Nuestra plataforma se destaca por su interfaz fácil de usar, lo que permite a los usuarios, independientemente de su nivel de habilidad, aprovechar al máximo estas herramientas de manera intuitiva y sin complicaciones.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="subscription-plans">
+        <div class="precio8 py-5">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-8 text-center">
+                <h3 class="mb-3">Precios para hacer tu trabajo efectivo</h3>
+                <h6 class="subtitulo font-weight-normal">Trabajamos incansablemente para que valga la pena.</h6>
+              </div>
+            </div>
+            <!-- row -->
+            <div class="row mt-4">
+              <!-- column -->
+              {% for product in products %}
+                {% if product.name != 'Gratuito' %}
+                  <div class="col-md-4 ml-auto pricing-box align-self-center">
+                    <div class="card mb-4">
+                      <div class="card-body p-4 text-center">
+                        <h5 class="font-weight-normal">{{ product.name }}</h5>
+                        <span class="text-dark display-5">{{ product.price }}</span><sup>€</sup>
+                        <h6 class="font-weight-light font-14">Pago unico</h6>
+                        <p class="mt-4">{{ product.description }}</p>
+                      </div>
+                      <form action="{% url 'checkout' product.id %}" method="POST">
+                        {% csrf_token %}
+                        {% if forloop.counter == 2 %}
+                          <div style="width: 100%;;font-size:18px;cursor:alias;" class="btn btn-danger-gradiant p-3 btn-block border-0 text-white">{{ product.name }}</div>
+                        {% else %}
+                          <div style="width: 100%;font-size:18px;cursor:alias;" class="btn btn-info-gradiante p-3 btn-block border-0 text-white">{{ product.name }}</div>
+                        {% endif %}
+                      </form>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="key-benefits">
+        <h2>Beneficios Clave:</h2>
+        <ul>
+          <li>
+            <strong>Ahorro de Tiempo:</strong> Nuestras herramientas están diseñadas para ayudar a los usuarios a realizar tareas en línea de manera rápida y eficiente, lo que les permite ahorrar tiempo y esfuerzo.
+          </li>
+          <li>
+            <strong>Calidad Profesional:</strong> MyUtils se esfuerza por brindar resultados de alta calidad en todas sus funciones, garantizando que los usuarios obtengan los resultados que desean.
+          </li>
+          <li>
+            <strong>Atractivo Visual:</strong> Nuestro sitio web cuenta con un diseño atractivo y amigable, lo que garantiza una experiencia agradable para los visitantes.
+          </li>
+        </ul>
+      </section>
+
+      <section class="target-audience">
+        <h2>Objetivo:</h2>
+        <p>Nuestro público objetivo abarca una amplia gama de personas, desde profesionales, estudiantes, emprendedores, creativos y cualquier persona que desee simplificar tareas en línea. Nuestro enfoque es brindar soluciones útiles y asequibles para todos.</p>
+      </section>
+
+      <section class="conclusion">
+        <h2 style="color: white;">Conclusión:</h2>
+        <p>En MyUtils, nuestro enfoque es ofrecer soluciones en línea de alta calidad, junto con una experiencia del usuario excepcional. Nuestro objetivo es simplificar la vida de nuestros usuarios, proporcionándoles herramientas y servicios versátiles y eficaces. Esperamos que MyUtils sea tu destino en línea para todas tus necesidades de productividad y creatividad.</p>
+      </section>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'jquery/jquery-3.7.1.min.js' %}"></script>
+  <script>
+    $(document).ready(function () {
+      // Encuentra la tarjeta con la altura máxima
+      var maxHeight = 0
+      $('.card').each(function () {
+        var currentHeight = $(this).height()
+        if (currentHeight > maxHeight) {
+          maxHeight = currentHeight
+        }
+      })
+    
+      // Aplica la altura máxima a todas las tarjetas
+      $('.card').height(maxHeight)
+    })
+  </script>
+{% endblock %}

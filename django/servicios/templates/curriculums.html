@@ -1,0 +1,393 @@
+{% extends 'base_app.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/cv.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/range.css' %}" />
+  <style>
+    @media (max-width: 768px) {
+      .col-md-4,
+      .col-md-8 {
+        width: 100%;
+      }
+    }
+  </style>
+{% endblock %}
+{% block title %}
+  Crear Currículum
+{% endblock %}
+{% block main %}
+  <div class="contenedor-alerta" style="display:none;margin-top:120px;color:#fff !important" id="contenedor_alerta_no_permitido"></div>
+  <div class="contenedor-servicios" style="padding: 20px;" id="contenedor_servicio_cv">
+    <div class="container-fluid mt-5">
+      <div class="row" style="padding: 20px;">
+        <div class="col-12 centrar-elementos"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <!-- Parte izquierda con campos de entrada -->
+          <form id="curriculum-form">
+            <h3 id="titulo_step_actual">Datos Personales</h3>
+            <hr />
+            <div id="contenedor_step_1">
+              <div class="row mt-4">
+                <div class="col-6">
+                  <label for="">Nombre</label>
+                  <input class="form-control modificar-cv" type="text" id="nombre" placeholder="Nombre" />
+                </div>
+                <div class="col-6">
+                  <label for="">Apellidos</label>
+                  <input class="form-control modificar-cv" type="text" id="apellidos" placeholder="Apellidos" />
+                </div>
+              </div>
+
+              <div class="row mt-4">
+                <div class="col-3">
+                  <label for="">Prefijo</label>
+                  <input class="form-control modificar-cv" type="numbre" id="prefijo" placeholder="+34" maxlength="3" />
+                </div>
+                <div class="col-9">
+                  <label for="">Teléfono</label>
+                  <input class="form-control modificar-cv" type="number" id="telefono" placeholder="Teléfono" maxlength="9" />
+                </div>
+              </div>
+
+              <div class="row mt-4">
+                <div class="col-12">
+                  <label for="">Correo Electrónico</label>
+                  <input class="form-control modificar-cv" type="text" id="email" placeholder="Email" />
+                </div>
+              </div>
+
+              <div class="row mt-4">
+                <div class="col-12">
+                  <label for="">Linkedin</label>
+                  <input class="form-control modificar-cv" type="text" id="link_linkedin" placeholder="Linkedin" />
+                </div>
+              </div>
+
+              <div class="row mt-4">
+                <div class="col-12">
+                  <label for="">Puesto</label>
+                  <input class="form-control modificar-cv" type="text" id="puesto" placeholder="Escribe el puesto de trabajo" />
+                </div>
+              </div>
+
+              <div class="row mt-4">
+                <div class="col-12">
+                  <label for="">Sobre mi</label>
+                  <textarea class="form-control modificar-cv" type="text" id="sobre_mi" rows="5" placeholder="Escribe una breve descripción sobre ti..."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div id="contenedor_step_2" style="display: none">
+              <div class="row mt-4">
+                <div class="col-12">
+                  <label for="">Skills</label>
+                  <div class="skill-icons" id="div_icons_skills" style="border: 1px solid #d1d1d1;padding: 30px;">
+                    <a href="#" class="skill-icon" icononombre="icono_html_1.png"><img style="width: 50px;height: 50px;" src="{% static 'img/iconos/icono_html_1.png' %}" alt="icono_html_1" /></a>
+                    <a href="#" class="skill-icon" icononombre="icono_css_1.png"><img style="width: 50px;height: 50px;" src="{% static 'img/iconos/icono_css_1.png' %}" alt="icono_css_1" /></a>
+                    <a href="#" class="skill-icon" icononombre="icono_javascript_1.png"><img style="width: 50px;height: 50px;" src="{% static 'img/iconos/icono_javascript_1.png' %}" alt="icono_javascript_1" /></a>
+                    <a href="#" class="skill-icon" icononombre="icono_mysql_1.png"><img style="width: 50px;height: 50px;" src="{% static 'img/iconos/icono_mysql_1.png' %}" alt="icono_mysql_1" /></a>
+                    <a href="#" class="skill-icon" icononombre="icono_python_1.png"><img style="width: 50px;height: 50px;" src="{% static 'img/iconos/icono_python_1.png' %}" alt="icono_python_1" /></a>
+                    <a href="#" class="skill-icon" icononombre="icono_php_1.png"><img style="width: 50px;height: 50px;" src="{% static 'img/iconos/icono_php_1.png' %}" alt="icono_php_1" /></a>
+                    <!-- Agrega más iconos aquí -->
+                  </div>
+                  <div class="skills-escogidos" id="div_skills_escogidas"></div>
+                </div>
+              </div>
+
+              <div class="row mt-4">
+                <div class="col-12">
+                  <label for="">Idiomas</label>
+                  <div class="info-idiomas" id="div_info_idiomas">
+                    <div class="lista-idiomas">
+                      <div>
+                        <input type="checkbox" id="castellano" />
+                        <label for="nivel_idioma_castellano">Español</label>
+                      </div>
+                      <input type="range" min="1" max="3" value="1" step="1" id="nivel_idioma_castellano" name="nivel_idioma_castellano" />
+                    </div>
+                  </div>
+
+                  <div class="lista-idiomas">
+                    <div>
+                      <input type="checkbox" id="ingles" />
+                      <label for="nivel_idioma_ingles">Inglés</label>
+                    </div>
+                    <input type="range" min="1" max="3" value="1" step="1" id="nivel_idioma_ingles" name="nivel_idioma_ingles" />
+                  </div>
+
+                  <div class="lista-idiomas">
+                    <div>
+                      <input type="checkbox" id="Francés" />
+                      <label for="nivel_idioma_frances">Frances</label>
+                    </div>
+                    <input type="range" min="1" max="3" value="1" step="1" id="nivel_idioma_frances" name="nivel_idioma_frances" />
+                  </div>
+
+                  <div class="lista-idiomas">
+                    <div>
+                      <input type="checkbox" id="Aleman" />
+                      <label for="nivel_idioma_aleman">Aleman</label>
+                    </div>
+                    <input type="range" min="1" max="3" value="1" step="1" id="nivel_idioma_aleman" name="nivel_idioma_aleman" />
+                  </div>
+
+                  <div class="lista-idiomas">
+                    <div>
+                      <input type="checkbox" id="Francés" />
+                      <label for="nivel_idioma_arabe">Arabe</label>
+                    </div>
+                    <input type="range" min="1" max="3" value="1" step="1" id="nivel_idioma_arabe" name="nivel_idioma_arabe" />
+                  </div>
+
+                  <div class="lista-idiomas">
+                    <div>
+                      <input type="checkbox" id="Chino" />
+                      <label for="nivel_idioma_chino">Chino</label>
+                    </div>
+                    <input type="range" min="1" max="3" value="1" step="1" id="nivel_idioma_chino" name="nivel_idioma_chino" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="contenedor_step_3" style="display: none;">
+              <label for="">Titulo</label>
+              <input type="text" class="form-control" placeholder="Escribe el titulo" id="estudios_titulo" />
+              <div class="row">
+                <div class="col-6" style="margin-top:10px">
+                  <label for="">Inicio:</label>
+                  <input type="date" class="form-control" id="estudios_fecha_ini" />
+                </div>
+                <div class="col-6" style="margin-top:10px">
+                  <label for="">Fin:</label>
+                  <input type="date" class="form-control" id="estudios_fecha_fin" />
+                </div>
+              </div>
+              <label for="" style="margin-top:10px">Estudios cursados en:</label>
+              <input class="form-control" placeholder="Lugar de estudios" id="lugar_de_estudios" />
+              <div class="row" style="display: none;" id="row_lista_estudios_agregados">
+                <div class="col-12">
+                  <div id="lista_estudios_agregados"></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <button type="button" style="width: 100%;margin-top:10px" class="btn btn-dark btn-sm" onclick="guardar_estudios()">Guardar estudios</button>
+                </div>
+                <!--          <div class="col-6">
+                  <button type="button" style="width: 100%;margin-top:10px" id="anyadir_mas_estudios" class="btn btn-primary btn-sm" disabled onclick="fun_mas_estudios()">Añadir mas</button>
+                </div>         -->
+              </div>
+            </div>
+
+            <div id="contenedor_step_4" style="display: none;">
+              <label for="">Titulo</label>
+              <input type="text" class="form-control" placeholder="Escribe el puesto de trabajo" id="experiencia_titulo" style="margin-top:10px" />
+              <div class="row">
+                <div class="col-6" style="margin-top:10px">
+                  <label for="">Inicio</label>
+                  <input type="date" class="form-control" id="experiencia_fecha_ini" />
+                </div>
+                <div class="col-6" style="margin-top:10px">
+                  <label for="">Fin</label>
+                  <input type="date" class="form-control" id="experiencia_fecha_fin" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12" style="margin-top:10px">
+                  <label for="">Actualmente</label>
+                  <input type="checkbox" id="experiencia_actualmente" />
+                </div>
+              </div>
+              <label for="" style="margin-top:10px">Breve descripcion (150 caracteres)</label>
+              <textarea class="form-control" rows="3" placeholder="Escribe una breve descripcion..." id="breve_descripcion_puesto" style="margin-top:10px"></textarea>
+
+              <div class="row" style="display: none;" id="row_lista_experiencias_agregadas">
+                <div class="col-12">
+                  <div id="lista_experiencias_agregadas"></div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <button type="button" style="width: 100%;margin-top:10px" class="btn btn-dark btn-sm" onclick="guardar_experiencia()" style="margin-top:10px">Guardar experiencia</button>
+                </div>
+                <!--        <div class="col-6">
+                  <button type="button" style="width: 100%;margin-top:10px" id="btn_anyadir_experiencia" class="btn btn-primary btn-sm" disabled onclick="fun_mas_experiencias()" style="margin-top:10px">Añadir experiencia</button>
+                </div>        -->
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col-12 custom-center">
+                <button type="button" class="btn btn-danger btn-sm" id="volver_atras_step_1" style="display: none;width: 50%;" onclick="configuracion_steps('volver_atras_step_1')">Volver atras</button>
+                <button type="button" class="btn btn-primary btn-sm" id="ir_a_step_2" style="width: 100%;" onclick="configuracion_steps('ir_a_step_2')">Siguiente</button>
+                <button type="button" class="btn btn-danger btn-sm" id="volver_atras_step_2" style="display: none;width: 50%;" onclick="configuracion_steps('volver_atras_step_2')">Volver atras</button>
+                <button type="button" class="btn btn-primary btn-sm" id="ir_a_step_3" style="display: none;width: 50%;" onclick="configuracion_steps('ir_a_step_3')">Siguiente</button>
+                <button type="button" class="btn btn-danger btn-sm" id="volver_atras_step_3" style="display: none;width: 50%;" onclick="configuracion_steps('volver_atras_step_3')">Volver atras</button>
+                <button type="button" class="btn btn-primary btn-sm" id="ir_a_step_4" style="display: none;width: 50%;" onclick="configuracion_steps('ir_a_step_4')">Siguiente</button>
+                <button type="button" class="btn btn-success btn-sm" id="finalizar_cv" style="display: none;width: 50%;">Finalizar</button>
+              </div>
+            </div>
+
+            <!-- Agrega más campos de entrada según tus necesidades -->
+          </form>
+        </div>
+        <div class="col-md-8" style="padding: 0px;">
+          <!-- Parte derecha para mostrar los datos en tiempo real -->
+          <div id="real-time-preview">
+            <div class="cv-container" id="html_cv_print">
+              <div class="cv-header">
+                <div class="cv-avatar" id="avatar-container">
+                  <label for="avatar-input" class="avatar-label"><input type="file" id="avatar-input" accept="image/*" style="display: none;" /></label>
+                </div>
+
+                <div class="cv-contact">
+                  <div class="cv-section-title">
+                    <h2>Contacto</h2>
+                  </div>
+                  <div class="cv-info">
+                    <div class="cv-icon">
+                      <img class="icono-info-png" src="{% static 'img/iconos/icono_phone_1.png' %}" alt="" />
+                    </div>
+                    <div class="cv-text" id="span_num_telefono">
+                      (+<span id="cv_prefijo_telefono">34</span>) <span id="cv_telefono">669551100</span>
+                    </div>
+                  </div>
+                  <div class="cv-info">
+                    <div class="cv-icon">
+                      <img class="icono-info-png" src="{% static 'img/iconos/icono_adress_1.png' %}" alt="" />
+                    </div>
+                    <div class="cv-text" id="span_direccion">España</div>
+                  </div>
+                  <div class="cv-info">
+                    <div class="cv-icon">
+                      <img class="icono-info-png" src="{% static 'img/iconos/icono_email_1.png' %}" alt="" />
+                    </div>
+                    <div class="cv-text" id="span_email">ejemplo@email.com</div>
+                  </div>
+                  <div class="cv-info">
+                    <div class="cv-icon">
+                      <img class="icono-info-png" src="{% static 'img/iconos/icono_linkedin_1.png' %}" alt="" />
+                    </div>
+                    <div class="cv-text" id="span_linkdin">ejemplo@email.com</div>
+                  </div>
+                </div>
+                <div class="cv-personal" id="id_cv_personal" style="display: none;">
+                  <div class="cv-section-title">
+                    <h2>Skills</h2>
+                  </div>
+                  <div class="contenedor-skills">
+                    <img class="icono-skills-png" src="{% static 'img/iconos/icono_html_1.png' %}" alt="icono_html_1" id="icono_html_1" style="display: none" />
+                    <img class="icono-skills-png" src="{% static 'img/iconos/icono_css_1.png' %}" alt="icono_css_1" id="icono_css_1" style="display: none" />
+                    <img class="icono-skills-png" src="{% static 'img/iconos/icono_javascript_1.png' %}" alt="icono_javascript_1" id="icono_javascript_1" style="display: none" />
+                    <img class="icono-skills-png" src="{% static 'img/iconos/icono_mysql_1.png' %}" alt="icono_mysql_1" id="icono_mysql_1" style="display: none" />
+                    <img class="icono-skills-png" src="{% static 'img/iconos/icono_nodejs_1.png' %}" alt="icono_nodejs_1" id="icono_nodejs_1" style="display: none" />
+                    <img class="icono-skills-png" src="{% static 'img/iconos/icono_php_1.png' %}" alt="icono_php_1" id="icono_php_1" style="display: none" />
+                    <img class="icono-skills-png" src="{% static 'img/iconos/icono_python_1.png' %}" alt="icono_python_1" id="icono_python_1" style="display: none" />
+                  </div>
+                </div>
+                <div class="cv-hobbies" id="id_cv_idiomas" style="display: ;">
+                  <div class="cv-section-title">
+                    <h2>Idiomas</h2>
+                  </div>
+                  <div class="" id="div_contenedor_idiomas"></div>
+                </div>
+              </div>
+              <div class="cv-body">
+                <div class="cv-title">
+                  <h1 class="h1-custom-cv"><b id="preview_nombre">Jose</b><br /><b id="preview_apellidos">Fernandez López</b></h1>
+                </div>
+                <div class="cv-subtitle">
+                  <h1 id="preview_titulo_pst">Full Stack Developer</h1>
+                </div>
+                <div class="cv-group-1">
+                  <div class="cv-box">
+                    <h2>Sobre mi</h2>
+                  </div>
+                  <div class="cv-description" id="preview_info_sobre_mi">Soy un apasionado desarrollador Full Stack con [X años] de experiencia. Mi enfoque es crear soluciones web y móviles excepcionales. Domino tecnologías como HTML, CSS, JavaScript, React, Python, Django y más. Siempre estoy dispuesto a asumir desafíos técnicos y encontrar soluciones eficientes. Estoy ansioso por unirme a equipos innovadores y contribuir con mi experiencia.</div>
+                </div>
+                <div class="cv-group-2">
+                  <div class="cv-box">
+                    <h2>Datos academicos</h2>
+                  </div>
+                  <div class="cv-description">
+                    <ul id="lista_info_datos_academicos"></ul>
+                    <ul id="preview_lista_info_datos_academicos">
+                      <li>
+                        <div class="cv-msg-1">
+                          <span id="estudio_inicio">2017</span>-<span id="estudio_fin">2018</span> | <span id="titulo_estudios"></span>
+                        </div>
+                        <div class="cv-msg-2" id="lugar_estudios">Masterall School of Texas</div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="cv-group-3">
+                  <div class="cv-box">
+                    <h2>Experiencia laboral</h2>
+                  </div>
+                  <div class="cv-description">
+                    <ul id="lista_info_experiencia_laboral"></ul>
+                    <ul id="preview_lista_info_experiencia_laboral">
+                      <li>
+                        <div class="cv-msg-1">Present | Architect</div>
+                        <div class="cv-msg-2">Lorem, ipsum dolor</div>
+                        <div class="cv-msg-3">Lorem ipsum dolor sit amet consectetur adipisicing.</div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_js %}
+<script>
+  var MY_DOMAIN='{{MY_DOMAIN}}';
+</script>
+  <script src="{% static 'js/range.js' %}"></script>
+  <script src="{% static 'js/html2pdf.js' %}"></script>
+  <script src="{% static 'js/file-saver.js' %}"></script>
+  <script src="{% static 'js/script_cv_1.js' %}"></script>
+  <script src="{% static 'js/script_pdf_1.js' %}"></script>
+  <script src="{% static 'js/prt.js' %}"></script>
+
+  <script>
+    function verificarAnchoPantalla() {
+      let contenedorServicios = $('#contenedor_servicio_cv')
+      let contenedorNoPermitido = $('#contenedor_alerta_no_permitido')
+      let mensajeAlerta = $('<div>No permitido en dispositivos de este tamaño</div>')
+    
+      console.log('window.innerWidth', $(window).innerWidth())
+    
+      if ($(window).innerWidth() <= 850) {
+        console.log('verificarAnchoPantalla')
+        contenedorServicios.hide()
+        contenedorNoPermitido.html(mensajeAlerta)
+        contenedorNoPermitido.show()
+      } else {
+        contenedorServicios.show()
+        contenedorNoPermitido.hide()
+    
+        if (mensajeAlerta.parent().length) {
+          contenedorNoPermitido.html('')
+        }
+      }
+    }
+    
+    $(window).on('resize', verificarAnchoPantalla)
+    $(document).ready(function () {
+      verificarAnchoPantalla()
+    })
+  </script>
+{% endblock %}

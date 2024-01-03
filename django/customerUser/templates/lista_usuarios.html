@@ -1,0 +1,65 @@
+{% extends 'base_bootstrap.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link href="{% static 'css/home.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block main %}
+  <div class="container" style="min-height: 100vh;">
+    <div class="row">
+      <div class="col-12">
+        <div class="contenedor-home" style="margin-top: 80px;">
+          <div class="row">
+            <div class="col-xl-12 col-md-12 col-sm-12">
+              <h2>Lista de Usuarios</h2>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nombre Completo</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Plan Actual</th>
+                    <th>Activar/Desactivar Servicios</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for user in users %}
+                    {% if not user.is_superuser %}
+                      <tr>
+                        <td>{{ user.first_name }} {{ user.last_name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.telefono }}</td>
+                        <td>{{ user.direccion }}</td>
+                        <td>
+                          {% if user.plan_activo %}
+                            {{ user.plan_activo }}
+                            <span>Inicio: {{ user.plan_init|date:'d-m-Y' }}</span>
+                            <span>Fin: {{ user.plan_end|date:'d-m-Y' }}</span>
+                            {% if user.plan_end %}
+                              <span>Caduca: {{ user.plan_end|date:'d-m-Y' }}</span>
+                            {% endif %}
+                          {% else %}
+                            Sin plan activo
+                          {% endif %}
+                        </td>
+                        <td>
+                          {% if not user.activar_plan_temporalmente %}
+                            <a class="btn btn-outline-danger btn-sm" href="{% url 'customerUser:desactivar_plan_manualmente' user.id %}">Activar</a>
+                          {% else %}
+                            <a class="btn btn-outline-success btn-sm" href="{% url 'customerUser:activar_plan_manualmente' user.id %}">Desactivar</a>
+                          {% endif %}
+                        </td>
+                      </tr>
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

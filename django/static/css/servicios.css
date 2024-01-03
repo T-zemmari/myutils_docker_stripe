@@ -1,0 +1,15 @@
+.contenedor-servicios {
+  /*background: linear-gradient(178.6deg, rgb(20, 36, 50) 11.8%, rgb(124, 143, 161) 83.8%);*/
+  background-color: #ffffff;
+  padding: 40px;
+  height: 100%;
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .contenedor-servicios {
+    background-color: #fff !important;
+  }
+}
+
+

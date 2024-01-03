@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static 'bootstrap-5-3-2/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/footer.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="icon" href="data:," />
+    <title>
+      {% block title %}
+
+      {% endblock %}
+    </title>
+    {% block extra_css %}
+
+    {% endblock %}
+  </head>
+  <style>
+    html,
+    body {
+      /*background-color: #f2f3f5;*/
+      height: 100vh;
+      min-height: 100vh;
+    }
+    
+    /* Taller footer on small screens */
+    @media (max-width: 34em) {
+      body {
+        margin-bottom: 500px;
+      }
+      .footer {
+        height: 500px;
+      }
+    }
+  </style>
+  <body>
+    <div class="contenedor-principal">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+          <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">MyUtilS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav" style="justify-content: space-evenly;">
+              <ul class="navbar-nav ml-auto">
+                <!-- Utiliza ml-auto para alinear a la izquierda -->
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'vista_acerca_de' %}">Acerca de</a>
+                </li>
+                <li class="nav-item">
+                  {% if not user.is_authenticated %}
+                    <a class="nav-link" href="{% url 'customerUser:login' %}">Servicios</a>
+                  {% else %}
+                    {% if user.is_superuser or user.plan_activo_id is not null or user.activar_plan_temporalmente %}
+                      <a class="nav-link" href="{% url 'vista_servicios' %}">Servicios</a>
+                    {% else %}
+                      <a class="nav-link" href="{% url 'product:productos' %}">Servicios</a>
+                    {% endif %}
+                  {% endif %}
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'vista_contacto' %}">Contacto</a>
+                </li>
+              </ul>
+              <ul class="navbar-nav mr-auto">
+                <!-- Utiliza mr-auto para alinear a la derecha -->
+                {% if user.is_authenticated %}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img style="width:30px;height:30px;" src="{% static 'img/avatar_2.png' %}" alt="Avatar" class="avatar" />
+                      {{ user.username|capfirst }} {{ user.lastname|capfirst }}
+                      {% if user.plan_activo_id != null %}
+                        (Premium)
+                      {% endif %}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                      <li>
+                        <a class="dropdown-item" href="{% url 'customerUser:mi-perfil' %}">Perfil</a>
+                      </li>
+                      {% if user.is_superuser %}
+                        <li>
+                          <a class="dropdown-item" href="{% url 'product:productos' %}">Ir a productos</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="{% url 'customerUser:usuarios_listado' %}">Usuarios</a>
+                        </li>
+                      {% endif %}
+                      <li>
+                        <hr class="dropdown-divider" />
+                      </li>
+                      <li>
+                        <a class="dropdown-item logout-link" href="{% url 'logout' %}">Cerrar sesión</a>
+                      </li>
+                    </ul>
+                  </li>
+                {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'customerUser:login' %}">Iniciar sesión</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      {% block main %}
+
+      {% endblock %}
+
+      {% block footer %}
+        <footer id="footer">
+          <div class="footer-newsletter">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6">
+                  <h4>Boletin</h4> <p>Suscríbete a nuestro boletín para recibir las últimas noticias y actualizaciones.</p>
+                </div> <div class="col-lg-6">
+                  <form action="" method="post">
+                    <input type="email" name="email" />
+                    <input type="submit" value="Subscribe" />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div> <div class="footer-top">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-3 col-md-6 footer-links">
+                  <h4>Enlaces</h4> <ul>
+                    <li>
+                      <i class="bx bx-chevron-right"></i> <a class="nav-link" href="/">Portada</a>
+                    </li> <li>
+                      <i class="bx bx-chevron-right"></i> <a class="nav-link" href="{% url 'vista_acerca_de' %}">Acerca de</a>
+                    </li> <li>
+                      <i class="bx bx-chevron-right"></i>
+                      {% if user.plan_activo_id != null %}
+                        <a class="nav-link" href="{% url 'vista_servicios' %}">Servicios</a>
+                      {% else %}
+                        <a class="nav-link" href="{% url 'product:productos' %}">Servicios</a>
+                      {% endif %}
+                    </li> <li>
+                      <i class="bx bx-chevron-right"></i> <a class="nav-link" href="#">Términos de servicio</a>
+                    </li> <li>
+                      <i class="bx bx-chevron-right"></i> <a class="nav-link" href="#">Política de privacidad</a>
+                    </li>
+                  </ul>
+                </div> <div class="col-lg-3 col-md-6 footer-links">
+                  <h4>Mas servicios</h4> <ul>
+                    <li>
+                      <i class="bx bx-chevron-right"></i> <a class="nav-link" href="#">Más</a>
+                    </li>
+                  </ul>
+                </div> <div class="col-lg-3 col-md-6 footer-contact">
+                  <h4>Contacto</h4> <p>
+                    Valencia <br /> Avenida La paz, N 21<br /> España <br /><br /> <strong>Phone:</strong> +34 669217903<br /> <strong>Email:</strong> info@myutlis.com<br />
+                  </p>
+                </div> <div class="col-lg-3 col-md-6 footer-info">
+                  <h3>Acerca de MyUtils</h3> <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p> <div class="social-links mt-3">
+                    <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                    <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                    <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <div class="container">
+            <div class="copyright">
+              &copy; Copyright <strong><span>MyUtils</span></strong>. Reservados todos los derechos
+            </div>
+          </div>
+        </footer>
+      {% endblock %}
+    </div>
+    <script src="{% static 'bootstrap-5-3-2/js/bootstrap.bundle.min.js' %} "></script>
+    <script src="{% static 'jquery/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'jquery/jquery-ui.js' %}"></script>
+    <script src="{% static 'js/salert.js' %}"></script>
+    <script>
+      const logoutLink = document.querySelector('.logout-link')
+      if (logoutLink) {
+        logoutLink.addEventListener('click', (e) => {
+          e.preventDefault()
+          Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¿Deseas cerrar sesión?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, cerrar sesión',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = logoutLink.getAttribute('href')
+            }
+          })
+        })
+      }
+    </script>
+
+    {% block extra_js %}
+
+    {% endblock %}
+  </body>
+</html>

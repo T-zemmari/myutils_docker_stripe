@@ -1,0 +1,112 @@
+.archivos-section {
+    margin-bottom: 30px;
+    width: 100%;
+  }
+  
+  .archivos-list {
+    list-style: none;
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .archivos-list li {
+    margin-bottom: 10px;
+  }
+  
+  .archivos-list li button {
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  .contenedor-carpetas {
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+  .archivos-list img {
+    width: 50px;
+    height: 50px;
+  }
+  .contenedor-previsualizacion-pdf,
+  .contenedor-previsualizacion-videos,
+  .contenedor-previsualizacion-imagenes {
+    width: 100%;
+    min-height: 500px;
+    border: 1px solid #c7c8c9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .contenedor-pdfs {
+    display: flex;
+    flex-direction: row;
+  }
+  .contenedor-info-imagen {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 5px 10px;
+  }
+  .custom-flex-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 5px;
+  }
+  .contenedor-icono-video,
+  .contenedor-icono-imagen,
+  .contenedor-icono-pdf {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100px;
+    border: 1px solid #c7c8c9;
+    position: relative;
+    border-radius: 6px;
+    gap: 10px;
+  }
+  .archivos-list-videos,
+  .archivos-list-imagenes,
+  .archivos-list-pdfs {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 20px;
+  }
+  
+  .eliminar-video,
+  .eliminar-imagen,
+  .eliminar-pdf {
+    position: absolute;
+    top: 0px;
+    right: -1px;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px 6px;
+    border: none !important;
+  }
+  .play-video,
+  .ver-imagen,
+  .ver-pdf {
+    background-color: #04815c;
+    border-radius: 0px 0px 3px 3px;
+  }
+  .span-nombre-archivo {
+    font-size: 10px;
+    width: 100%;
+    padding: 2px;
+    color: brown;
+  }
+  .contenedor-icono-pdf {
+    width: 150px;
+  }

@@ -1,0 +1,79 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: ./django/
+    #command: >
+      #sh -c "python manage.py migrate && python manage.py collectstatic --no-input && gunicorn utils_tar.wsgi:application --bind 0.0.0.0:8000 -k gevent --reload"
+    volumes:
+      - ./django/:/usr/src/app
+      - static_files:/usr/src/app/staticfiles
+      - ./wait-for-it.sh:/usr/src/app/wait-for-it.sh
+    expose:
+      - 8000  
+    env_file:
+      - ./env/.env
+    networks:
+      - myutils_docker_nginx_default
+    restart: always
+
+  nginx:
+    depends_on:
+      - web
+    build:
+      context: ./nginx/
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - static_files:/home/app/staticfiles
+    networks:
+      - myutils_docker_nginx_default
+    restart: always  
+
+  mysql:
+    image: mariadb:10.10.7
+    environment:
+      MYSQL_DATABASE: 'util_tar_db'
+      MYSQL_USER: 'util_tar_db_2023'
+      MYSQL_PASSWORD: 'Ta00000000'
+      MYSQL_ROOT_PASSWORD: 'root_password'
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - myutils_docker_nginx_default
+    restart: always  
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2.1
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: 'mysql'
+    ports:
+      - 8080:80
+    networks:
+      - myutils_docker_nginx_default
+    restart: always    
+  
+           
+
+# dns:
+#   build:
+#     context: ./dns/
+#   restart: always
+#   ports:
+#     - 53:53
+#     - 53:53/udp
+#   volumes:
+#     - ./dns/named.conf:/etc/bind/named.conf
+#     - ./dns/zone/:/etc/bind/zone/
+#   command: named -c /etc/bind/named.conf -g -u named
+
+volumes:
+  static_files:
+  mysql_data:
+
+networks:
+  myutils_docker_nginx_default:
+

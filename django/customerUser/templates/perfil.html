@@ -1,0 +1,49 @@
+{% extends 'base_bootstrap.html' %}
+{% load static %}
+{% block title %}
+  Perfil
+{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/perfil.css' %}" />
+{% endblock %}
+
+{% block main %}
+  <div class="contenedor-perfil">
+    <div class="container mt-5">
+      <div class="row" style="margin-top:150px !important">
+        <div class="col-md-4">
+          <div class="card" style="display: flex;justify-content: center;align-items: center;">
+            <img  style="width: 300px;padding: 10px;" src="{% static 'img/avatar_2.png' %}" alt="Imagen de perfil" class="card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+              <p class="card-text">Usuario premium</p>
+              <a href="#" class="btn btn-primary" style="width: 100%;">Editar perfil</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Detalles del perfil</h5>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  Nombre: <strong style="color:brown">{{ user.first_name }} {{ user.last_name }}</strong>
+                </li>
+                <li class="list-group-item">
+                  Correo electrónico: <strong style="color:brown">{{ user.email }}</strong>
+                </li>
+                <li class="list-group-item">Ubicación: Ciudad, País</li>
+                <li class="list-group-item">Fecha de registro: 01 de enero de 2023</li>
+                <!-- Agrega más detalles aquí -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+
+{% endblock %}

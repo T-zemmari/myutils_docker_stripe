@@ -1,0 +1,218 @@
+{% extends 'base_app.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/carpetas.css' %}" />
+{% endblock %}
+{% block title %}
+  Carpetas
+{% endblock %}
+{% block main %}
+  <div class="contenedor-servicios">
+    {% csrf_token %}
+    <div class="container-fluid mt-5">
+      <div class="contenedor-carpetas">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+          <!-- Archivos PDFs -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+              <button style="background-color: #283e53 !important;color: #fff;" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                Archivos PDFs
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+              <div class="accordion-body">
+                <div class="archivos-section">
+                  <div class="row contenedor-pdfs">
+                    <div class="col-xl-8 col-md-6 col-sm-6">
+                      <ul class="archivos-list archivos-list-pdfs">
+                        {% for archivo in archivos_pdfs %}
+                          <li id="li_archivo_{{ archivo.id }}">
+                            <div class="contenedor-icono-pdf">
+                              <img style="width: 80px;height: 80px;margin-bottom: 2px;padding: 6px;margin-top: 10px;" src="{% static 'img/unir_pdfs.png' %}" alt="PDF icon" />
+                              <span class="span-nombre-archivo" title="{{ archivo.file_name }}" style="color: #283e53;font-weight: 600;">{{ archivo.file_name_short }}</span>
+                              <button class="btn btn-success btn-sm ver-pdf" style="width: 100%;background-color: #283e53;" onclick="previsualizarPDF('{{ archivo.url }}')">Ver pdf</button>
+                              <button class="btn btn-danger btn-sm eliminar-pdf" onclick="eliminarArchivo('{{ archivo.id }}')">X</button>
+                            </div>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                      {% if not archivos_pdfs %}
+                        <p>No hay PDFs que mostrar.</p>
+                      {% endif %}
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-sm-6">
+                      <div class="contenedor-previsualizacion-pdf">Haz click en ver pdf...</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Videos -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                Videos
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+              <div class="accordion-body">
+                <div class="archivos-section">
+                  <div class="row contenedor-videos">
+                    <div class="col-xl-8 col-md-6 col-sm-6">
+                      <ul class="archivos-list archivos-list-videos">
+                        {% for archivo in archivos_vids %}
+                          <li id="li_archivo_{{ archivo.id }}">
+                            <div class="contenedor-icono-video">
+                              <img style="width: 80px;height: 80px;margin-bottom: 2px;padding: 6px;margin-top: 10px;" src="{% static 'img/icono_video_3d_5.png' %}" alt="{{ archivo.file_name }}" />
+                              <span class="span-nombre-archivo" title="{{ archivo.file_name }}">{{ archivo.file_name_short }}</span>
+                              <button class="btn btn-success btn-sm play-video" style="width: 100%;background-color:#283e53" onclick="previsualizarVideo('{{ archivo.url }}')">Play</button>
+                              <button class="btn btn-danger btn-sm eliminar-video" onclick="eliminarArchivo('{{ archivo.id }}')">X</button>
+                            </div>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                      {% if not archivos_vids %}
+                        <p>No hay videos que mostrar.</p>
+                      {% endif %}
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-sm-6">
+                      <div class="contenedor-previsualizacion-videos">Haz click en play...</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Imagenes -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                Imagenes
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+              <div class="accordion-body">
+                <div class="archivos-section">
+                  <div class="row contenedor-videos">
+                    <div class="col-xl-8 col-md-6 col-sm-6">
+                      <ul class="archivos-list archivos-list-imagenes">
+                        {% for archivo in archivos_imgs %}
+                          <li id="li_archivo_{{ archivo.id }}">
+                            <div class="contenedor-icono-video">
+                              <img style="width: 80px;height: 80px;margin-bottom: 2px;padding: 10px;margin-top: 10px;" src="{% static 'img/icono_img_5.png' %}" alt="{{ archivo.file_name }}" />
+                              <span class="span-nombre-archivo" title="{{ archivo.file_name }}">{{ archivo.file_name_short }}</span>
+                              <button class="btn btn-success btn-sm ver-imagen" style="width: 100%;background-color: #283e53;" onclick="previsualizarImagen('{{ archivo.url }}')">Ver</button>
+                              <button class="btn btn-danger btn-sm eliminar-imagen" onclick="eliminarArchivo('{{ archivo.id }}')">X</button>
+                            </div>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                      {% if not archivos_imgs %}
+                        <p>No hay imágenes que mostrar.</p>
+                      {% endif %}
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-sm-6">
+                      <div class="contenedor-previsualizacion-imagenes">Haz click en ver...</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  var MY_DOMAIN='{{MY_DOMAIN}}';
+</script>
+  <script>
+    function previsualizarImagen(url) {
+      previsualizarArchivo(url, 'imagen')
+    }
+
+    function previsualizarVideo(url) {
+      previsualizarArchivo(url, 'video')
+    }
+
+    function previsualizarPDF(url) {
+      previsualizarArchivo(url, 'pdf')
+    }
+
+    function previsualizarArchivo(url, tipo) {
+      // Obtén el contenedor de previsualización
+      let contenedorPrevisualizacion
+
+      if (tipo === 'imagen') {
+        contenedorPrevisualizacion = document.querySelector('.contenedor-previsualizacion-imagenes')
+      } else if (tipo === 'video') {
+        contenedorPrevisualizacion = document.querySelector('.contenedor-previsualizacion-videos')
+      } else if (tipo === 'pdf') {
+        contenedorPrevisualizacion = document.querySelector('.contenedor-previsualizacion-pdf')
+      }
+
+      // Elimina el contenido anterior del contenedor
+      contenedorPrevisualizacion.innerHTML = ''
+
+      if (tipo === 'imagen') {
+        // Si es una imagen, crea un elemento img
+        let img = document.createElement('img')
+        img.src = MY_DOMAIN + url
+        img.style.width = '100%'
+        console.log(img)
+        contenedorPrevisualizacion.appendChild(img)
+      } else if (tipo === 'video') {
+        // Si es un video, crea un elemento video
+        let video = document.createElement('video')
+        video.style.width = '100%'
+        video.controls = true
+
+        // Añade la fuente del video
+        let source = document.createElement('source')
+        source.src = MY_DOMAIN + url
+        source.type = 'video/mp4' // Ajusta el tipo de archivo de video según tus necesidades
+        video.appendChild(source)
+
+        contenedorPrevisualizacion.appendChild(video)
+      } else if (tipo === 'pdf') {
+        // Si es un PDF, puedes abrirlo en un iframe
+        let iframe = document.createElement('iframe')
+        iframe.src = MY_DOMAIN + url
+        iframe.width = '100%'
+        iframe.height = '500px'
+        contenedorPrevisualizacion.appendChild(iframe)
+      }
+    }
+
+    function eliminarArchivo(id) {
+      console.log('Eliminar archivo:', id)
+
+      let url_eliminar = MY_DOMAIN+'/media/eliminar_archivo/' + id + '/'
+
+      $.ajax({
+        url: url_eliminar,
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': $('[name=csrfmiddlewaretoken]').val()
+        },
+        success: function (resultado) {
+          console.log('Resultado de eliminación:', resultado)
+          if (resultado.status == 'success') {
+            $(`#li_archivo_${id}`).hide()
+          }
+        },
+        error: function (xhr, textStatus, errorThrown) {
+          console.log('Error en la eliminación:', textStatus, errorThrown)
+          // Muestra un mensaje de error al usuario o realiza otras acciones según sea necesario
+        }
+      })
+    }
+  </script>
+{% endblock %}

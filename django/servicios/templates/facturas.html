@@ -1,0 +1,255 @@
+{% extends 'base_app.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/factura.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/paper.css' %}" />
+{% endblock %}
+{% block title %}
+  Facturas
+{% endblock %}
+{% block main %}
+  <div class="contenedor-servicios">
+    <div class="container mt-5" style="margin-top: 100px;">
+      <div id="contenedor_factura">
+        <div class="invoice-header">
+          <div class="company-info">
+            <h3><span id="editable-span" contenteditable="true">Empresa</span></h3>
+            <div class="contendor-cif">
+              <span>CIF|(NIE):</span>
+              <span id="empresa_cif_editable_span" contenteditable="true">Ej:Bxxxxxxxx</span>
+            </div>
+            <div class="contendor-direccion-empresa">
+              <span>Dirección:</span>
+              <span id="empresa_adress_editable_span" contenteditable="true">Ej:C/xxxxxxxx</span>
+            </div>
+            <div class="contendor-direccion-empresa">
+              <span>Email:</span>
+              <span id="empresa_email_editable_span" contenteditable="true">Ej:info@miempresa.com</span>
+            </div> <div class="contendor-direccion-empresa">
+              <span>Teléfono:</span>
+              <span id="empresa_phone_editable_span" contenteditable="true">Ej:963xxxxxx</span>
+            </div>
+          </div>
+          <div class="customer-info">
+            <h3>Cliente</h3>
+            <div class="contendor-cif">
+              <span>Documento de identidad :</span>
+              <span id="cliente_cif_editable_span" contenteditable="true">Ej:Bxxxxxxxx</span>
+            </div>
+            <div class="contendor-direccion-cliente">
+              <span>Dirección:</span>
+              <span id="cliente_adress_editable_spane" contenteditable="true">Ej:C/xxxxxxxx</span>
+            </div>
+            <div class="contendor-direccion-cliente">
+              <span>Email:</span>
+              <span id="cliente_email-editable-span" contenteditable="true">Ej:cliente@example.com</span>
+            </div>
+            <div class="contendor-direccion-cliente">
+              <span>Teléfono:</span>
+              <span id="cliente_phone_editable_span" contenteditable="true">XXXXXXXXXX</span>
+            </div>
+          </div>
+        </div>
+        <div class="contenedor-fecha-numero-factura">
+          <div class="contendor-direccion-cliente">
+            <span><strong>Fecha:</strong></span>
+            <span id="fecha_editable_span" contenteditable="true">DD-MM-YYYY</span>
+          </div>
+          <div class="contendor-direccion-cliente">
+            <span><strong>Factura nº:</strong></span>
+            <span id="numero_factura_editable_span" contenteditable="true">XXXXXXXX</span>
+          </div>
+        </div>
+        <div class="contenedor-concepto">
+          <span><strong>Concepto:</strong></span>
+          <span id="concepto_editable_span" contenteditable="true">--------- ------ -------</span>
+        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th style="font-size: 13px;">Producto</th>
+              <th style="font-size: 13px;">Cantidad</th>
+              <th style="font-size: 13px;">Descripción</th>
+              <th style="font-size: 13px;">Precio Unitario</th>
+              <th style="font-size: 13px;">Precio Total</th>
+            </tr>
+          </thead>
+          <tbody id="invoice-items">
+            <tr>
+              <td>
+                <input type="text" class="form-control" placeholder="..." style="font-size: 13px;" />
+              </td>
+              <td>
+                <input type="number" class="form-control" min="1" placeholder="0" style="font-size: 13px;" />
+              </td>
+              <td>
+                <input type="text" class="form-control" placeholder="..." style="font-size: 13px;" />
+              </td>
+              <td>
+                <input type="number" class="form-control" step="0.01" min="0.00" placeholder="0.00" style="font-size: 13px;" />
+              </td>
+              <td>
+                <div style="display: flex;justify-content: space-between;align-items: center;gap: 10px;">
+                  <input type="number" class="form-control" disabled placeholder="0.00" style="font-size: 13px;" />
+                  <button class="btn btn-danger btn-sm delete-row" style="display: none;">X</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="contenedor_subtotal">
+          <div class="row">
+            <div class="col" style="text-align: end;">
+              <span class="mt-3">Subtotal:<span id="sub_total" style="margin-left: 20px;">0.00</span>€</span>
+            </div>
+          </div>
+        </div>
+        <div class="contenedor_iva">
+          <div class="col" style="text-align: end;">
+            <span class="mt-3">Iva 21%:<span id="iva" style="margin-left: 20px;">0.00</span>€</span>
+          </div>
+        </div>
+        <div class="contenedor_total">
+          <div class="row">
+            <label class="col-6 label_custom_total">Total</label>
+            <div class="col-6" style="text-align: end;">
+              <strong><span id="total">0.00</span>€</strong>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="contenedor_observaciones">
+          <br />
+          <label for=""><strong>Más información :</strong></label>
+          <textarea class="form-control" name="" id="text_area_observaciones" rows="3" placeholder=".............."></textarea>
+        </div>
+      </div>
+      <div class="contenedor_botones">
+        <button class="btn btn-success btn-sm" id="add-item" style="margin-top: 10px;">+</button>
+        <button class="btn btn-outline-success btn-sm" id="modify-invoice" style="display: none; margin-top: 10px;">Modificar Factura</button>
+        <button class="btn btn-outline-primary btn-sm" id="print-invoice" style="margin-top: 10px;">Imprimir Factura</button>
+        <button class="btn btn-outline-danger btn-sm" id="generate-pdf" style="margin-top: 10px;">Generar pdf</button>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_js %}
+<script>
+  var MY_DOMAIN='{{MY_DOMAIN}}';
+</script>
+  <script src="{% static 'js/pdf-bundle.min.js' %}"></script>
+  <script>
+    const originalContent = {}
+    document.getElementById('generate-pdf').addEventListener('click', function () {
+      // Obtén el contenedor que deseas convertir en PDF
+      const element = document.getElementById('contenedor_factura')
+    
+      // Elimina el botón "delete-row" si existe en el PDF
+      const deleteButtons = element.querySelectorAll('.delete-row')
+      deleteButtons.forEach((button) => button.remove())
+    
+      // Encuentra todos los inputs dentro del contenedor
+      const inputs = element.querySelectorAll('input')
+      // Reemplaza los inputs con su contenido en texto
+      inputs.forEach((input) => {
+        const textNode = document.createTextNode(input.value)
+        input.parentNode.replaceChild(textNode, input)
+        originalContent[input.id] = input.value
+      })
+    
+      const pdfOptions = {
+        margin: 10,
+        filename: 'factura.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      }
+    
+      // Genera el PDF con el contenido modificado
+      html2pdf().from(element).set(pdfOptions).output('save')
+      document.getElementById('modify-invoice').style.display = 'flex'
+    })
+    
+    document.getElementById('modify-invoice').addEventListener('click', function () {
+      // Obtén el contenedor que deseas modificar
+      const element = document.getElementById('contenedor_factura')
+    
+      // Recupera los valores originales de los campos y restaura los inputs
+      for (const inputId in originalContent) {
+        const originalValue = originalContent[inputId]
+        const input = document.createElement('input')
+        input.id = inputId
+        input.className = 'form-control'
+        input.value = originalValue
+    
+        // Encuentra el elemento de texto correspondiente
+        const textElement = element.querySelector(`[id="${inputId}"]`)
+        if (textElement) {
+          // Reemplaza el elemento de texto con el input
+          textElement.parentNode.replaceChild(input, textElement)
+        }
+      }
+    })
+    
+    document.getElementById('add-item').addEventListener('click', function () {
+      const newRow = document.querySelector('#invoice-items tr').cloneNode(true)
+      newRow.querySelectorAll('input').forEach((input) => {
+        input.value = ''
+      })
+      document.querySelector('#invoice-items').appendChild(newRow)
+      updateDeleteButtons()
+    })
+    
+    document.querySelector('#invoice-items').addEventListener('input', function (event) {
+      if (event.target.classList.contains('form-control')) {
+        updateTotals()
+      }
+    })
+    
+    document.querySelector('#invoice-items').addEventListener('click', function (event) {
+      if (event.target.classList.contains('delete-row')) {
+        const row = event.target.closest('tr')
+        row.remove()
+        updateTotals()
+        updateDeleteButtons()
+      }
+    })
+    
+    function updateTotals() {
+      const rows = document.querySelectorAll('#invoice-items tr')
+      let subtotal = 0
+      let iva = 0
+    
+      rows.forEach((row) => {
+        const quantity = parseFloat(row.querySelector('td:nth-child(2) input').value) || 0
+        const price = parseFloat(row.querySelector('td:nth-child(4) input').value) || 0
+        const rowTotal = row.querySelector('td:nth-child(5) input')
+    
+        rowTotal.value = (quantity * price).toFixed(2)
+        subtotal += parseFloat(rowTotal.value) || 0
+      })
+    
+      // Calcular el IVA (21%)
+      iva = subtotal * 0.21
+    
+      document.getElementById('sub_total').textContent = subtotal.toFixed(2)
+      document.getElementById('iva').textContent = iva.toFixed(2)
+    
+      const total = subtotal + iva
+      document.getElementById('total').textContent = total.toFixed(2)
+    }
+    
+    function updateDeleteButtons() {
+      const rows = document.querySelectorAll('#invoice-items tr')
+      rows.forEach((row) => {
+        const deleteButton = row.querySelector('.delete-row')
+        if (rows.length > 1) {
+          deleteButton.style.display = 'block'
+        } else {
+          deleteButton.style.display = 'none'
+        }
+      })
+    }
+  </script>
+{% endblock %}

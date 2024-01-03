@@ -1,0 +1,244 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>App MyUtils</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-5-3-2/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&family=Playpen+Sans&display=swap');
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Open Sans', sans-serif !important;
+      }
+    </style>
+    {% block extra_css %}
+
+    {% endblock %}
+  </head>
+  <body>
+    <!-- navbar-app -->
+    <nav class="navbar-app">
+      <div class="app_logo_item">
+        <i class="bx bx-menu" id="open_side_bar"></i>
+        <a href="{% url 'home' %}"><img src="{% static 'img/tools_1.png' %}" alt="" /></a>
+        <a href="{% url 'vista_servicios' %}"><i class="bx bx-home-alt" style="font-size: 30px;color: #fff;margin-top:5px"></i></a>
+      </div>
+
+      <!--<div class="search_bar">
+        <input type="text" placeholder="Buscar" />
+      </div>-->
+
+      <div class="row" id="row_info_plan_caducidad">
+        <div class="col">
+          {% if user.is_superuser or user.activar_plan_temporalmente %}
+            <span style="font-size: 12px;color: #fff;">Premium - <span style="color: #ffe596;">&nbsp SUPER USUARIO</span></span>
+          {% elif not user.is_superuser and user.plan_activo_id is not None and not user.activar_plan_temporalmente %}
+            <span style="font-size: 12px;color: #fff;">Premium - Tu plan caduca el <span style="color: #ffe596;">&nbsp {{ user.plan_end|date:'d-m-Y' }}</span></span>
+          {% else %}
+            {# Si no es superusuario, no tiene plan activo y no ha activado temporalmente un plan, redirige a la vista de productos #}
+            <script>window.location.href = "{% url 'product:productos' %}";</script>
+          {% endif %}
+        </div>
+      </div>
+      
+
+      <div class="navbar-app_content">
+        <i class="bi bi-grid"></i>
+        <!-- <i class="bx bx-sun" id="darkLight"></i> -->
+        <i class="bx bx-bell"></i>
+        <a class="dropdown-item logout-link" href="{% url 'logout' %}"><img src="{% static 'img/avatar_2.png' %}" alt="" class="profile" /></a>
+      </div>
+    </nav>
+
+    <!-- sidebar -->
+    <nav class="sidebar">
+      <div class="menu_content">
+        <ul class="menu_items">
+          <div class="menu_title menu_dahsboard"></div>
+          <!-- start -->
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon"><i class="bx bx-home-alt"></i></span>
+              <span class="navlink" style="font-size: 15px !important">Documentos</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="{% url 'vista_servicios_documentos_unir_pdf' %}" class="nav_link sublink">Unir PDF</a>
+              <a href="{% url 'firma_view' %}" class="nav_link sublink">Firmar PDF</a>
+              <a href="{% url 'vista_servicios_documentos_convertir_pdf' %}" class="nav_link sublink">Convertir a PDF</a>
+            </ul>
+          </li>
+          <!-- end -->
+
+          <!-- start -->
+          <li class="item">
+            <div href="#" class="nav_link submenu_item submenu_item_images">
+              <span class="navlink_icon"><i class="bx bx-grid-alt"></i></span>
+              <span class="navlink" style="font-size: 15px !important">Imagenes</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu submenu_item_images">
+              <a href="{% url 'vista_servicios_documentos_img_to_pdf' %}" class="nav_link sublink">Imagen a PDF</a>
+              <a href="{% url 'vista_servicios_modi_resolucion' %}" class="nav_link sublink">Modificar resolución</a>
+              <a href="{% url 'vista_servicios_eliminar_fondo' %}" class="nav_link sublink">Eliminar fondo</a>
+            </ul>
+          </li>
+          <!-- end -->
+
+          <!-- start -->
+          <li class="item">
+            <div href="#" class="nav_link submenu_item submenu_item_videos">
+              <span class="navlink_icon"><i class="bx bx-grid-alt"></i></span>
+              <span class="navlink" style="font-size: 15px !important">Videos</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu submenu_item_videos">
+              <a href="{% url 'servicios_descargar_vid_yt' %}" class="nav_link sublink">Descargar yt</a>
+              <a href="{% url 'vista_servicios_unir_videos' %}" class="nav_link sublink">Unir videos</a>
+              <a href="{% url 'vista_servicios_editor_videos' %}" class="nav_link sublink">Editor</a>
+            </ul>
+          </li>
+          <!-- end -->
+        </ul>
+
+        <ul class="menu_items">
+          <div class="menu_title menu_editor"></div>
+          <!-- Start -->
+          <li class="item">
+            <a href="{% url 'vista_servicios_curriculumns' %}" class="nav_link">
+              <span class="navlink_icon"><i class="bx bxs-magic-wand"></i></span>
+              <span class="navlink" style="font-size: 15px !important">Curriculums</span>
+            </a>
+          </li>
+          <!-- End -->
+
+          <li class="item">
+            <a href="{% url 'vista_servicios_facturas' %}" class="nav_link">
+              <span class="navlink_icon"><i class="bx bx-loader-circle"></i></span>
+              <span class="navlink" style="font-size: 15px !important">Facturas</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="{% url 'vista_servicios_albaranes' %}" class="nav_link">
+              <span class="navlink_icon"><i class="bx bx-filter"></i></span>
+              <span class="navlink" style="font-size: 15px !important">Albaranes</span>
+            </a>
+          </li>
+        </ul>
+        <ul class="menu_items">
+          <div class="menu_title menu_setting"></div>
+          <li class="item">
+            <a href="{% url 'vista_servicios_carpetas' %}" class="nav_link">
+              <span class="navlink_icon"><i class="bx bx-flag"></i></span>
+              <span class="navlink" style="font-size: 15px !important">Carpetas</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="{% url 'vista_servicios_informacion_personal' %}" class="nav_link">
+              <span class="navlink_icon"><i class="bx bx-medal"></i></span>
+              <span class="navlink" style="font-size: 15px !important">Información personal</span>
+            </a>
+          </li>
+          <li class="item">
+            <a href="{% url 'vista_servicios_historico' %}" class="nav_link">
+              <span class="navlink_icon"><i class="bx bx-layer"></i></span>
+              <span class="navlink" style="font-size: 15px !important">Histórico</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Sidebar Open / Close -->
+        <div class="bottom_content">
+          <div class="bottom expand_sidebar">
+            <span>Abrir</span>
+            <i class="bx bx-log-in"></i>
+          </div>
+          <div class="bottom collapse_sidebar">
+            <span>Cerrar</span>
+            <i class="bx bx-log-out"></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="main-content">
+      {% block main %}
+        <!-- Main -->
+      {% endblock %}
+    </div>
+    <!-- JavaScript -->
+    <script src="{% static 'bootstrap-5-3-2/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'jquery/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'jquery/jquery-ui.js' %}"></script>
+
+    <script src="{% static 'js/sidebar.js' %}"></script>
+    <script src="{% static 'js/salert.js' %}"></script>
+    <script>
+      const logoutLink = document.querySelector('.logout-link')
+      logoutLink.addEventListener('click', (e) => {
+        e.preventDefault()
+        Swal.fire({
+          title: '¿Estás seguro?',
+          text: '¿Deseas cerrar sesión?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Sí, cerrar sesión',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = logoutLink.getAttribute('href')
+          }
+        })
+      })
+      
+      function openDocumentMenu() {
+        const currentURL = window.location.href
+        if (currentURL.includes('/servicios/documentos/')) {
+          const documentSubMenu = document.querySelector('.submenu_item')
+          if (documentSubMenu) {
+            documentSubMenu.classList.add('show_submenu')
+          }
+        }
+      }
+      
+      function openImageMenu() {
+        const currentURL = window.location.href
+        if (currentURL.includes('/servicios/imagenes/')) {
+          const imageSubMenu = document.querySelector('.submenu_item_images')
+          if (imageSubMenu) {
+            imageSubMenu.classList.add('show_submenu')
+          }
+        }
+      }
+      
+      function openVideoMenu() {
+        const currentURL = window.location.href
+        if (currentURL.includes('/servicios/videos/')) {
+          const videoSubMenu = document.querySelector('.submenu_item_videos')
+          if (videoSubMenu) {
+            videoSubMenu.classList.add('show_submenu')
+          }
+        }
+      }
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        openDocumentMenu()
+        openImageMenu()
+        openVideoMenu()
+      })
+    </script>
+    {% block extra_js %}
+
+    {% endblock %}
+  </body>
+</html>

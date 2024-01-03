@@ -1,0 +1,291 @@
+{% extends 'base_bootstrap.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link href="{% static 'css/home.css' %}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block title %}
+  Home
+{% endblock %}
+
+{% block main %}
+  <div class="container-fluid">
+    <div class="contenedor-home">
+      <main class="mt-5">
+        <div class="row" style="margin-top: 100px;">
+          <div class="col-xl-12 col-md-12 col-sm-12">
+            <div class="contenedor-utlis">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <div class="contenedor-utils-header">
+                      <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                          <a class="nav-link nav-link-custom active" id="unir-pdf-tab">Unir PDFs</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link nav-link-custom" id="modificar-resolucion-imagenes-tab">Modificar resolución de Imágenes</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link nav-link-custom" id="descargar-youtube-tab">Descargar desde YouTube</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="contenedor-utils-body">
+                      <div class="tab-content">
+                        <div class="tab-pane show active" id="unir-pdf">
+                          <!-- Contenido para "Unir PDFs" -->
+
+                          <div class="row justify-content-center">
+                            <div class="col-md-10">
+                              <div class="card" style="border: none !important;">
+                                <div class="card-body" style="display: flex;justify-content: center;align-items: center;flex-direction:column;padding: 30px;">
+                                  <h4 class="card-title">Unir PDFs</h4>
+                                  <img style="max-height: 250px;" src="{% static 'img/unir_pdfs.png' %}" alt="Icono de Unir PDFs" class="img-fluid mb-4" />
+                                  <p class="card-text">Con la función de unión de PDFs, puedes cargar varios archivos PDF y combinarlos en uno solo de manera sencilla. Esto te permite organizar y simplificar tus documentos PDF.</p>
+                                  <p class="card-text">Para empezar, haz clic en el botón de abajo, selecciona los archivos PDF que deseas unir y luego pulsa "Unir PDFs".</p>
+                                </div>
+                                <div class="card-footer" style="border: none !important;">
+                                  {% if user.is_authenticated %}
+                                    <button style="width: 100%;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUnirPDF">Unir PDFs</button>
+                                  {% else %}
+                                    <a href="{% url 'customerUser:login' %}" style="width: 100%;" type="button" class="btn btn-primary">Unir PDFs</a>
+                                  {% endif %}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Modal para la unión de PDFs -->
+                          <div class="modal fade" id="modalUnirPDF" tabindex="-1" aria-labelledby="modalUnirPDFLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="modalUnirPDFLabel">Unir PDFs</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <!-- Elemento de spinner -->
+                                  <div id="spinner" style="display:none ;text-align: center;">
+                                    <div class="spinner-border text-primary" role="status">
+                                      <span class="visually-hidden">Cargando...</span>
+                                    </div>
+                                    <p>Cargando...</p>
+                                  </div>
+
+                                  <form id="pdfForm" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input class="form-control" type="file" name="pdfFiles" multiple />
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button style="width: 100%;background-color: #dc3545 !important" type="submit" form="pdfForm" class="btn btn-danger" id="btn_unir_pdf">Unir PDFs</button>
+                                  <a style="width: 100% !important;display: none;background-color: #0fa10b !important;" class="btn btn-success" href="" id="a_descargar_pdf" download>Descargar pdf</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="tab-pane" id="modificar-resolucion-imagenes">
+                          <div class="container">
+                            <h4 class="mb-4">Modificar Resolución de Imágenes</h4>
+                            {% csrf_token %}
+                            <!-- Estructura principal con dos columnas -->
+                            <div class="row">
+                              <!-- Columna izquierda para previsualización de la imagen -->
+                              <div class="col-md-9">
+                                <div class="text-center mb-4">
+                                  <!-- Contenedor para la previsualización de la imagen -->
+                                  <div class="image-preview-container">
+                                    <img id="previewImage" src="#" alt="Previsualización de la imagen" style="display: none;" />
+                                  </div>
+                                  <input type="file" id="inputImage" accept="image/*" class="form-control mt-2" style="display: none;" />
+                                  <!-- Botón para realizar la modificación de la imagen -->
+                                  {% if user.is_authenticated %}
+                                    <label for="inputImage" class="btn btn-primary" style="width:100%;margin-top: 25px;">Seleccionar Imagen</label>
+                                  {% else %}
+                                    <a href="{% url 'customerUser:login' %}" class="btn btn-primary" style="width:100%;margin-top: 25px;">Seleccionar Imagen</a>
+                                  {% endif %}
+                                </div>
+                              </div>
+
+                              <!-- Columna derecha para selección de resoluciones y formato -->
+                              <div class="col-md-3">
+                                <h5>Seleccionar Resolución y Formato</h5>
+                                <!-- Selectores de resolución para diferentes propósitos -->
+                                <div class="form-group mb-4">
+                                  <label for="resolutionWeb">Resolución para Web:</label>
+                                  <select class="form-control resolution-select" id="resolutionWeb">
+                                    <option value="" selected>Seleccionar</option>
+                                    <option value="1920x1080">1920x1080 (Full HD)</option>
+                                    <option value="1280x720">1280x720 (HD)</option>
+                                    <option value="800x600">800x600</option>
+                                    <!-- Agrega más opciones de resolución según tus necesidades -->
+                                  </select>
+                                </div>
+
+                                <div class="form-group mb-4">
+                                  <label for="resolutionRedesSociales">Resolución para Redes Sociales:</label>
+                                  <select class="form-control resolution-select" id="resolutionRedesSociales">
+                                    <option value="" selected>Seleccionar</option>
+                                    <option value="180x180">180x180 (Perfil de Facebook)</option>
+                                    <option value="820x312">820x312 (Portada de Facebook)</option>
+                                    <option value="400x400">400x400 (Avatar de Twitter)</option>
+                                    <!-- Agrega más opciones de resolución según tus necesidades -->
+                                  </select>
+                                </div>
+
+                                <div class="form-group mb-4">
+                                  <label>Resolución para Presentaciones:</label>
+                                  <select class="form-control resolution-select" id="resolutionPresentaciones">
+                                    <option value="" selected>Seleccionar</option>
+                                    <option value="1024x768">1024x768 PowerPoint (4:3)</option>
+                                    <option value="1920x1080">1920x1080 PowerPoint (16:9)</option>
+                                    <!-- Agrega más opciones de resolución según tus necesidades -->
+                                  </select>
+                                </div>
+
+                                <div class="form-group mb-4">
+                                  <label for="resolutionVideos">Resolución para Videos:</label>
+                                  <select class="form-control resolution-select" id="resolutionVideos">
+                                    <option value="" selected>Seleccionar</option>
+                                    <option value="3840x2160">4K Ultra HD: 3840x2160 píxeles</option>
+                                    <option value="1920x1080">Full HD: 1920x1080 píxeles</option>
+                                    <option value="1280x720">HD: 1280x720 píxeles</option>
+                                    <!-- Agrega más opciones de resolución según tus necesidades -->
+                                  </select>
+                                </div>
+
+                                <div class="form-group mb-4">
+                                  <label for="format">Formato:</label>
+                                  <select id="format" class="form-control">
+                                    <option value="JPEG">JPEG (jpg)</option>
+                                    <option value="GIF">GIF (gif)</option>
+                                    <option value="PNG">PNG (png)</option>
+                                    <option value="WEBP">WEBP (webP)</option>
+                                    <!-- Agrega más opciones de formato según tus necesidades -->
+                                  </select>
+                                </div>
+                                {% if user.is_authenticated %}
+                                  <button id="btnModifyImage" class="btn btn-danger" style="width:100%;">Modificar Imagen</button>
+                                  <div class="row">
+                                    <div class="col-12" id="contenedor_btn_descargar_img"></div>
+                                    <div class="col-12" id="contenedor_spinner_img_mod" style="display: none;">
+                                      <div class="spinner-img-mod"></div>
+                                    </div>
+                                  </div>
+                                {% else %}
+                                  <a href="{% url 'customerUser:login' %}" class="btn btn-danger">Modificar Imagen</a>
+                                {% endif %}
+                              </div>
+                            </div>
+
+                            <!-- Explicación profesional -->
+                            <div class="mt-5">
+                              <h5>¿Qué harás con esta función?</h5>
+                              <p>La función "Modificar Resolución de Imágenes" te permite cargar una imagen y ajustar su resolución y formato. Esto puede ser útil para adaptar imágenes a diferentes necesidades, como reducir el tamaño de un archivo o cambiar su formato. Sigue estos pasos:</p>
+                              <ol>
+                                <li>Selecciona una imagen haciendo clic en el botón "Seleccionar Imagen".</li>
+                                <li>La imagen se cargará y se mostrará en la previsualización.</li>
+                                <li>Elige la resolución deseada desde el menú desplegable "Resolución".</li>
+                                <li>Selecciona el formato de imagen deseado desde el menú desplegable "Formato".</li>
+                                <li>Haz clic en el botón "Modificar Imagen" para aplicar los cambios.</li>
+                                <li>La imagen modificada estará lista para su descarga.</li>
+                              </ol>
+                              <p>¡Aprovecha esta herramienta para adaptar tus imágenes de manera profesional y eficiente!</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="tab-pane" id="descargar-youtube">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-md-6 offset-md-3">
+                                <div class="text-center">
+                                  <img src="{% static 'img/yt_d_1.png' %}" alt="yt_d_1.png" class="youtube-icon" />
+                                </div>
+                                <h4 class="text-center mb-4">Descargar desde YouTube</h4>
+                                <form id="youtubeDownloadForm">
+                                  {% csrf_token %}
+                                  <div class="mb-3">
+                                    <label for="youtubeUrl" class="form-label">URL de YouTube</label>
+                                    <input type="text" class="form-control" id="youtubeUrl" name="youtubeUrl" required placeholder="URL" />
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="downloadFormat" class="form-label">Formato de descarga</label>
+                                    <select class="form-select" id="downloadFormat" name="downloadFormat">
+                                      <option value="">Seleccionar formato</option>
+                                      <option value="mp4">MP4</option>
+                                      <option value="mp3">MP3</option>
+                                    </select>
+                                    <small style="color:red;display: none;" id="small_selecciona_formato">Selecciona el formato antes de continuar</small>
+                                  </div>
+
+                                  <div class="mb-3" id="resolutionField" style="display: none;">
+                                    <label for="resolutions" class="form-label">Resolución</label>
+                                    <select class="form-select" id="resolutions" name="resolutions">
+                                      <option value="">Cargando</option>
+                                      <!-- Las opciones se llenarán dinámicamente en JavaScript -->
+                                    </select>
+                                  </div>
+                                  <div id="fileSize" style="display: none;"></div>
+                                  <div class="text-center">
+                                    <div id="spinner_yt_donwload" style="display: none;">
+                                      <i class="fas fa-spinner fa-spin"></i> Descargando...
+                                    </div>
+                                    {% if user.is_authenticated %}
+                                      <button type="submit" class="btn btn-primary" id="btn_enviar_solicitud" style="width: 100%;">Enviar solicitud</button>
+                                    {% else %}
+                                      <a href="{% url 'customerUser:login' %}" class="btn btn-danger">Enviar solicitud</a>
+                                    {% endif %}
+                                    <div class="row" id="contenedor_btn_descargar" style="display:none">
+                                      <div class="col" id="contenedor_btn_descargar_hijo"></div>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'jquery/jquery-3.7.1.min.js' %}"></script>
+  <script src="{% static 'js/unir_pdfs.js' %}"></script>
+  <script src="{% static 'js/eliminar_mrk.js' %}"></script>
+  <script src="{% static 'js/descargar_yt.js' %}"></script>
+  <script src="{% static 'js/modificar_resol.js' %}"></script>
+  <script>
+    $(document).ready(function () {
+      // Maneja el clic en las pestañas
+      $('.nav-link-custom').click(function (event) {
+        event.preventDefault()
+        $('.nav-link-custom').removeClass('active')
+        $(this).addClass('active')
+        let tabId = $(this).attr('id')
+        $('.tab-pane').hide()
+        if (tabId != undefined) {
+          $('#' + tabId.replace('-tab', '')).show()
+        }
+      })
+    })
+  </script>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'base_app.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+{% endblock %}
+{% block title %}
+  Unir pdfs
+{% endblock %}
+{% block main %}
+  <div class="contenedor-servicios">
+   
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card" style="border: #d9d9d9 solid 1px;margin-top:100px;background-color: unset!important;color:#fff">
+          <div class="card-body" style="display: flex;justify-content: center;align-items: center;flex-direction:column;padding: 30px;">
+            <h4 class="card-title" style="color: #454545  !important">Unir PDFs</h4>
+            <img style="max-height: 250px;" src="{% static 'img/unir_pdfs.png' %}" alt="Icono de Unir PDFs" class="img-fluid mb-4" />
+            <p class="card-text" style="color: #454545  !important">Con la función de unión de PDFs, puedes cargar varios archivos PDF y combinarlos en uno solo de manera sencilla. Esto te permite organizar y simplificar tus documentos PDF.</p>
+            <p class="card-text" style="color: #454545  !important">Para empezar, haz clic en el botón de abajo, selecciona los archivos PDF que deseas unir y luego pulsa "Unir PDFs".</p>
+          </div>
+          <div class="card-footer" style="border: none !important;">
+            {% if user.is_authenticated %}
+              <button style="width: 100%;" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalUnirPDF2" id="btn_unir_pdf_modal">Unir PDFs</button>
+            {% else %}
+              <a href="{% url 'customerUser:login' %}" style="width: 100%;" type="button" class="btn btn-primary">Unir PDFs</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal para la unión de PDFs -->
+    <div class="modal fade" id="modalUnirPDF2" tabindex="-1" aria-labelledby="modalUnirPDF2Label" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalUnirPDF2Label">Unir PDFs</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Elemento de spinner -->
+            <div id="spinner" style="display:none ;text-align: center;">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
+              <p>Cargando...</p>
+            </div>
+
+            <form id="pdfForm2" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input class="form-control" type="file" id="pdfFiles" name="pdfFiles" multiple />
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button style="width: 100%;background-color: #dc3545 !important" type="submit" form="pdfForm2" class="btn btn-danger" id="btn_unir_pdf_2">Unir PDFs</button>
+            <a style="width: 100% !important;display: none;background-color: #0fa10b !important;" class="btn btn-success" href="" id="a_descargar_pdf_2" download>Descargar pdf</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  var MY_DOMAIN='{{MY_DOMAIN}}';
+</script>
+  <script>
+    document.getElementById('pdfForm2').addEventListener('submit', function (event) {
+      event.preventDefault()
+
+      let pdfFiles = document.getElementById('pdfFiles').files;
+      if (pdfFiles.length < 2) {
+          alert('Selecciona al menos dos archivos PDF para unir.');
+          return;
+      }
+    
+      let formData = new FormData(this)
+    
+      // Muestra el spinner al enviar el formulario
+      $(`#btn_unir_pdf_2`).hide()
+      $('#spinner').show()
+
+    
+    let url=MY_DOMAIN+'/unir-pdf/';
+    
+      fetch(url, {
+        method: 'POST',
+        body: formData
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            console.log(data)
+            let unique_file_name = ''
+            if (data.unique_file_name != '') {
+              unique_file_name = data.unique_file_name
+            }
+    
+            // Simula una espera de 3 segundos antes de mostrar el botón de descarga
+            setTimeout(function () {
+              $('#spinner').hide()
+              $(`#btn_unir_pdf_2`).hide()
+              $(`#a_descargar_pdf_2`).show()
+              $('#pdfFiles').val('')
+              let url_descarga = MY_DOMAIN+'/descargar-pdf/' + unique_file_name + '/'
+              $(`#a_descargar_pdf_2`).attr('href', url_descarga)
+            }, 3000) // Espera 3000 milisegundos (3 segundos)
+          } else {
+            alert(data.message)
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    })
+    
+    $(document).ready(function () {
+      $(`#a_descargar_pdf_2`).click(function () {
+        $('#pdfFiles').val('')
+        $('#modalUnirPDF2').modal('hide')
+        $(`#btn_unir_pdf_2`).show()
+        $(`#a_descargar_pdf_2`).hide()
+      })
+    })
+  </script>
+{% endblock %}

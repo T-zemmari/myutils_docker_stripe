@@ -1,0 +1,131 @@
+{% extends 'base_app.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+  <style>
+
+    
+    .youtube-icon {
+      max-width: 100px;
+      margin-bottom: 20px;
+    }
+    
+    /* Cambia los colores de fondo y texto del botón */
+    .btn-danger {
+      background-color: #ff0000; /* Color rojo */
+      border-color: #ff0000; /* Color del borde */
+    }
+    
+    .btn-danger:hover {
+      background-color: #cc0000; /* Color rojo más oscuro al pasar el mouse */
+      border-color: #cc0000;
+    }
+    
+    .image-preview-container {
+      display: flex;
+      justify-content: center;
+      align-items: ;
+      background-color: #212529;
+      width: 100%;
+      height: 462px;
+    }
+    
+    #previewImage {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    
+    #contenedor_spinner_img_mod {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .spinner-img-mod {
+      border: 6px solid rgba(255, 255, 255, 0.3);
+      border-top: 6px solid #3498db;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 2s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+{% endblock %}
+{% block title %}
+  Unir pdfs
+{% endblock %}
+{% block main %}
+  <div class="contenedor-servicios">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="tab-pane" id="descargar-youtube" style="margin-top: 80px;">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 offset-md-3">
+                <div class="text-center">
+                  <img src="{% static 'img/yt_d_1.png' %}" alt="yt_d_1.png" class="youtube-icon" style="max-width: 100px;margin-bottom: 20px;" />
+                </div>
+                <h4 class="text-center mb-4" >Descargar desde YouTube</h4>
+                <form id="youtubeDownloadForm">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="youtubeUrl" class="form-label" >URL de YouTube</label>
+                    <input type="text" class="form-control" id="youtubeUrl" name="youtubeUrl" required placeholder="URL" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="downloadFormat" class="form-label">Formato de descarga</label>
+                    <select class="form-select" id="downloadFormat" name="downloadFormat">
+                      <option value="">Seleccionar formato</option>
+                      <option value="mp4">MP4</option>
+                      <option value="mp3">MP3</option>
+                    </select>
+                    <small style="color:red;display: none;" id="small_selecciona_formato">Selecciona el formato antes de continuar</small>
+                  </div>
+
+                  <div class="mb-3" id="resolutionField" style="display: none;">
+                    <label for="resolutions" class="form-label">Resolución</label>
+                    <select class="form-select" id="resolutions" name="resolutions">
+                      <option value="">Cargando</option>
+                      <!-- Las opciones se llenarán dinámicamente en JavaScript -->
+                    </select>
+                  </div>
+                  <div id="fileSize" style="display: none;"></div>
+                  <div class="text-center">
+                    <div id="spinner_yt_donwload" style="display: none;">
+                          <i class="fas fa-spinner fa-spin"></i> <span>Descargando...</span>
+                      </div>
+                    {% if user.is_authenticated %}
+                      <button type="submit" class="btn btn-primary" id="btn_enviar_solicitud" style="width: 100%;">Enviar solicitud</button>
+                    {% else %}
+                      <a href="{% url 'customerUser:login' %}" class="btn btn-danger">Enviar solicitud</a>
+                    {% endif %}
+                    <div class="row" id="contenedor_btn_descargar" style="display:none">
+                      <div class="col" id="contenedor_btn_descargar_hijo"></div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+  var MY_DOMAIN='{{MY_DOMAIN}}';
+</script>
+  <script src="{% static 'js/descargar_yt.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,177 @@
+{% extends 'base_app.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+  <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
+  <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/vista-editor.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/drp_zn.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/drop-zone.css' %}" />
+{% endblock %}
+{% block title %}
+  Editor
+{% endblock %}
+{% block main %}
+  <script>
+    const rutaVideo = "{% static 'vids/cargando_1.mp4' %}"
+  </script>
+  {% csrf_token %}
+  <div class="contenedor-servicios" style="padding: 0px;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12" style="padding: 0px;">
+          <div class="alerta">
+            <!-- Contenido del div "alerta" -->
+            <h1>Editor no compatible con dispositivos móviles y tablets</h1>
+            <p>Este es un mensaje de alerta que se mostrará en dispositivos móviles y tablets.</p>
+          </div>
+          <div class="container-fluid bg-dark contenedor-editor-principal" style="height:calc(100vh - 70px);padding:0px">
+            <section class="services" style="height:100%;;margin-top:0px">
+              <div class="contenedor-general-editor" style="height:100%;min-height:100%;margin-top:70px">
+                <div class="contenedor-menu-izquierdo">
+                  <div class="contenedor-iconos centrar-elementos activar-icono" icononombre="editor-home" id="contendor_icono_home">
+                    <a href="{% url 'vista_servicios_editor_videos' %}"><ion-icon name="home-outline" style="font-size:25px;color:#fff"></ion-icon></a>
+                  </div>
+
+                  <input type="hidden" id="referencia_proyecto" value="{% if proyecto_ref %}{{ proyecto_ref }}{% endif %}" />
+                  <a href="{% url 'vista_servicios_editor_videos' %}">
+                    <div class="contenedor-iconos centrar-elementos activar-icono {% if proyecto_ref %}{% endif %}" id="contendor_icono_proyectos" icononombre="mis_proyectos">
+                      <span id="icono_proyectos"><ion-icon name="folder-outline" style="font-size:25px;color:#fff"></ion-icon></span>
+                    </div>
+                  </a>
+                  {% if proyecto_ref %}
+                    <div class="contenedor-iconos centrar-elementos activar-icono {% if proyecto_ref %}{% endif %}" icononombre="mis_archivos" id="contendor_icono_mis_archivos">
+                      <span id="icono_mis_archivos"><ion-icon name="albums-outline" style="font-size:25px;color:#fff"></ion-icon></span>
+                    </div>
+
+                    <div class="contenedor-iconos centrar-elementos activar-icono" id="contenedor_icono_mostrar_trabajos" icononombre="mis_trabajos">
+                      <span id="icono_ultimos_trabajos"><ion-icon name="briefcase-outline" style="font-size:25px;color:#fff"></ion-icon></span>
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="contenedor-menu-medios" id="contenedor_menu_medios">
+                  <div class="contenedor-crear-nuevo-proyecto centrar-elementos" id="contenedor_crear_nuevo_proyecto">
+                    <input type="submit" class="form-control" id="mostrar_form_nuevo_proyecto" style="border:none;color:#fff;width:90%;background:linear-gradient(to right, #2196f3, rgb(207 79 220 / 95%))" value="Crear nuevo proyecto" />
+                    <div class="formulario-crear-nuevo-proyecto" style="display:none" id="contenedor_formulario_crear_nuevo_proyecto">
+                      <input class="form-control" value="" placeholder="Nombre del proyecto" name="input_nombre_proyecto" id="input_nombre_proyecto" style="margin-top:5px;margin-bottom:5px" />
+                      <button type="button" class="form-control" style="border:none;background:#9926f0;color:#fff;" name="crear_nuevo_proyecto" id="btn_crear_nuevo_proyecto">Crear</button>
+                    </div>
+                  </div>
+                  <div class="contenedor-menu-header" id="contenedor_menu_header">
+                    {% if proyecto_ref %}
+                      Archivos del proyecto
+                    {% else %}
+                      Mis proyectos
+                    {% endif %}
+                  </div>
+                  {% if proyecto_ref %}
+                    <div class="contendor-medios-mis-archivos {% if proyecto_ref %}{% endif %}" id="contenedor_medios_mis_archivos">
+                      <div class="contenerdor-accion-importar-archivos">
+                        <input type="submit" class="boton-importar-media" id="input_importar_media" onclick="toggle_contenedor_dropZone()" value="Importar media" />
+                      </div>
+                      <div class="contenedor-anyadir-archivo" id="contenedor_anyadir_archivos" style="margin-top: 20px;">
+                        <div class="contenedor-drop-zone" id="contenedor_drop_zone" style="display: none;"></div>
+                      </div>
+                      <div class="contenedor-mostrar-archivo" id="contenedor_mostrar_archivos"></div>
+                      <div class="contenedor-mostrar-trabajos" id="contenedor_mostrar_trabajos" style="display: none;"></div>
+                    </div>
+                  {% else %}
+                    <div class="contenedor-mostrar-proyectos" id="contenedor_mostrar_proyectos">
+                      {% if proyectos %}
+                        {% for proyecto in proyectos %}
+                          <div class="carpeta-proyecto" id="carpeta_{{ proyecto.referencia_proyecto }}">
+                            <a href="{% url 'vista_servicios_editor_videos_with_ref' proyecto_ref=proyecto.referencia_proyecto %}" style="text-decoration: none;">
+                              <img style="padding:5px;margin-bottom:0px;width:50px;cursor:pointer" src="{% static 'img/img_carpeta_1.png' %}" alt="carpeta" />
+                              <small style="color:white;cursor:pointer">{{ proyecto.nombre }}</small>
+                            </a>
+                            <button class="btn btn-danger btn-sm btn-icon btn-eliminar-proyecto" id="btn_eliminar_proyecto_{{ proyecto.referencia_proyecto }}" onclick="eliminar_proyecto('{{ proyecto.referencia_proyecto }}')">X</button>
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="contenedor-trabajos centrar-elementos" style="flex-direction:column">
+                  <div class="contenedor-visualiacion-video centrar-elementos" style="flex-direction:column">
+                    <div class="elemento-video">
+                      <video class="video-previsualizacion-custom" src="" id="video_visualizaciones" controls></video>
+                      <div id="video-container"></div>
+                    </div>
+                    <div class="nombre-proyecto"></div>
+                    <div class="elemento-controles">
+                      <nav class="navbar navbar-expand-lg centrar-elementos">
+                        <div class="collapse navbar-collapse centrar-elementos" id="navbarNavDropdown">
+                          <ul class="navbar-nav" style="margin-left:5px">
+                            <li class="nav-item active">
+                              <a class="nav-link" type="button" style="color:white" onclick="stop_video('video_visualizaciones')"><ion-icon name="play-skip-back" style="font-size:18px;color:#fff"></ion-icon></a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" type="button" style="color:#a9a9a9" onclick="retroceder_video('video_visualizaciones')"><ion-icon name="play-back" style="font-size:18px;color:#fff"></ion-icon></a>
+                            </li>
+                            <li class="nav-item" id="contenedor_play_pause">
+                              <a class="nav-link" type="button" style="color:#a9a9a9" id="elemento_play" onclick="play_video('video_visualizaciones')"><ion-icon name="play" style="font-size:20px;color:#fff"></ion-icon></a>
+                              <a class="nav-link" type="button" style="color:#a9a9a9;display:none" id="elemento_pause" onclick="pause_video('video_visualizaciones')"><ion-icon name="pause" style="font-size:20px;color:#fff"></ion-icon></a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" type="button" style="color:#a9a9a9" onclick="avanzar_video('video_visualizaciones')"><ion-icon name="play-forward" style="font-size:18px;color:#fff"></ion-icon></a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" type="button" style="color:#a9a9a9" onclick="ir_al_final('video_visualizaciones')"><ion-icon name="play-skip-forward" style="font-size:18px;color:#fff"></ion-icon></a>
+                            </li>
+                          </ul>
+                        </div>
+                      </nav>
+                    </div>
+                  </div>
+                  <div class="botones-acciones-cortar-unir-videos">
+                    <div class="row">
+                      <div class="col-3">
+                        <button class="join-btn" style="display:flex;justify-content:center;align-items:center" id="btn_cortar_video" idvideo=""><ion-icon name="cut" style="color:red;font-size:20px"></ion-icon></button>
+                      </div>
+                      <div class="col-3">
+                        <button class="join-btn" style="margin-left:25px;display:flex;justify-content:center;align-items:center" id="btn_unir_videos"><ion-icon name="git-merge" style="color:green;font-size:20px"></ion-icon></button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div id="video-time">00:00 | 00:00</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="contenedor-manipulacion-video centrar-elementos" ondragenter="dragEnter(event)" ondrop="drop(event)" ondragover="allowDrop(event)" id="contenedor_manipulacion_video">
+                    <div class="contenedor-info-video-recortes-etc" id="regla" draggable="false">
+                      <!-- <div id="video-bar" draggable="false">
+                        <div id="video-progress"></div>
+                        <div id="video-handle"></div>
+                      </div> -->
+                      <div class="barra-tiempo-videos">
+                        <canvas id="barraTiempoCanvas" width="100%" height="30"></canvas>
+                      </div>
+                    </div>
+                    <div class="contenedor-videos-desplegado" id="destino_video">
+                      <div id="capturas"></div>
+                    </div>
+                    <div class="contenedor-audios-desplegado"></div>
+                  </div>
+                  <div class="contenedor-menu-derecho"></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  var MY_DOMAIN='{{MY_DOMAIN}}';
+</script>
+  <script src="{% static 'js/salert.js' %}"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="{% static 'js/drp_zn.js' %}"></script>
+  <script src="{% static 'js/vista-editor-video.js' %}"></script>
+  <script src="{% static 'js/vista-editor.js' %}"></script>
+{% endblock %}

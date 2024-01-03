@@ -1,0 +1,105 @@
+{% extends 'base_bootstrap.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link href="{% static 'css/home.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block title %}
+  Home
+{% endblock %}
+
+{% block main %}
+  <div class="container-fluid">
+    <div class="contenedor-home">
+      <main class="mt-5">
+        <div class="row" style="margin-top: 0px;padding: 0px;">
+          <div class="col-xl-12 col-md-12 col-sm-12" style="margin-top: 0px;padding: 0px;">
+            <div class="contenedor-utlis">
+              <div class="container_custom_one">
+                <div class="content">
+                  <div class="square twitch" style="margin-bottom: 50px;">
+                    <span class="one"></span>
+                    <span class="two"></span>
+                    <span class="three"></span>
+                    <div class="circle">
+                      <h2 class="DrugRadar">MyUtils</h2>
+                      <p>Tu Centro de Productividad y Creatividad Digital: Uniendo PDFs, Convirtiendo Documentos, Ajustando Imágenes y Mucho Más, con un Solo Clic</p>
+                    </div>
+                  </div>
+                  {% if user.is_authenticated %}
+                    {% if user.plan_activo_id != null or user.activar_plan_temporalmente %}
+                      <a href="{% url 'vista_servicios' %}" class="button" target="_parent">
+                        <span class="actual-text">&nbsp;Servicios&nbsp;</span>
+                        <span class="hover-text" aria-hidden="true">&nbsp;Servicios&nbsp;</span>
+                      </a>
+                    {% else %}
+                      <a href="{% url 'product:productos' %}" class="button" target="_parent">
+                        <span class="actual-text">&nbsp;Servicios&nbsp;</span>
+                        <span class="hover-text" aria-hidden="true">&nbsp;Servicios&nbsp;</span>
+                      </a>
+                    {% endif %}
+                  {% else %}
+                    <a href="{% url 'customerUser:login' %}" class="button" target="_parent">
+                      <span class="actual-text">&nbsp;Servicios&nbsp;</span>
+                      <span class="hover-text" aria-hidden="true">&nbsp;Servicios&nbsp;</span>
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/swiper.min.js' %}"></script>
+  <script>
+    $(document).ready(function () {
+      let swiper = new Swiper('.swiper', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        coverflowEffect: {
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 3,
+          slideShadows: true
+        },
+        keyboard: {
+          enabled: true
+        },
+        mousewheel: {
+          thresholdDelta: 70
+        },
+        loop: true,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: true
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 2
+          },
+          768: {
+            slidesPerView: 1
+          },
+          1024: {
+            slidesPerView: 2
+          },
+          1560: {
+            slidesPerView: 3
+          }
+        }
+      })
+    })
+  </script>
+{% endblock %}

@@ -1,0 +1,59 @@
+/* custom_style.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+}
+
+.login {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.socialaccount_ballot {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.socialaccount_providers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.socialaccount_providers li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.login-or {
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.button.secondaryAction, .primaryAction {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.button.secondaryAction {
+    background-color: #e0e0e0;
+}
+
+.primaryAction {
+    background-color: #3498db;
+}
+
+.primaryAction:hover {
+    background-color: #2980b9;
+}

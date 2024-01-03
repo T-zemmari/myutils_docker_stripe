@@ -1,0 +1,140 @@
+{% extends 'base_app.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+  <style>
+    .centrar-elementos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .contenedor-previsualizacion {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210mm, 1fr)); /* Tamaño A4 */
+      gap: 20px; /* Espacio entre páginas */
+      min-height: 500px;
+      border: 1px solid #cdcdcd;
+    }
+    
+    .page {
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      width: 210mm; /* Ancho A4 */
+      height: 297mm; /* Altura A4 */
+      overflow: hidden; /* Evitar desbordamiento de palabras */
+      white-space: pre-wrap; /* Romper líneas correctamente */
+    }
+    
+    .contenedor-cargar-documento {
+      width: 100%;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      flex-direction: column;
+    }
+    
+    .contenedor-icono-cargar {
+      width: 100%;
+      height: 80%;
+    }
+    
+    .contenedor-form-cargar {
+      width: 100%;
+    }
+    
+    .contenedor-previsualizacion {
+      background-color: white;
+      width: 210mm; /* Ancho A4 */
+      max-height: 500px; /* Establecer una altura máxima */
+      overflow-y: auto; /* Hacer que sea scrollable si se excede la altura máxima */
+    }
+    input[type='file']::placeholder {
+      font-size: 13px !important;
+    }
+    @media (max-width: 768px) {
+
+      #pdfForm {
+        margin-bottom: 10px;
+      }
+      .contenedor-previsualizacion {
+        width: 100% !important;
+      }
+      .contenedor-servicios{
+        margin-top: -72px;
+      }
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-top: 4px solid #007bff; /* Cambia el color del borde superior según tus preferencias */
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin-right: 10px;
+      display: none; /* Inicialmente oculto */
+    }
+    
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+{% endblock %}
+
+{% block title %}
+  Convertir a PDF
+{% endblock %}
+
+{% block main %}
+  <div class="contenedor-servicios">
+    <div class="container" style="margin-top: 100px;">
+      <div class="row">
+        <div class="col-xl-4 col-md-12 col-sm-12">
+          <div class="contenedor-cargar-documento">
+            <div class="contendor-titulo-cargar-documento" style="width:100%;border-bottom: 1px solid #cdcdcd;">
+              <h4 style="width: 100%;">Cargar documento:</h4>
+            </div>
+
+            <div class="contenedor-icono-cargar centrar-elementos">
+              <img style="max-width:50% ;" src="{% static 'img/iconos/icono_subir_docs_1.png' %}" alt="icono_1" />
+            </div>
+            <div class="contenedor-form-cargar">
+              <form id="pdfForm" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <div class="input-group" style="width: 100%;">
+                    <input type="file" class="form-control custom-file-input" id="documento" name="documento" accept=".doc, .docx, .txt, .xls, .xlsx, .ppt, .pptx" style="display: none;" />
+                    <div class="input-group-append" style="width: 100%;">
+                      <button type="button" style="width: 100%;" class="btn btn-primary" onclick="document.getElementById('documento').click()">Cargar archivo</button>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-danger btn-sm" id="enviar_peticion" style="width: 100%;" disabled>Convertir a PDF</button>
+              </form>
+              <div id="mensaje-error" style="display: none; color: red;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 col-md-12 col-sm-12">
+          <div class="contenedor-previsualizacion" id="contenedor_previsualizacion_documento"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  var MY_DOMAIN='{{MY_DOMAIN}}';
+</script>
+  <script src="{% static 'js/convertir_txt_a_pdf.js' %}"></script>
+{% endblock %}

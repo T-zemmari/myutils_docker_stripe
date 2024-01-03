@@ -1,0 +1,234 @@
+{% extends 'base_app.html' %}
+{% load static %}
+
+{% block extra_css %}
+
+  <link rel="stylesheet" href="{% static 'bootstrap-5-3-2/css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/preloaders.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/firmar_stepper.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/pdf/pdf.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/cropper.min.css' %}">
+
+  
+{% endblock %}
+
+{% block title %}
+  Firmar PDF
+{% endblock %}
+
+{% block main %}
+  <div class="contenedor-servicios" style="margin-top: 70px;">
+    <h1 class="text-center">Proceso de firmar un PDF</h1>
+
+    <div class="progress-wrapper">
+      <div id="progress-bar-container">
+        <ul>
+          <li class="step step01 active">
+            <div class="step-inner">Paso 1</div>
+          </li>
+          <li class="step step02">
+            <div class="step-inner">Paso 2</div>
+          </li>
+          <li class="step step03">
+            <div class="step-inner">Paso 3</div>
+          </li>
+        </ul>
+        <div id="line">
+          <div id="line-progress"></div>
+        </div>
+        <!-- progress-bar-container -->
+        <div id="progress-content-section">
+          <div class="section-content step1 active" data-step="1">
+            <h2>Carga tu PDF</h2>
+            <div class="contenedor-cargar-pdf" id="contenedor_cargar_pdf">
+              <input type="file" id="pdfInput" accept=".pdf" style="display: none">             
+              <div class="previsualizar-pdf" id="previsualizar-pdf"></div>            
+              <div class="row">
+                <div class="col-xl-6 col-md-6 col-sm-12">
+                  <button id="pdfUploadButton" class="btn btn-danger btn-sm" style="margin-top: 10px; width: 100%">Cargar PDF</button>
+                </div>
+                <div class="col-xl-6 col-md-6 col-sm-12">
+                  <button class="btn btn-primary btn-sm btn_step1" style="margin-top: 10px; width: 100%" disabled>Siguiente paso</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="section-content step2" data-step="2">
+            <h2>Carga tu firma</h2>
+            <div class="contenedor-cargar-firma" id="contenedor_cargar_firma">
+              <input type="file" id="firmaInput" accept="image/*" style="display: none">
+              <div class="previsualizar-firma" id="previsualizar-firma"></div>
+              <div class="contenedor-boton-siguiente">
+                <div class="row">
+                  <div class="col-xl-4 col-md-4 col-sm-12">
+                    <button class="btn btn-danger btn-sm btn_step0" style="margin-top: 10px; width: 100%">Anterior paso</button>
+                  </div>
+                  <div class="col-xl-4 col-md-4 col-sm-12">
+                    <button id="firmaUploadButton" class="btn btn-primary btn-sm" style="margin-top: 10px; width: 100%">Cargar Firma</button>
+                  </div>
+                  <div class="col-xl-4 col-md-4 col-sm-12">
+                    <button class="btn btn-primary btn-sm btn_step2" style="margin-top: 10px; width: 100%" disabled>Siguiente paso</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="section-content step3" data-step="3">
+            <h2>Coloca tu firma en el PDF</h2>
+            <div class="contenedor-colocar-firma-en-pdf" id="contenedor_colocar_firma_en_pdf">
+              <div class="pdf-y-firma pdf-container" style="border: 1px solid #c7c7c7; width: 100%; min-height: 200px;" id="pdf_mas_firma">
+                <div class="spinner"></div>
+              </div>
+              <div class="contenedor-boton-siguiente">
+                <div class="row">
+                  <div class="col-xl-6 col-md-6 col-sm-12">
+                    <button class="btn btn-danger btn-sm btn_step1" style="margin-top: 10px; width: 100%">Anterior paso</button>
+                  </div>
+                  <div class="col-xl-6 col-md-6 col-sm-12">
+                      {% csrf_token %}
+                    <button class="btn btn-primary btn-sm" style="margin-top: 10px; width: 100%" disabled id="finalizarButton">Finalizar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  var MY_DOMAIN='{{MY_DOMAIN}}';
+</script>
+<script src="{% static 'js/cropper.min.js' %}"></script>
+<script src="{% static 'js/pdf/pdf.min.js' %}"></script>
+  <script>
+ let configuracion={};
+    $(document).ready(function () {
+
+     
+      // Cargar PDF
+      document.getElementById("pdfUploadButton").addEventListener("click", function () {
+        document.getElementById("pdfInput").click();
+      });
+
+      document.getElementById("pdfInput").addEventListener("change", function () {
+        const pdfInput = this;
+        const pdfPreview = document.getElementById("previsualizar-pdf");
+        const nextStepButton = document.querySelector(".btn_step1");
+
+        if (pdfInput.files.length > 0) {
+          const pdfFile = pdfInput.files[0];
+          configuracion.pdfCargado=pdfFile;
+          if (pdfFile.type === "application/pdf") {
+            const pdfURL = URL.createObjectURL(pdfFile);
+            pdfPreview.innerHTML = `<embed src="${pdfURL}" width="500" height="400" type="application/pdf">`;
+            nextStepButton.removeAttribute("disabled");
+          } else {
+            alert("Por favor, seleccione un archivo PDF válido.");
+            pdfInput.value = ""; // Limpia el campo de entrada
+            pdfPreview.innerHTML = ""; // Borra la previsualización
+            nextStepButton.disabled = true; // Deshabilita el botón de siguiente
+          }
+        }
+      });
+
+      // Cargar firma
+      document.getElementById("firmaUploadButton").addEventListener("click", function () {
+        document.getElementById("firmaInput").click();
+      });
+
+      document.getElementById("firmaInput").addEventListener("change", function () {
+        const firmaInput = this;
+        const firmaPreview = document.getElementById("previsualizar-firma");
+        const nextStepButton = document.querySelector(".btn_step2");
+
+        if (firmaInput.files.length > 0) {
+          const firmaFile = firmaInput.files[0];
+          configuracion.firmaCargada=firmaFile;
+          if (firmaFile.type.startsWith("image/")) {
+            const firmaURL = URL.createObjectURL(firmaFile);
+            firmaPreview.innerHTML = '<img src="' + firmaURL + '" width="200" height="100">';
+            nextStepButton.removeAttribute("disabled");
+          } else {
+            alert("Por favor, seleccione una imagen de firma válida.");
+            firmaInput.value = ""; // Limpia el campo de entrada
+            firmaPreview.innerHTML = ""; // Borra la previsualización
+            nextStepButton.disabled = true; // Deshabilita el botón de siguiente
+          }
+        }
+      });
+
+      // Asociar cada botón "Siguiente paso" con su respectivo paso
+      $('.btn_step1').click(function () {
+        goToStep(2);
+      });
+
+      $('.btn_step2').click(function () {
+        goToStep(3);
+      });
+
+      $('.btn_step0').click(function () {
+        goToStep(1);
+      });
+
+      function goToStep(step) {
+        // Marcar el paso actual como activo
+        $('.step').removeClass('active');
+        $('.step0' + step).addClass('active');
+
+        // Actualizar la barra de progreso
+        if (step === 1) {
+          $('#line-progress').css('width', '8%');
+        } else if (step === 2) {
+          $('#line-progress').css('width', '52%');
+        } else if (step === 3) {
+          $('#line-progress').css('width', '100%');
+          document.getElementById("finalizarButton").removeAttribute("disabled");
+        }
+
+        // Mostrar el contenido del paso correspondiente
+        $('.section-content').removeClass('active');
+        $('.section-content.step' + step).addClass('active');
+      }
+    });
+
+
+    // Asociar la función superponerFirmaEnPDF al botón "Finalizar"
+    document.getElementById("finalizarButton").addEventListener("click", function () {
+      let pdfCargado = configuracion.pdfCargado;
+      let firmaCargada = configuracion.firmaCargada;
+      // Crear un objeto FormData para enviar los archivos
+      let formData = new FormData();
+      formData.append('pdf_file', pdfCargado);
+      formData.append('firma_file', firmaCargada);
+      let csrfmiddlewaretoken = $('input[name=csrfmiddlewaretoken]').val();
+      formData.append('csrfmiddlewaretoken', csrfmiddlewaretoken);
+
+      console.log('pdfCargado',pdfCargado)
+      console.log('firmaCargada',firmaCargada)
+
+      // Realizar la petición AJAX
+      $.ajax({
+        url: MY_DOMAIN+"/servicios/superponer_pdf_firma/",
+        method: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          // Manejar la respuesta exitosa aquí
+          console.log("Petición AJAX exitosa", response);
+          // Redireccionar al usuario a la vista de resultado o hacer algo con la respuesta
+        },
+        error: function (error) {
+          // Manejar el error de la petición aquí
+          console.log("Error en la petición AJAX", error);
+        },
+      });
+    });
+  
+  </script>
+{% endblock %}
