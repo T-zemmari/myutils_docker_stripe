@@ -6,7 +6,7 @@ from cryptography.fernet import Fernet
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY',default='django-insecure-_)2$7q#f-7%_xc$-yxo7px#wjz&iwu%z_er=+a1sn21f2%8e&x')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG',default=0)
 
 MY_HOST=os.environ.get('MY_HOST',default='127.0.0.1')
@@ -16,6 +16,28 @@ if DEBUG == 0 or DEBUG.lower() == 'false':
 
 #ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS",default="127.0.0.1").split(" ")
 ALLOWED_HOSTS = ['localhost', MY_HOST, 'myutils.com', 'www.myutils.com']
+
+LOG_FILE_PATH = os.path.join(BASE_DIR, 'debug.log')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': LOG_FILE_PATH,
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
 
 LOGIN_URL = 'account_login'
 LOGOUT_URL = 'account_logout'

@@ -11,6 +11,9 @@ import numpy as np
 import imageio
 import subprocess
 import io
+import traceback
+import logging
+
 
 
 
@@ -45,6 +48,8 @@ from .models import Firma
 
 MY_DOMAIN=settings.MY_DOMAIN
 
+
+logger = logging.getLogger(__name__)
 
 
 
@@ -679,9 +684,11 @@ def delete_video_file(request):
 
 def unir_videos(request):
     if request.method == 'POST':
+        print('Entrando a la función unir_videos')
         videos = request.FILES.getlist('videos[]')
 
         if not videos:
+            print('No se han recibido videos en la solicitud.')
             return JsonResponse({'message': 'No se han recibido videos en la solicitud.'}, status=400)
 
         # Directorio temporal para almacenar los archivos de video
@@ -692,6 +699,7 @@ def unir_videos(request):
 
         try:
             for index, video in enumerate(videos):
+                print(f'Procesando video {index}')
                 video_path = os.path.join(temp_dir, f'video_{index}.webm')
 
                 # Guardar el archivo temporalmente
@@ -704,11 +712,12 @@ def unir_videos(request):
                 video_clips.append(clip)
 
             # Unir los clips de video
+            print('Uniendo los clips de video')
             final_clip = concatenate_videoclips(video_clips, method="compose")
 
             # Nombre único para el archivo resultante
             unique_filename = str(uuid.uuid4())
-            final_path = os.path.join('media/carp_vids','yt', f'{unique_filename}.mp4')
+            final_path = os.path.join('media/carp_vids', 'yt', f'{unique_filename}.mp4')
 
             # Guardar el archivo resultante
             final_clip.write_videofile(final_path, codec="libx264", audio_codec="aac")
@@ -722,12 +731,16 @@ def unir_videos(request):
                 temp_file_path = os.path.join(temp_dir, temp_file)
                 os.remove(temp_file_path)
 
-            return JsonResponse({'message': 'Videos unidos exitosamente.', 'video_path': final_path,'video_name':f'{unique_filename}.mp4'})
+            return JsonResponse({'message': 'Videos unidos exitosamente.', 'video_path': final_path, 'video_name': f'{unique_filename}.mp4'})
         except Exception as e:
-            return JsonResponse({'message': f'Error al unir los videos: {str(e)}'}, status=500)
+            print(f'Error al unir los videos: {str(e)}')
+            traceback_str = traceback.format_exc()
+            logger.error(f'Error al unir los videos: {str(e)}', exc_info=True)
+
+            return JsonResponse({'message': f'Error al unir los videos: {str(e)}', 'traceback': traceback_str}, status=500)
     else:
         return JsonResponse({'message': 'Método no permitido.'}, status=405)
-
+    
 ###################################################################################
 ####################### DESCARGAR EL VIDEO UNIFICADO  #############################
 ###################################################################################
