@@ -5927,3 +5927,1359 @@ django.template.base.VariableDoesNotExist: Failed lookup for key [MY_DOMAIN] in 
 (0.000) BEGIN; args=None; alias=default
 (0.000) UPDATE `django_session` SET `session_data` = '.eJxVj80OgjAQhN-lZ0Og_-WmL9JslyU01pJA68X47oLBGI4zs_tN5sUAca65-CctcYw0eHpATKzPNaUL81DL5OtKi48D61nHTl4AvFPeA0hpt5sD13xvjnhtrpuiXCJCiXO-HV8n1ATrtHEcBweDIE2Wt04CwgBBCWGwHSVHo1Vw1toWJdeWQkBnnFQcrREOIOgN-lsE_9JtFhTWd6aVQhnV6YZLqUT3_gCJY1W0:1rLLsr:BnYcbtigIWAmf9M7uKl_dBfOjLTIwTzgzoz_IY5ZdbE', `expire_date` = '2024-01-04 12:27:33.773925' WHERE `django_session`.`session_key` = 'sbcr5q8122iq1nsyjjwu1ue8db2wf7h5'; args=('.eJxVj80OgjAQhN-lZ0Og_-WmL9JslyU01pJA68X47oLBGI4zs_tN5sUAca65-CctcYw0eHpATKzPNaUL81DL5OtKi48D61nHTl4AvFPeA0hpt5sD13xvjnhtrpuiXCJCiXO-HV8n1ATrtHEcBweDIE2Wt04CwgBBCWGwHSVHo1Vw1toWJdeWQkBnnFQcrREOIOgN-lsE_9JtFhTWd6aVQhnV6YZLqUT3_gCJY1W0:1rLLsr:BnYcbtigIWAmf9M7uKl_dBfOjLTIwTzgzoz_IY5ZdbE', '2024-01-04 12:27:33.773925', 'sbcr5q8122iq1nsyjjwu1ue8db2wf7h5'); alias=default
 (0.003) COMMIT; args=None; alias=default
+(0.000) 
+                SELECT VERSION(),
+                       @@sql_mode,
+                       @@default_storage_engine,
+                       @@sql_auto_is_null,
+                       @@lower_case_table_names,
+                       CONVERT_TZ('2001-01-01 01:00:00', 'UTC', 'UTC') IS NOT NULL
+            ; args=None; alias=default
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.000) 
+                SELECT VERSION(),
+                       @@sql_mode,
+                       @@default_storage_engine,
+                       @@sql_auto_is_null,
+                       @@lower_case_table_names,
+                       CONVERT_TZ('2001-01-01 01:00:00', 'UTC', 'UTC') IS NOT NULL
+            ; args=None; alias=default
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+CREATE TABLE `django_migrations` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `app` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `applied` datetime(6) NOT NULL); (params None)
+(0.022) CREATE TABLE `django_migrations` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `app` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `applied` datetime(6) NOT NULL); args=None; alias=default
+CREATE TABLE `product_productmodel` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(100) NOT NULL, `description` longtext NOT NULL, `price` numeric(5, 2) NOT NULL, `price_id` varchar(100) NULL, `date_created` datetime(6) NOT NULL, `date_modified` datetime(6) NOT NULL, `days` integer UNSIGNED NOT NULL CHECK (`days` >= 0), `is_suscription` integer UNSIGNED NOT NULL CHECK (`is_suscription` >= 0)); (params None)
+(0.012) CREATE TABLE `product_productmodel` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(100) NOT NULL, `description` longtext NOT NULL, `price` numeric(5, 2) NOT NULL, `price_id` varchar(100) NULL, `date_created` datetime(6) NOT NULL, `date_modified` datetime(6) NOT NULL, `days` integer UNSIGNED NOT NULL CHECK (`days` >= 0), `is_suscription` integer UNSIGNED NOT NULL CHECK (`is_suscription` >= 0)); args=None; alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('product', '0001_initial', '2024-01-04 12:10:15.912030') RETURNING `django_migrations`.`id`; args=('product', '0001_initial', '2024-01-04 12:10:15.912030'); alias=default
+CREATE TABLE `django_content_type` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(100) NOT NULL, `app_label` varchar(100) NOT NULL, `model` varchar(100) NOT NULL); (params None)
+(0.014) CREATE TABLE `django_content_type` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(100) NOT NULL, `app_label` varchar(100) NOT NULL, `model` varchar(100) NOT NULL); args=None; alias=default
+ALTER TABLE `django_content_type` ADD CONSTRAINT `django_content_type_app_label_model_76bd3d3b_uniq` UNIQUE (`app_label`, `model`); (params ())
+(0.026) ALTER TABLE `django_content_type` ADD CONSTRAINT `django_content_type_app_label_model_76bd3d3b_uniq` UNIQUE (`app_label`, `model`); args=(); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('contenttypes', '0001_initial', '2024-01-04 12:10:15.960855') RETURNING `django_migrations`.`id`; args=('contenttypes', '0001_initial', '2024-01-04 12:10:15.960855'); alias=default
+ALTER TABLE `django_content_type` MODIFY `name` varchar(100) NULL; (params [])
+(0.039) ALTER TABLE `django_content_type` MODIFY `name` varchar(100) NULL; args=[]; alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+ALTER TABLE `django_content_type` DROP COLUMN `name`; (params ())
+(0.025) ALTER TABLE `django_content_type` DROP COLUMN `name`; args=(); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('contenttypes', '0002_remove_content_type_name', '2024-01-04 12:10:16.032989') RETURNING `django_migrations`.`id`; args=('contenttypes', '0002_remove_content_type_name', '2024-01-04 12:10:16.032989'); alias=default
+CREATE TABLE `auth_permission` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(50) NOT NULL, `content_type_id` integer NOT NULL, `codename` varchar(100) NOT NULL); (params None)
+(0.012) CREATE TABLE `auth_permission` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(50) NOT NULL, `content_type_id` integer NOT NULL, `codename` varchar(100) NOT NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'auth_permission' AND
+                table_schema = DATABASE()
+            ; args=['auth_permission']; alias=default
+CREATE TABLE `auth_group` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(80) NOT NULL UNIQUE); (params None)
+(0.018) CREATE TABLE `auth_group` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(80) NOT NULL UNIQUE); args=None; alias=default
+CREATE TABLE `auth_group_permissions` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `group_id` integer NOT NULL, `permission_id` integer NOT NULL); (params None)
+(0.016) CREATE TABLE `auth_group_permissions` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `group_id` integer NOT NULL, `permission_id` integer NOT NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'auth_group_permissions' AND
+                table_schema = DATABASE()
+            ; args=['auth_group_permissions']; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'auth_group_permissions' AND
+                table_schema = DATABASE()
+            ; args=['auth_group_permissions']; alias=default
+ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_codename_01ab375a_uniq` UNIQUE (`content_type_id`, `codename`); (params ())
+(0.028) ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_codename_01ab375a_uniq` UNIQUE (`content_type_id`, `codename`); args=(); alias=default
+ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); (params ())
+(0.036) ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); args=(); alias=default
+ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` UNIQUE (`group_id`, `permission_id`); (params ())
+(0.026) ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` UNIQUE (`group_id`, `permission_id`); args=(); alias=default
+ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`); (params ())
+(0.037) ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`); args=(); alias=default
+ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`); (params ())
+(0.044) ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`); args=(); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0001_initial', '2024-01-04 12:10:16.265765') RETURNING `django_migrations`.`id`; args=('auth', '0001_initial', '2024-01-04 12:10:16.265765'); alias=default
+ALTER TABLE `auth_permission` MODIFY `name` varchar(255) NOT NULL; (params [])
+(0.034) ALTER TABLE `auth_permission` MODIFY `name` varchar(255) NOT NULL; args=[]; alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.004) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0002_alter_permission_name_max_length', '2024-01-04 12:10:16.305804') RETURNING `django_migrations`.`id`; args=('auth', '0002_alter_permission_name_max_length', '2024-01-04 12:10:16.305804'); alias=default
+(0.001) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0003_alter_user_email_max_length', '2024-01-04 12:10:16.315042') RETURNING `django_migrations`.`id`; args=('auth', '0003_alter_user_email_max_length', '2024-01-04 12:10:16.315042'); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0004_alter_user_username_opts', '2024-01-04 12:10:16.321072') RETURNING `django_migrations`.`id`; args=('auth', '0004_alter_user_username_opts', '2024-01-04 12:10:16.321072'); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0005_alter_user_last_login_null', '2024-01-04 12:10:16.326674') RETURNING `django_migrations`.`id`; args=('auth', '0005_alter_user_last_login_null', '2024-01-04 12:10:16.326674'); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0006_require_contenttypes_0002', '2024-01-04 12:10:16.329211') RETURNING `django_migrations`.`id`; args=('auth', '0006_require_contenttypes_0002', '2024-01-04 12:10:16.329211'); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0007_alter_validators_add_error_messages', '2024-01-04 12:10:16.336247') RETURNING `django_migrations`.`id`; args=('auth', '0007_alter_validators_add_error_messages', '2024-01-04 12:10:16.336247'); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.003) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0008_alter_user_username_max_length', '2024-01-04 12:10:16.341911') RETURNING `django_migrations`.`id`; args=('auth', '0008_alter_user_username_max_length', '2024-01-04 12:10:16.341911'); alias=default
+(0.001) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0009_alter_user_last_name_max_length', '2024-01-04 12:10:16.350629') RETURNING `django_migrations`.`id`; args=('auth', '0009_alter_user_last_name_max_length', '2024-01-04 12:10:16.350629'); alias=default
+ALTER TABLE `auth_group` MODIFY `name` varchar(150) NOT NULL; (params [])
+(0.019) ALTER TABLE `auth_group` MODIFY `name` varchar(150) NOT NULL; args=[]; alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0010_alter_group_name_max_length', '2024-01-04 12:10:16.375505') RETURNING `django_migrations`.`id`; args=('auth', '0010_alter_group_name_max_length', '2024-01-04 12:10:16.375505'); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) COMMIT; args=None; alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0011_update_proxy_permissions', '2024-01-04 12:10:16.383143') RETURNING `django_migrations`.`id`; args=('auth', '0011_update_proxy_permissions', '2024-01-04 12:10:16.383143'); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0012_alter_user_first_name_max_length', '2024-01-04 12:10:16.388740') RETURNING `django_migrations`.`id`; args=('auth', '0012_alter_user_first_name_max_length', '2024-01-04 12:10:16.388740'); alias=default
+CREATE TABLE `customerUser_customuser` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `password` varchar(128) NOT NULL, `last_login` datetime(6) NULL, `is_superuser` bool NOT NULL, `username` varchar(150) NOT NULL UNIQUE, `first_name` varchar(150) NOT NULL, `last_name` varchar(150) NOT NULL, `email` varchar(254) NOT NULL, `is_staff` bool NOT NULL, `is_active` bool NOT NULL, `date_joined` datetime(6) NOT NULL, `fecha_nacimiento` date NULL, `numero_telefono` varchar(15) NULL, `plan_init` datetime(6) NULL, `plan_end` datetime(6) NULL, `days` integer UNSIGNED NOT NULL CHECK (`days` >= 0), `activar_plan_temporalmente` bool NOT NULL, `es_admin` bool NOT NULL, `plan_activo_id` bigint NULL); (params None)
+(0.017) CREATE TABLE `customerUser_customuser` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `password` varchar(128) NOT NULL, `last_login` datetime(6) NULL, `is_superuser` bool NOT NULL, `username` varchar(150) NOT NULL UNIQUE, `first_name` varchar(150) NOT NULL, `last_name` varchar(150) NOT NULL, `email` varchar(254) NOT NULL, `is_staff` bool NOT NULL, `is_active` bool NOT NULL, `date_joined` datetime(6) NOT NULL, `fecha_nacimiento` date NULL, `numero_telefono` varchar(15) NULL, `plan_init` datetime(6) NULL, `plan_end` datetime(6) NULL, `days` integer UNSIGNED NOT NULL CHECK (`days` >= 0), `activar_plan_temporalmente` bool NOT NULL, `es_admin` bool NOT NULL, `plan_activo_id` bigint NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'customerUser_customuser' AND
+                table_schema = DATABASE()
+            ; args=['customerUser_customuser']; alias=default
+CREATE TABLE `customerUser_customuser_groups` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `customuser_id` bigint NOT NULL, `group_id` integer NOT NULL); (params None)
+(0.014) CREATE TABLE `customerUser_customuser_groups` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `customuser_id` bigint NOT NULL, `group_id` integer NOT NULL); args=None; alias=default
+(0.001) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'customerUser_customuser_groups' AND
+                table_schema = DATABASE()
+            ; args=['customerUser_customuser_groups']; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'customerUser_customuser_groups' AND
+                table_schema = DATABASE()
+            ; args=['customerUser_customuser_groups']; alias=default
+CREATE TABLE `customerUser_customuser_user_permissions` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `customuser_id` bigint NOT NULL, `permission_id` integer NOT NULL); (params None)
+(0.012) CREATE TABLE `customerUser_customuser_user_permissions` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `customuser_id` bigint NOT NULL, `permission_id` integer NOT NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'customerUser_customuser_user_permissions' AND
+                table_schema = DATABASE()
+            ; args=['customerUser_customuser_user_permissions']; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'customerUser_customuser_user_permissions' AND
+                table_schema = DATABASE()
+            ; args=['customerUser_customuser_user_permissions']; alias=default
+ALTER TABLE `customerUser_customuser` ADD CONSTRAINT `customerUser_customu_plan_activo_id_68aeb6dd_fk_product_p` FOREIGN KEY (`plan_activo_id`) REFERENCES `product_productmodel` (`id`); (params ())
+(0.041) ALTER TABLE `customerUser_customuser` ADD CONSTRAINT `customerUser_customu_plan_activo_id_68aeb6dd_fk_product_p` FOREIGN KEY (`plan_activo_id`) REFERENCES `product_productmodel` (`id`); args=(); alias=default
+ALTER TABLE `customerUser_customuser_groups` ADD CONSTRAINT `customerUser_customuser__customuser_id_group_id_2a5027f1_uniq` UNIQUE (`customuser_id`, `group_id`); (params ())
+(0.024) ALTER TABLE `customerUser_customuser_groups` ADD CONSTRAINT `customerUser_customuser__customuser_id_group_id_2a5027f1_uniq` UNIQUE (`customuser_id`, `group_id`); args=(); alias=default
+ALTER TABLE `customerUser_customuser_groups` ADD CONSTRAINT `customerUser_customu_customuser_id_9c1638bc_fk_customerU` FOREIGN KEY (`customuser_id`) REFERENCES `customerUser_customuser` (`id`); (params ())
+(0.035) ALTER TABLE `customerUser_customuser_groups` ADD CONSTRAINT `customerUser_customu_customuser_id_9c1638bc_fk_customerU` FOREIGN KEY (`customuser_id`) REFERENCES `customerUser_customuser` (`id`); args=(); alias=default
+ALTER TABLE `customerUser_customuser_groups` ADD CONSTRAINT `customerUser_customu_group_id_eab16b11_fk_auth_grou` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`); (params ())
+(0.040) ALTER TABLE `customerUser_customuser_groups` ADD CONSTRAINT `customerUser_customu_group_id_eab16b11_fk_auth_grou` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`); args=(); alias=default
+ALTER TABLE `customerUser_customuser_user_permissions` ADD CONSTRAINT `customerUser_customuser__customuser_id_permission_9891692e_uniq` UNIQUE (`customuser_id`, `permission_id`); (params ())
+(0.026) ALTER TABLE `customerUser_customuser_user_permissions` ADD CONSTRAINT `customerUser_customuser__customuser_id_permission_9891692e_uniq` UNIQUE (`customuser_id`, `permission_id`); args=(); alias=default
+ALTER TABLE `customerUser_customuser_user_permissions` ADD CONSTRAINT `customerUser_customu_customuser_id_90e471f5_fk_customerU` FOREIGN KEY (`customuser_id`) REFERENCES `customerUser_customuser` (`id`); (params ())
+(0.042) ALTER TABLE `customerUser_customuser_user_permissions` ADD CONSTRAINT `customerUser_customu_customuser_id_90e471f5_fk_customerU` FOREIGN KEY (`customuser_id`) REFERENCES `customerUser_customuser` (`id`); args=(); alias=default
+ALTER TABLE `customerUser_customuser_user_permissions` ADD CONSTRAINT `customerUser_customu_permission_id_3e0eb235_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`); (params ())
+(0.041) ALTER TABLE `customerUser_customuser_user_permissions` ADD CONSTRAINT `customerUser_customu_permission_id_3e0eb235_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`); args=(); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('customerUser', '0001_initial', '2024-01-04 12:10:16.701201') RETURNING `django_migrations`.`id`; args=('customerUser', '0001_initial', '2024-01-04 12:10:16.701201'); alias=default
+CREATE TABLE `account_emailaddress` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `email` varchar(75) NOT NULL UNIQUE, `verified` bool NOT NULL, `primary` bool NOT NULL, `user_id` bigint NOT NULL); (params None)
+(0.017) CREATE TABLE `account_emailaddress` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `email` varchar(75) NOT NULL UNIQUE, `verified` bool NOT NULL, `primary` bool NOT NULL, `user_id` bigint NOT NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'account_emailaddress' AND
+                table_schema = DATABASE()
+            ; args=['account_emailaddress']; alias=default
+CREATE TABLE `account_emailconfirmation` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `created` datetime(6) NOT NULL, `sent` datetime(6) NULL, `key` varchar(64) NOT NULL UNIQUE, `email_address_id` integer NOT NULL); (params None)
+(0.023) CREATE TABLE `account_emailconfirmation` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `created` datetime(6) NOT NULL, `sent` datetime(6) NULL, `key` varchar(64) NOT NULL UNIQUE, `email_address_id` integer NOT NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'account_emailconfirmation' AND
+                table_schema = DATABASE()
+            ; args=['account_emailconfirmation']; alias=default
+ALTER TABLE `account_emailaddress` ADD CONSTRAINT `account_emailaddress_user_id_2c513194_fk_customerU` FOREIGN KEY (`user_id`) REFERENCES `customerUser_customuser` (`id`); (params ())
+(0.038) ALTER TABLE `account_emailaddress` ADD CONSTRAINT `account_emailaddress_user_id_2c513194_fk_customerU` FOREIGN KEY (`user_id`) REFERENCES `customerUser_customuser` (`id`); args=(); alias=default
+ALTER TABLE `account_emailconfirmation` ADD CONSTRAINT `account_emailconfirm_email_address_id_5b7f8c58_fk_account_e` FOREIGN KEY (`email_address_id`) REFERENCES `account_emailaddress` (`id`); (params ())
+(0.038) ALTER TABLE `account_emailconfirmation` ADD CONSTRAINT `account_emailconfirm_email_address_id_5b7f8c58_fk_account_e` FOREIGN KEY (`email_address_id`) REFERENCES `account_emailaddress` (`id`); args=(); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('account', '0001_initial', '2024-01-04 12:10:16.836289') RETURNING `django_migrations`.`id`; args=('account', '0001_initial', '2024-01-04 12:10:16.836289'); alias=default
+ALTER TABLE `account_emailaddress` MODIFY `email` varchar(254) NOT NULL; (params [])
+(0.021) ALTER TABLE `account_emailaddress` MODIFY `email` varchar(254) NOT NULL; args=[]; alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('account', '0002_email_max_length', '2024-01-04 12:10:16.866465') RETURNING `django_migrations`.`id`; args=('account', '0002_email_max_length', '2024-01-04 12:10:16.866465'); alias=default
+ALTER TABLE `account_emailaddress` ADD CONSTRAINT `account_emailaddress_user_id_email_987c8728_uniq` UNIQUE (`user_id`, `email`); (params ())
+(0.026) ALTER TABLE `account_emailaddress` ADD CONSTRAINT `account_emailaddress_user_id_email_987c8728_uniq` UNIQUE (`user_id`, `email`); args=(); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('account', '0003_alter_emailaddress_create_unique_verified_email', '2024-01-04 12:10:16.906478') RETURNING `django_migrations`.`id`; args=('account', '0003_alter_emailaddress_create_unique_verified_email', '2024-01-04 12:10:16.906478'); alias=default
+(0.025) 
+            SELECT kc.`constraint_name`, kc.`column_name`,
+                kc.`referenced_table_name`, kc.`referenced_column_name`,
+                c.`constraint_type`
+            FROM
+                information_schema.key_column_usage AS kc,
+                information_schema.table_constraints AS c
+            WHERE
+                kc.table_schema = DATABASE() AND
+                c.table_schema = kc.table_schema AND
+                c.constraint_name = kc.constraint_name AND
+                c.constraint_type != 'CHECK' AND
+                kc.table_name = 'account_emailaddress'
+            ORDER BY kc.`ordinal_position`
+        ; args=['account_emailaddress']; alias=default
+(0.000) 
+                SELECT c.constraint_name AS column_name
+                FROM information_schema.check_constraints AS c
+                WHERE
+                    c.table_name = 'account_emailaddress' AND
+                    LOWER(c.check_clause) =
+                        'json_valid(`' + LOWER(c.constraint_name) + '`)' AND
+                    c.constraint_schema = DATABASE()
+                ; args=['account_emailaddress']; alias=default
+(0.000) 
+            SELECT  table_collation
+            FROM    information_schema.tables
+            WHERE   table_schema = DATABASE()
+            AND     table_name = 'account_emailaddress'
+            ; args=['account_emailaddress']; alias=default
+(0.000) 
+            SELECT
+                column_name, data_type, character_maximum_length,
+                numeric_precision, numeric_scale, extra, column_default,
+                CASE
+                    WHEN collation_name = 'utf8mb4_general_ci' THEN NULL
+                    ELSE collation_name
+                END AS collation_name,
+                CASE
+                    WHEN column_type LIKE '% unsigned' THEN 1
+                    ELSE 0
+                END AS is_unsigned,
+                column_comment
+            FROM information_schema.columns
+            WHERE table_name = 'account_emailaddress' AND table_schema = DATABASE()
+            ; args=['utf8mb4_general_ci', 'account_emailaddress']; alias=default
+(0.000) SELECT * FROM `account_emailaddress` LIMIT 1; args=None; alias=default
+(0.000) 
+                    SELECT c.constraint_name, c.check_clause
+                    FROM information_schema.check_constraints AS c
+                    WHERE
+                        c.constraint_schema = DATABASE() AND
+                        c.table_name = 'account_emailaddress'
+                ; args=['account_emailaddress']; alias=default
+(0.000) SHOW INDEX FROM `account_emailaddress`; args=None; alias=default
+ALTER TABLE `account_emailaddress` DROP INDEX `email`; (params ())
+(0.020) ALTER TABLE `account_emailaddress` DROP INDEX `email`; args=(); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('account', '0004_alter_emailaddress_drop_unique_email', '2024-01-04 12:10:16.963815') RETURNING `django_migrations`.`id`; args=('account', '0004_alter_emailaddress_drop_unique_email', '2024-01-04 12:10:16.963815'); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('account', '0005_emailaddress_idx_upper_email', '2024-01-04 12:10:16.971912') RETURNING `django_migrations`.`id`; args=('account', '0005_emailaddress_idx_upper_email', '2024-01-04 12:10:16.971912'); alias=default
+CREATE TABLE `django_admin_log` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `action_time` datetime(6) NOT NULL, `object_id` longtext NULL, `object_repr` varchar(200) NOT NULL, `action_flag` smallint UNSIGNED NOT NULL CHECK (`action_flag` >= 0), `change_message` longtext NOT NULL, `content_type_id` integer NULL, `user_id` bigint NOT NULL); (params None)
+(0.014) CREATE TABLE `django_admin_log` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `action_time` datetime(6) NOT NULL, `object_id` longtext NULL, `object_repr` varchar(200) NOT NULL, `action_flag` smallint UNSIGNED NOT NULL CHECK (`action_flag` >= 0), `change_message` longtext NOT NULL, `content_type_id` integer NULL, `user_id` bigint NOT NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'django_admin_log' AND
+                table_schema = DATABASE()
+            ; args=['django_admin_log']; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'django_admin_log' AND
+                table_schema = DATABASE()
+            ; args=['django_admin_log']; alias=default
+ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); (params ())
+(0.032) ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); args=(); alias=default
+ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_customerUser_customuser_id` FOREIGN KEY (`user_id`) REFERENCES `customerUser_customuser` (`id`); (params ())
+(0.040) ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_customerUser_customuser_id` FOREIGN KEY (`user_id`) REFERENCES `customerUser_customuser` (`id`); args=(); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('admin', '0001_initial', '2024-01-04 12:10:17.073867') RETURNING `django_migrations`.`id`; args=('admin', '0001_initial', '2024-01-04 12:10:17.073867'); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('admin', '0002_logentry_remove_auto_add', '2024-01-04 12:10:17.082665') RETURNING `django_migrations`.`id`; args=('admin', '0002_logentry_remove_auto_add', '2024-01-04 12:10:17.082665'); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('admin', '0003_logentry_add_action_flag_choices', '2024-01-04 12:10:17.091791') RETURNING `django_migrations`.`id`; args=('admin', '0003_logentry_add_action_flag_choices', '2024-01-04 12:10:17.091791'); alias=default
+CREATE TABLE `cvs_curriculum` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `fecha_creacion` datetime(6) NOT NULL, `fecha_modificacion` datetime(6) NOT NULL, `veces_modificado` integer NOT NULL, `url_imagen` varchar(100) NULL, `usuario_id` bigint NOT NULL); (params None)
+(0.014) CREATE TABLE `cvs_curriculum` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `fecha_creacion` datetime(6) NOT NULL, `fecha_modificacion` datetime(6) NOT NULL, `veces_modificado` integer NOT NULL, `url_imagen` varchar(100) NULL, `usuario_id` bigint NOT NULL); args=None; alias=default
+(0.001) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'cvs_curriculum' AND
+                table_schema = DATABASE()
+            ; args=['cvs_curriculum']; alias=default
+CREATE TABLE `cvs_skills` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `skill` varchar(255) NULL, `url_skill` varchar(255) NULL, `curriculum_id` integer NOT NULL); (params None)
+(0.012) CREATE TABLE `cvs_skills` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `skill` varchar(255) NULL, `url_skill` varchar(255) NULL, `curriculum_id` integer NOT NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'cvs_skills' AND
+                table_schema = DATABASE()
+            ; args=['cvs_skills']; alias=default
+CREATE TABLE `cvs_informacionusuario` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `first_name` varchar(255) NULL, `last_name` varchar(255) NULL, `email` varchar(255) NULL, `address` varchar(255) NULL, `phone` varchar(255) NULL, `img_cv` varchar(100) NULL, `curriculum_id` integer NOT NULL UNIQUE); (params None)
+(0.017) CREATE TABLE `cvs_informacionusuario` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `first_name` varchar(255) NULL, `last_name` varchar(255) NULL, `email` varchar(255) NULL, `address` varchar(255) NULL, `phone` varchar(255) NULL, `img_cv` varchar(100) NULL, `curriculum_id` integer NOT NULL UNIQUE); args=None; alias=default
+CREATE TABLE `cvs_idiomas` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `idioma` varchar(255) NULL, `nivel` varchar(255) NULL, `curriculum_id` integer NOT NULL); (params None)
+(0.013) CREATE TABLE `cvs_idiomas` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `idioma` varchar(255) NULL, `nivel` varchar(255) NULL, `curriculum_id` integer NOT NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'cvs_idiomas' AND
+                table_schema = DATABASE()
+            ; args=['cvs_idiomas']; alias=default
+CREATE TABLE `cvs_experiencialaboral` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `puesto` varchar(255) NULL, `inicio` datetime(6) NOT NULL, `fin` datetime(6) NOT NULL, `empresa` varchar(255) NOT NULL, `trabajo_realizado` longtext NOT NULL, `curriculum_id` integer NOT NULL); (params None)
+(0.015) CREATE TABLE `cvs_experiencialaboral` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `puesto` varchar(255) NULL, `inicio` datetime(6) NOT NULL, `fin` datetime(6) NOT NULL, `empresa` varchar(255) NOT NULL, `trabajo_realizado` longtext NOT NULL, `curriculum_id` integer NOT NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'cvs_experiencialaboral' AND
+                table_schema = DATABASE()
+            ; args=['cvs_experiencialaboral']; alias=default
+CREATE TABLE `cvs_datosacademicos` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `titulo` varchar(255) NULL, `inicio` datetime(6) NOT NULL, `fin` datetime(6) NOT NULL, `escuela` varchar(255) NOT NULL, `curriculum_id` integer NOT NULL); (params None)
+(0.015) CREATE TABLE `cvs_datosacademicos` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `titulo` varchar(255) NULL, `inicio` datetime(6) NOT NULL, `fin` datetime(6) NOT NULL, `escuela` varchar(255) NOT NULL, `curriculum_id` integer NOT NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'cvs_datosacademicos' AND
+                table_schema = DATABASE()
+            ; args=['cvs_datosacademicos']; alias=default
+ALTER TABLE `cvs_curriculum` ADD CONSTRAINT `cvs_curriculum_usuario_id_3e34570b_fk_customerUser_customuser_id` FOREIGN KEY (`usuario_id`) REFERENCES `customerUser_customuser` (`id`); (params ())
+(0.032) ALTER TABLE `cvs_curriculum` ADD CONSTRAINT `cvs_curriculum_usuario_id_3e34570b_fk_customerUser_customuser_id` FOREIGN KEY (`usuario_id`) REFERENCES `customerUser_customuser` (`id`); args=(); alias=default
+ALTER TABLE `cvs_skills` ADD CONSTRAINT `cvs_skills_curriculum_id_c53189ea_fk_cvs_curriculum_id` FOREIGN KEY (`curriculum_id`) REFERENCES `cvs_curriculum` (`id`); (params ())
+(0.032) ALTER TABLE `cvs_skills` ADD CONSTRAINT `cvs_skills_curriculum_id_c53189ea_fk_cvs_curriculum_id` FOREIGN KEY (`curriculum_id`) REFERENCES `cvs_curriculum` (`id`); args=(); alias=default
+ALTER TABLE `cvs_informacionusuario` ADD CONSTRAINT `cvs_informacionusuar_curriculum_id_61f79451_fk_cvs_curri` FOREIGN KEY (`curriculum_id`) REFERENCES `cvs_curriculum` (`id`); (params ())
+(0.037) ALTER TABLE `cvs_informacionusuario` ADD CONSTRAINT `cvs_informacionusuar_curriculum_id_61f79451_fk_cvs_curri` FOREIGN KEY (`curriculum_id`) REFERENCES `cvs_curriculum` (`id`); args=(); alias=default
+ALTER TABLE `cvs_idiomas` ADD CONSTRAINT `cvs_idiomas_curriculum_id_1d826fc7_fk_cvs_curriculum_id` FOREIGN KEY (`curriculum_id`) REFERENCES `cvs_curriculum` (`id`); (params ())
+(0.034) ALTER TABLE `cvs_idiomas` ADD CONSTRAINT `cvs_idiomas_curriculum_id_1d826fc7_fk_cvs_curriculum_id` FOREIGN KEY (`curriculum_id`) REFERENCES `cvs_curriculum` (`id`); args=(); alias=default
+ALTER TABLE `cvs_experiencialaboral` ADD CONSTRAINT `cvs_experiencialabor_curriculum_id_60d203be_fk_cvs_curri` FOREIGN KEY (`curriculum_id`) REFERENCES `cvs_curriculum` (`id`); (params ())
+(0.032) ALTER TABLE `cvs_experiencialaboral` ADD CONSTRAINT `cvs_experiencialabor_curriculum_id_60d203be_fk_cvs_curri` FOREIGN KEY (`curriculum_id`) REFERENCES `cvs_curriculum` (`id`); args=(); alias=default
+ALTER TABLE `cvs_datosacademicos` ADD CONSTRAINT `cvs_datosacademicos_curriculum_id_0b72e3ce_fk_cvs_curriculum_id` FOREIGN KEY (`curriculum_id`) REFERENCES `cvs_curriculum` (`id`); (params ())
+(0.035) ALTER TABLE `cvs_datosacademicos` ADD CONSTRAINT `cvs_datosacademicos_curriculum_id_0b72e3ce_fk_cvs_curriculum_id` FOREIGN KEY (`curriculum_id`) REFERENCES `cvs_curriculum` (`id`); args=(); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('cvs', '0001_initial', '2024-01-04 12:10:17.443590') RETURNING `django_migrations`.`id`; args=('cvs', '0001_initial', '2024-01-04 12:10:17.443590'); alias=default
+CREATE TABLE `util_media_utilmediamodel` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `url` varchar(100) NOT NULL, `file_name` varchar(100) NOT NULL, `file_type` varchar(100) NOT NULL, `date_created` datetime(6) NOT NULL, `date_modified` datetime(6) NOT NULL, `user_id` bigint NULL); (params None)
+(0.016) CREATE TABLE `util_media_utilmediamodel` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `url` varchar(100) NOT NULL, `file_name` varchar(100) NOT NULL, `file_type` varchar(100) NOT NULL, `date_created` datetime(6) NOT NULL, `date_modified` datetime(6) NOT NULL, `user_id` bigint NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'util_media_utilmediamodel' AND
+                table_schema = DATABASE()
+            ; args=['util_media_utilmediamodel']; alias=default
+ALTER TABLE `util_media_utilmediamodel` ADD CONSTRAINT `util_media_utilmedia_user_id_a64f3c23_fk_customerU` FOREIGN KEY (`user_id`) REFERENCES `customerUser_customuser` (`id`); (params ())
+(0.033) ALTER TABLE `util_media_utilmediamodel` ADD CONSTRAINT `util_media_utilmedia_user_id_a64f3c23_fk_customerU` FOREIGN KEY (`user_id`) REFERENCES `customerUser_customuser` (`id`); args=(); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('util_media', '0001_initial', '2024-01-04 12:10:17.507323') RETURNING `django_migrations`.`id`; args=('util_media', '0001_initial', '2024-01-04 12:10:17.507323'); alias=default
+CREATE TABLE `servicios_proyectomodel` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `nombre` varchar(255) NOT NULL, `referencia_proyecto` char(32) NOT NULL, `fecha_creacion` datetime(6) NOT NULL, `fecha_modificacion` datetime(6) NOT NULL, `activo` bool NOT NULL, `usuario_id` bigint NULL); (params None)
+(0.015) CREATE TABLE `servicios_proyectomodel` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `nombre` varchar(255) NOT NULL, `referencia_proyecto` char(32) NOT NULL, `fecha_creacion` datetime(6) NOT NULL, `fecha_modificacion` datetime(6) NOT NULL, `activo` bool NOT NULL, `usuario_id` bigint NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'servicios_proyectomodel' AND
+                table_schema = DATABASE()
+            ; args=['servicios_proyectomodel']; alias=default
+CREATE TABLE `servicios_proyectomodel_media` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `proyectomodel_id` bigint NOT NULL, `utilmediamodel_id` bigint NOT NULL); (params None)
+(0.014) CREATE TABLE `servicios_proyectomodel_media` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `proyectomodel_id` bigint NOT NULL, `utilmediamodel_id` bigint NOT NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'servicios_proyectomodel_media' AND
+                table_schema = DATABASE()
+            ; args=['servicios_proyectomodel_media']; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'servicios_proyectomodel_media' AND
+                table_schema = DATABASE()
+            ; args=['servicios_proyectomodel_media']; alias=default
+CREATE TABLE `servicios_firma` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `pdf` varchar(100) NOT NULL, `imagen_firma` varchar(100) NULL, `fecha_creacion` datetime(6) NOT NULL, `fecha_modificacion` datetime(6) NOT NULL, `usuario_id` bigint NULL); (params None)
+(0.015) CREATE TABLE `servicios_firma` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `pdf` varchar(100) NOT NULL, `imagen_firma` varchar(100) NULL, `fecha_creacion` datetime(6) NOT NULL, `fecha_modificacion` datetime(6) NOT NULL, `usuario_id` bigint NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'servicios_firma' AND
+                table_schema = DATABASE()
+            ; args=['servicios_firma']; alias=default
+CREATE TABLE `servicios_capturamodel` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `url_captura` varchar(255) NOT NULL, `nombre_captura` varchar(255) NOT NULL, `fecha_creacion` datetime(6) NOT NULL, `fecha_modificacion` datetime(6) NOT NULL, `activo` bool NOT NULL, `tiempo` double precision NOT NULL, `archivo_id` bigint NULL); (params None)
+(0.012) CREATE TABLE `servicios_capturamodel` (`id` bigint AUTO_INCREMENT NOT NULL PRIMARY KEY, `url_captura` varchar(255) NOT NULL, `nombre_captura` varchar(255) NOT NULL, `fecha_creacion` datetime(6) NOT NULL, `fecha_modificacion` datetime(6) NOT NULL, `activo` bool NOT NULL, `tiempo` double precision NOT NULL, `archivo_id` bigint NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'servicios_capturamodel' AND
+                table_schema = DATABASE()
+            ; args=['servicios_capturamodel']; alias=default
+ALTER TABLE `servicios_proyectomodel` ADD CONSTRAINT `servicios_proyectomo_usuario_id_a5f4e449_fk_customerU` FOREIGN KEY (`usuario_id`) REFERENCES `customerUser_customuser` (`id`); (params ())
+(0.034) ALTER TABLE `servicios_proyectomodel` ADD CONSTRAINT `servicios_proyectomo_usuario_id_a5f4e449_fk_customerU` FOREIGN KEY (`usuario_id`) REFERENCES `customerUser_customuser` (`id`); args=(); alias=default
+ALTER TABLE `servicios_proyectomodel_media` ADD CONSTRAINT `servicios_proyectomodel__proyectomodel_id_utilmed_a7c46c9b_uniq` UNIQUE (`proyectomodel_id`, `utilmediamodel_id`); (params ())
+(0.024) ALTER TABLE `servicios_proyectomodel_media` ADD CONSTRAINT `servicios_proyectomodel__proyectomodel_id_utilmed_a7c46c9b_uniq` UNIQUE (`proyectomodel_id`, `utilmediamodel_id`); args=(); alias=default
+ALTER TABLE `servicios_proyectomodel_media` ADD CONSTRAINT `servicios_proyectomo_proyectomodel_id_39bebfb0_fk_servicios` FOREIGN KEY (`proyectomodel_id`) REFERENCES `servicios_proyectomodel` (`id`); (params ())
+(0.037) ALTER TABLE `servicios_proyectomodel_media` ADD CONSTRAINT `servicios_proyectomo_proyectomodel_id_39bebfb0_fk_servicios` FOREIGN KEY (`proyectomodel_id`) REFERENCES `servicios_proyectomodel` (`id`); args=(); alias=default
+ALTER TABLE `servicios_proyectomodel_media` ADD CONSTRAINT `servicios_proyectomo_utilmediamodel_id_96ac8ec3_fk_util_medi` FOREIGN KEY (`utilmediamodel_id`) REFERENCES `util_media_utilmediamodel` (`id`); (params ())
+(0.041) ALTER TABLE `servicios_proyectomodel_media` ADD CONSTRAINT `servicios_proyectomo_utilmediamodel_id_96ac8ec3_fk_util_medi` FOREIGN KEY (`utilmediamodel_id`) REFERENCES `util_media_utilmediamodel` (`id`); args=(); alias=default
+ALTER TABLE `servicios_firma` ADD CONSTRAINT `servicios_firma_usuario_id_391325e1_fk_customerU` FOREIGN KEY (`usuario_id`) REFERENCES `customerUser_customuser` (`id`); (params ())
+(0.031) ALTER TABLE `servicios_firma` ADD CONSTRAINT `servicios_firma_usuario_id_391325e1_fk_customerU` FOREIGN KEY (`usuario_id`) REFERENCES `customerUser_customuser` (`id`); args=(); alias=default
+ALTER TABLE `servicios_capturamodel` ADD CONSTRAINT `servicios_capturamod_archivo_id_d636b01c_fk_util_medi` FOREIGN KEY (`archivo_id`) REFERENCES `util_media_utilmediamodel` (`id`); (params ())
+(0.035) ALTER TABLE `servicios_capturamodel` ADD CONSTRAINT `servicios_capturamod_archivo_id_d636b01c_fk_util_medi` FOREIGN KEY (`archivo_id`) REFERENCES `util_media_utilmediamodel` (`id`); args=(); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('servicios', '0001_initial', '2024-01-04 12:10:17.814797') RETURNING `django_migrations`.`id`; args=('servicios', '0001_initial', '2024-01-04 12:10:17.814797'); alias=default
+CREATE TABLE `django_session` (`session_key` varchar(40) NOT NULL PRIMARY KEY, `session_data` longtext NOT NULL, `expire_date` datetime(6) NOT NULL); (params None)
+(0.012) CREATE TABLE `django_session` (`session_key` varchar(40) NOT NULL PRIMARY KEY, `session_data` longtext NOT NULL, `expire_date` datetime(6) NOT NULL); args=None; alias=default
+(0.000) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'django_session' AND
+                table_schema = DATABASE()
+            ; args=['django_session']; alias=default
+CREATE INDEX `django_session_expire_date_a5c62663` ON `django_session` (`expire_date`); (params ())
+(0.033) CREATE INDEX `django_session_expire_date_a5c62663` ON `django_session` (`expire_date`); args=(); alias=default
+(0.001) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('sessions', '0001_initial', '2024-01-04 12:10:17.865738') RETURNING `django_migrations`.`id`; args=('sessions', '0001_initial', '2024-01-04 12:10:17.865738'); alias=default
+CREATE TABLE `socialaccount_socialaccount` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `provider` varchar(30) NOT NULL, `uid` varchar(191) NOT NULL, `last_login` datetime(6) NOT NULL, `date_joined` datetime(6) NOT NULL, `extra_data` longtext NOT NULL, `user_id` bigint NOT NULL); (params None)
+(1.316) CREATE TABLE `socialaccount_socialaccount` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `provider` varchar(30) NOT NULL, `uid` varchar(191) NOT NULL, `last_login` datetime(6) NOT NULL, `date_joined` datetime(6) NOT NULL, `extra_data` longtext NOT NULL, `user_id` bigint NOT NULL); args=None; alias=default
+(0.001) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'socialaccount_socialaccount' AND
+                table_schema = DATABASE()
+            ; args=['socialaccount_socialaccount']; alias=default
+CREATE TABLE `socialaccount_socialapp` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `provider` varchar(30) NOT NULL, `name` varchar(40) NOT NULL, `client_id` varchar(100) NOT NULL, `secret` varchar(100) NOT NULL, `key` varchar(100) NOT NULL); (params None)
+(0.569) CREATE TABLE `socialaccount_socialapp` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `provider` varchar(30) NOT NULL, `name` varchar(40) NOT NULL, `client_id` varchar(100) NOT NULL, `secret` varchar(100) NOT NULL, `key` varchar(100) NOT NULL); args=None; alias=default
+CREATE TABLE `socialaccount_socialtoken` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `token` longtext NOT NULL, `token_secret` longtext NOT NULL, `expires_at` datetime(6) NULL, `account_id` integer NOT NULL, `app_id` integer NOT NULL); (params None)
+(1.153) CREATE TABLE `socialaccount_socialtoken` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `token` longtext NOT NULL, `token_secret` longtext NOT NULL, `expires_at` datetime(6) NULL, `account_id` integer NOT NULL, `app_id` integer NOT NULL); args=None; alias=default
+(0.001) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'socialaccount_socialtoken' AND
+                table_schema = DATABASE()
+            ; args=['socialaccount_socialtoken']; alias=default
+(0.001) 
+            SELECT engine
+            FROM information_schema.tables
+            WHERE
+                table_name = 'socialaccount_socialtoken' AND
+                table_schema = DATABASE()
+            ; args=['socialaccount_socialtoken']; alias=default
+ALTER TABLE `socialaccount_socialtoken` ADD CONSTRAINT `socialaccount_socialtoken_app_id_account_id_fca4e0ac_uniq` UNIQUE (`app_id`, `account_id`); (params ())
+(0.384) ALTER TABLE `socialaccount_socialtoken` ADD CONSTRAINT `socialaccount_socialtoken_app_id_account_id_fca4e0ac_uniq` UNIQUE (`app_id`, `account_id`); args=(); alias=default
+ALTER TABLE `socialaccount_socialaccount` ADD CONSTRAINT `socialaccount_socialaccount_provider_uid_fc810c6e_uniq` UNIQUE (`provider`, `uid`); (params ())
+(0.030) ALTER TABLE `socialaccount_socialaccount` ADD CONSTRAINT `socialaccount_socialaccount_provider_uid_fc810c6e_uniq` UNIQUE (`provider`, `uid`); args=(); alias=default
+ALTER TABLE `socialaccount_socialaccount` ADD CONSTRAINT `socialaccount_social_user_id_8146e70c_fk_customerU` FOREIGN KEY (`user_id`) REFERENCES `customerUser_customuser` (`id`); (params ())
+(0.048) ALTER TABLE `socialaccount_socialaccount` ADD CONSTRAINT `socialaccount_social_user_id_8146e70c_fk_customerU` FOREIGN KEY (`user_id`) REFERENCES `customerUser_customuser` (`id`); args=(); alias=default
+ALTER TABLE `socialaccount_socialtoken` ADD CONSTRAINT `socialaccount_social_account_id_951f210e_fk_socialacc` FOREIGN KEY (`account_id`) REFERENCES `socialaccount_socialaccount` (`id`); (params ())
+(0.039) ALTER TABLE `socialaccount_socialtoken` ADD CONSTRAINT `socialaccount_social_account_id_951f210e_fk_socialacc` FOREIGN KEY (`account_id`) REFERENCES `socialaccount_socialaccount` (`id`); args=(); alias=default
+ALTER TABLE `socialaccount_socialtoken` ADD CONSTRAINT `socialaccount_social_app_id_636a42d7_fk_socialacc` FOREIGN KEY (`app_id`) REFERENCES `socialaccount_socialapp` (`id`); (params ())
+(0.047) ALTER TABLE `socialaccount_socialtoken` ADD CONSTRAINT `socialaccount_social_app_id_636a42d7_fk_socialacc` FOREIGN KEY (`app_id`) REFERENCES `socialaccount_socialapp` (`id`); args=(); alias=default
+(0.001) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('socialaccount', '0001_initial', '2024-01-04 12:10:21.557686') RETURNING `django_migrations`.`id`; args=('socialaccount', '0001_initial', '2024-01-04 12:10:21.557686'); alias=default
+ALTER TABLE `socialaccount_socialapp` MODIFY `client_id` varchar(191) NOT NULL; (params [])
+(0.019) ALTER TABLE `socialaccount_socialapp` MODIFY `client_id` varchar(191) NOT NULL; args=[]; alias=default
+ALTER TABLE `socialaccount_socialapp` MODIFY `key` varchar(191) NOT NULL; (params [])
+(0.019) ALTER TABLE `socialaccount_socialapp` MODIFY `key` varchar(191) NOT NULL; args=[]; alias=default
+ALTER TABLE `socialaccount_socialapp` MODIFY `secret` varchar(191) NOT NULL; (params [])
+(0.021) ALTER TABLE `socialaccount_socialapp` MODIFY `secret` varchar(191) NOT NULL; args=[]; alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('socialaccount', '0002_token_max_lengths', '2024-01-04 12:10:21.636933') RETURNING `django_migrations`.`id`; args=('socialaccount', '0002_token_max_lengths', '2024-01-04 12:10:21.636933'); alias=default
+(0.001) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.002) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('socialaccount', '0003_extra_data_default_dict', '2024-01-04 12:10:21.649570') RETURNING `django_migrations`.`id`; args=('socialaccount', '0003_extra_data_default_dict', '2024-01-04 12:10:21.649570'); alias=default
+ALTER TABLE `socialaccount_socialapp` ADD COLUMN `provider_id` varchar(200) DEFAULT %s NOT NULL; (params [''])
+(0.019) ALTER TABLE `socialaccount_socialapp` ADD COLUMN `provider_id` varchar(200) DEFAULT '' NOT NULL; args=['']; alias=default
+ALTER TABLE `socialaccount_socialapp` ALTER COLUMN `provider_id` DROP DEFAULT; (params [])
+(0.017) ALTER TABLE `socialaccount_socialapp` ALTER COLUMN `provider_id` DROP DEFAULT; args=[]; alias=default
+ALTER TABLE `socialaccount_socialapp` ADD COLUMN `settings` json DEFAULT %s NOT NULL; (params ['{}'])
+(0.019) ALTER TABLE `socialaccount_socialapp` ADD COLUMN `settings` json DEFAULT '{}' NOT NULL; args=['{}']; alias=default
+ALTER TABLE `socialaccount_socialapp` ALTER COLUMN `settings` DROP DEFAULT; (params [])
+(0.018) ALTER TABLE `socialaccount_socialapp` ALTER COLUMN `settings` DROP DEFAULT; args=[]; alias=default
+ALTER TABLE `socialaccount_socialaccount` MODIFY `provider` varchar(200) NOT NULL; (params [])
+(0.024) ALTER TABLE `socialaccount_socialaccount` MODIFY `provider` varchar(200) NOT NULL; args=[]; alias=default
+(0.001) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('socialaccount', '0004_app_provider_id_settings', '2024-01-04 12:10:21.767410') RETURNING `django_migrations`.`id`; args=('socialaccount', '0004_app_provider_id_settings', '2024-01-04 12:10:21.767410'); alias=default
+(1.740) 
+            SELECT kc.`constraint_name`, kc.`column_name`,
+                kc.`referenced_table_name`, kc.`referenced_column_name`,
+                c.`constraint_type`
+            FROM
+                information_schema.key_column_usage AS kc,
+                information_schema.table_constraints AS c
+            WHERE
+                kc.table_schema = DATABASE() AND
+                c.table_schema = kc.table_schema AND
+                c.constraint_name = kc.constraint_name AND
+                c.constraint_type != 'CHECK' AND
+                kc.table_name = 'socialaccount_socialtoken'
+            ORDER BY kc.`ordinal_position`
+        ; args=['socialaccount_socialtoken']; alias=default
+(0.000) 
+                SELECT c.constraint_name AS column_name
+                FROM information_schema.check_constraints AS c
+                WHERE
+                    c.table_name = 'socialaccount_socialtoken' AND
+                    LOWER(c.check_clause) =
+                        'json_valid(`' + LOWER(c.constraint_name) + '`)' AND
+                    c.constraint_schema = DATABASE()
+                ; args=['socialaccount_socialtoken']; alias=default
+(0.000) 
+            SELECT  table_collation
+            FROM    information_schema.tables
+            WHERE   table_schema = DATABASE()
+            AND     table_name = 'socialaccount_socialtoken'
+            ; args=['socialaccount_socialtoken']; alias=default
+(0.000) 
+            SELECT
+                column_name, data_type, character_maximum_length,
+                numeric_precision, numeric_scale, extra, column_default,
+                CASE
+                    WHEN collation_name = 'utf8mb4_general_ci' THEN NULL
+                    ELSE collation_name
+                END AS collation_name,
+                CASE
+                    WHEN column_type LIKE '% unsigned' THEN 1
+                    ELSE 0
+                END AS is_unsigned,
+                column_comment
+            FROM information_schema.columns
+            WHERE table_name = 'socialaccount_socialtoken' AND table_schema = DATABASE()
+            ; args=['utf8mb4_general_ci', 'socialaccount_socialtoken']; alias=default
+(0.000) SELECT * FROM `socialaccount_socialtoken` LIMIT 1; args=None; alias=default
+(0.000) 
+                    SELECT c.constraint_name, c.check_clause
+                    FROM information_schema.check_constraints AS c
+                    WHERE
+                        c.constraint_schema = DATABASE() AND
+                        c.table_name = 'socialaccount_socialtoken'
+                ; args=['socialaccount_socialtoken']; alias=default
+(0.000) SHOW INDEX FROM `socialaccount_socialtoken`; args=None; alias=default
+ALTER TABLE `socialaccount_socialtoken` DROP FOREIGN KEY `socialaccount_social_app_id_636a42d7_fk_socialacc`; (params ())
+(0.021) ALTER TABLE `socialaccount_socialtoken` DROP FOREIGN KEY `socialaccount_social_app_id_636a42d7_fk_socialacc`; args=(); alias=default
+ALTER TABLE `socialaccount_socialtoken` MODIFY `app_id` integer NULL; (params [])
+(0.041) ALTER TABLE `socialaccount_socialtoken` MODIFY `app_id` integer NULL; args=[]; alias=default
+ALTER TABLE `socialaccount_socialtoken` ADD CONSTRAINT `socialaccount_social_app_id_636a42d7_fk_socialacc` FOREIGN KEY (`app_id`) REFERENCES `socialaccount_socialapp` (`id`); (params ())
+(0.046) ALTER TABLE `socialaccount_socialtoken` ADD CONSTRAINT `socialaccount_social_app_id_636a42d7_fk_socialacc` FOREIGN KEY (`app_id`) REFERENCES `socialaccount_socialapp` (`id`); args=(); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('socialaccount', '0005_socialtoken_nullable_app', '2024-01-04 12:10:23.638076') RETURNING `django_migrations`.`id`; args=('socialaccount', '0005_socialtoken_nullable_app', '2024-01-04 12:10:23.638076'); alias=default
+(0.000) 
+            SELECT
+                table_name,
+                table_type,
+                table_comment
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+            ; args=None; alias=default
+(0.000) SELECT `django_migrations`.`id`, `django_migrations`.`app`, `django_migrations`.`name`, `django_migrations`.`applied` FROM `django_migrations`; args=(); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'admin'; args=('admin',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('admin', 'logentry') RETURNING `django_content_type`.`id`; args=('admin', 'logentry'); alias=default
+(0.002) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'admin' AND `django_content_type`.`model` = 'logentry') LIMIT 21; args=('admin', 'logentry'); alias=default
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (1) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(1,); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add log entry', 1, 'add_logentry'), ('Can change log entry', 1, 'change_logentry'), ('Can delete log entry', 1, 'delete_logentry'), ('Can view log entry', 1, 'view_logentry') RETURNING `auth_permission`.`id`; args=('Can add log entry', 1, 'add_logentry', 'Can change log entry', 1, 'change_logentry', 'Can delete log entry', 1, 'delete_logentry', 'Can view log entry', 1, 'view_logentry'); alias=default
+(0.002) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'admin'; args=('admin',); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'auth'; args=('auth',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('auth', 'permission'), ('auth', 'group') RETURNING `django_content_type`.`id`; args=('auth', 'permission', 'auth', 'group'); alias=default
+(0.001) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'permission') LIMIT 21; args=('auth', 'permission'); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'group') LIMIT 21; args=('auth', 'group'); alias=default
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (2, 3) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(2, 3); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add permission', 2, 'add_permission'), ('Can change permission', 2, 'change_permission'), ('Can delete permission', 2, 'delete_permission'), ('Can view permission', 2, 'view_permission'), ('Can add group', 3, 'add_group'), ('Can change group', 3, 'change_group'), ('Can delete group', 3, 'delete_group'), ('Can view group', 3, 'view_group') RETURNING `auth_permission`.`id`; args=('Can add permission', 2, 'add_permission', 'Can change permission', 2, 'change_permission', 'Can delete permission', 2, 'delete_permission', 'Can view permission', 2, 'view_permission', 'Can add group', 3, 'add_group', 'Can change group', 3, 'change_group', 'Can delete group', 3, 'delete_group', 'Can view group', 3, 'view_group'); alias=default
+(0.004) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'auth'; args=('auth',); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'contenttypes'; args=('contenttypes',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('contenttypes', 'contenttype') RETURNING `django_content_type`.`id`; args=('contenttypes', 'contenttype'); alias=default
+(0.001) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'contenttypes' AND `django_content_type`.`model` = 'contenttype') LIMIT 21; args=('contenttypes', 'contenttype'); alias=default
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (4) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(4,); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add content type', 4, 'add_contenttype'), ('Can change content type', 4, 'change_contenttype'), ('Can delete content type', 4, 'delete_contenttype'), ('Can view content type', 4, 'view_contenttype') RETURNING `auth_permission`.`id`; args=('Can add content type', 4, 'add_contenttype', 'Can change content type', 4, 'change_contenttype', 'Can delete content type', 4, 'delete_contenttype', 'Can view content type', 4, 'view_contenttype'); alias=default
+(0.001) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'contenttypes'; args=('contenttypes',); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'sessions'; args=('sessions',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('sessions', 'session') RETURNING `django_content_type`.`id`; args=('sessions', 'session'); alias=default
+(0.001) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'sessions' AND `django_content_type`.`model` = 'session') LIMIT 21; args=('sessions', 'session'); alias=default
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (5) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(5,); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add session', 5, 'add_session'), ('Can change session', 5, 'change_session'), ('Can delete session', 5, 'delete_session'), ('Can view session', 5, 'view_session') RETURNING `auth_permission`.`id`; args=('Can add session', 5, 'add_session', 'Can change session', 5, 'change_session', 'Can delete session', 5, 'delete_session', 'Can view session', 5, 'view_session'); alias=default
+(0.002) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'sessions'; args=('sessions',); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'customerUser'; args=('customerUser',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('customerUser', 'customuser') RETURNING `django_content_type`.`id`; args=('customerUser', 'customuser'); alias=default
+(0.001) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'customerUser' AND `django_content_type`.`model` = 'customuser') LIMIT 21; args=('customerUser', 'customuser'); alias=default
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (6) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(6,); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add user', 6, 'add_customuser'), ('Can change user', 6, 'change_customuser'), ('Can delete user', 6, 'delete_customuser'), ('Can view user', 6, 'view_customuser') RETURNING `auth_permission`.`id`; args=('Can add user', 6, 'add_customuser', 'Can change user', 6, 'change_customuser', 'Can delete user', 6, 'delete_customuser', 'Can view user', 6, 'view_customuser'); alias=default
+(0.001) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'customerUser'; args=('customerUser',); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'allauth'; args=('allauth',); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'allauth'; args=('allauth',); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'account'; args=('account',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('account', 'emailaddress'), ('account', 'emailconfirmation') RETURNING `django_content_type`.`id`; args=('account', 'emailaddress', 'account', 'emailconfirmation'); alias=default
+(0.002) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'account' AND `django_content_type`.`model` = 'emailaddress') LIMIT 21; args=('account', 'emailaddress'); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'account' AND `django_content_type`.`model` = 'emailconfirmation') LIMIT 21; args=('account', 'emailconfirmation'); alias=default
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (8, 7) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(8, 7); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add email address', 7, 'add_emailaddress'), ('Can change email address', 7, 'change_emailaddress'), ('Can delete email address', 7, 'delete_emailaddress'), ('Can view email address', 7, 'view_emailaddress'), ('Can add email confirmation', 8, 'add_emailconfirmation'), ('Can change email confirmation', 8, 'change_emailconfirmation'), ('Can delete email confirmation', 8, 'delete_emailconfirmation'), ('Can view email confirmation', 8, 'view_emailconfirmation') RETURNING `auth_permission`.`id`; args=('Can add email address', 7, 'add_emailaddress', 'Can change email address', 7, 'change_emailaddress', 'Can delete email address', 7, 'delete_emailaddress', 'Can view email address', 7, 'view_emailaddress', 'Can add email confirmation', 8, 'add_emailconfirmation', 'Can change email confirmation', 8, 'change_emailconfirmation', 'Can delete email confirmation', 8, 'delete_emailconfirmation', 'Can view email confirmation', 8, 'view_emailconfirmation'); alias=default
+(0.003) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'account'; args=('account',); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'socialaccount'; args=('socialaccount',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('socialaccount', 'socialaccount'), ('socialaccount', 'socialapp'), ('socialaccount', 'socialtoken') RETURNING `django_content_type`.`id`; args=('socialaccount', 'socialaccount', 'socialaccount', 'socialapp', 'socialaccount', 'socialtoken'); alias=default
+(0.001) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'socialaccount' AND `django_content_type`.`model` = 'socialaccount') LIMIT 21; args=('socialaccount', 'socialaccount'); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'socialaccount' AND `django_content_type`.`model` = 'socialapp') LIMIT 21; args=('socialaccount', 'socialapp'); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'socialaccount' AND `django_content_type`.`model` = 'socialtoken') LIMIT 21; args=('socialaccount', 'socialtoken'); alias=default
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (9, 10, 11) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(9, 10, 11); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add social account', 9, 'add_socialaccount'), ('Can change social account', 9, 'change_socialaccount'), ('Can delete social account', 9, 'delete_socialaccount'), ('Can view social account', 9, 'view_socialaccount'), ('Can add social application', 10, 'add_socialapp'), ('Can change social application', 10, 'change_socialapp'), ('Can delete social application', 10, 'delete_socialapp'), ('Can view social application', 10, 'view_socialapp'), ('Can add social application token', 11, 'add_socialtoken'), ('Can change social application token', 11, 'change_socialtoken'), ('Can delete social application token', 11, 'delete_socialtoken'), ('Can view social application token', 11, 'view_socialtoken') RETURNING `auth_permission`.`id`; args=('Can add social account', 9, 'add_socialaccount', 'Can change social account', 9, 'change_socialaccount', 'Can delete social account', 9, 'delete_socialaccount', 'Can view social account', 9, 'view_socialaccount', 'Can add social application', 10, 'add_socialapp', 'Can change social application', 10, 'change_socialapp', 'Can delete social application', 10, 'delete_socialapp', 'Can view social application', 10, 'view_socialapp', 'Can add social application token', 11, 'add_socialtoken', 'Can change social application token', 11, 'change_socialtoken', 'Can delete social application token', 11, 'delete_socialtoken', 'Can view social application token', 11, 'view_socialtoken'); alias=default
+(0.001) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'socialaccount'; args=('socialaccount',); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'product'; args=('product',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('product', 'productmodel') RETURNING `django_content_type`.`id`; args=('product', 'productmodel'); alias=default
+(0.001) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'product' AND `django_content_type`.`model` = 'productmodel') LIMIT 21; args=('product', 'productmodel'); alias=default
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (12) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(12,); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add product model', 12, 'add_productmodel'), ('Can change product model', 12, 'change_productmodel'), ('Can delete product model', 12, 'delete_productmodel'), ('Can view product model', 12, 'view_productmodel') RETURNING `auth_permission`.`id`; args=('Can add product model', 12, 'add_productmodel', 'Can change product model', 12, 'change_productmodel', 'Can delete product model', 12, 'delete_productmodel', 'Can view product model', 12, 'view_productmodel'); alias=default
+(0.003) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'product'; args=('product',); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'util_media'; args=('util_media',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('util_media', 'utilmediamodel') RETURNING `django_content_type`.`id`; args=('util_media', 'utilmediamodel'); alias=default
+(0.001) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'util_media' AND `django_content_type`.`model` = 'utilmediamodel') LIMIT 21; args=('util_media', 'utilmediamodel'); alias=default
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (13) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(13,); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add util media model', 13, 'add_utilmediamodel'), ('Can change util media model', 13, 'change_utilmediamodel'), ('Can delete util media model', 13, 'delete_utilmediamodel'), ('Can view util media model', 13, 'view_utilmediamodel') RETURNING `auth_permission`.`id`; args=('Can add util media model', 13, 'add_utilmediamodel', 'Can change util media model', 13, 'change_utilmediamodel', 'Can delete util media model', 13, 'delete_utilmediamodel', 'Can view util media model', 13, 'view_utilmediamodel'); alias=default
+(0.001) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'util_media'; args=('util_media',); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'servicios'; args=('servicios',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('servicios', 'proyectomodel'), ('servicios', 'firma'), ('servicios', 'capturamodel') RETURNING `django_content_type`.`id`; args=('servicios', 'proyectomodel', 'servicios', 'firma', 'servicios', 'capturamodel'); alias=default
+(0.001) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'servicios' AND `django_content_type`.`model` = 'proyectomodel') LIMIT 21; args=('servicios', 'proyectomodel'); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'servicios' AND `django_content_type`.`model` = 'firma') LIMIT 21; args=('servicios', 'firma'); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'servicios' AND `django_content_type`.`model` = 'capturamodel') LIMIT 21; args=('servicios', 'capturamodel'); alias=default
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (16, 14, 15) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(16, 14, 15); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add proyecto model', 14, 'add_proyectomodel'), ('Can change proyecto model', 14, 'change_proyectomodel'), ('Can delete proyecto model', 14, 'delete_proyectomodel'), ('Can view proyecto model', 14, 'view_proyectomodel'), ('Can add firma', 15, 'add_firma'), ('Can change firma', 15, 'change_firma'), ('Can delete firma', 15, 'delete_firma'), ('Can view firma', 15, 'view_firma'), ('Can add captura model', 16, 'add_capturamodel'), ('Can change captura model', 16, 'change_capturamodel'), ('Can delete captura model', 16, 'delete_capturamodel'), ('Can view captura model', 16, 'view_capturamodel') RETURNING `auth_permission`.`id`; args=('Can add proyecto model', 14, 'add_proyectomodel', 'Can change proyecto model', 14, 'change_proyectomodel', 'Can delete proyecto model', 14, 'delete_proyectomodel', 'Can view proyecto model', 14, 'view_proyectomodel', 'Can add firma', 15, 'add_firma', 'Can change firma', 15, 'change_firma', 'Can delete firma', 15, 'delete_firma', 'Can view firma', 15, 'view_firma', 'Can add captura model', 16, 'add_capturamodel', 'Can change captura model', 16, 'change_capturamodel', 'Can delete captura model', 16, 'delete_capturamodel', 'Can view captura model', 16, 'view_capturamodel'); alias=default
+(0.001) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'servicios'; args=('servicios',); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'cvs'; args=('cvs',); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('cvs', 'curriculum'), ('cvs', 'skills'), ('cvs', 'informacionusuario'), ('cvs', 'idiomas'), ('cvs', 'experiencialaboral'), ('cvs', 'datosacademicos') RETURNING `django_content_type`.`id`; args=('cvs', 'curriculum', 'cvs', 'skills', 'cvs', 'informacionusuario', 'cvs', 'idiomas', 'cvs', 'experiencialaboral', 'cvs', 'datosacademicos'); alias=default
+(0.003) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'cvs' AND `django_content_type`.`model` = 'curriculum') LIMIT 21; args=('cvs', 'curriculum'); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'cvs' AND `django_content_type`.`model` = 'skills') LIMIT 21; args=('cvs', 'skills'); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'cvs' AND `django_content_type`.`model` = 'informacionusuario') LIMIT 21; args=('cvs', 'informacionusuario'); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'cvs' AND `django_content_type`.`model` = 'idiomas') LIMIT 21; args=('cvs', 'idiomas'); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'cvs' AND `django_content_type`.`model` = 'experiencialaboral') LIMIT 21; args=('cvs', 'experiencialaboral'); alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'cvs' AND `django_content_type`.`model` = 'datosacademicos') LIMIT 21; args=('cvs', 'datosacademicos'); alias=default
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (17, 18, 19, 20, 21, 22) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(17, 18, 19, 20, 21, 22); alias=default
+(0.000) BEGIN; args=None; alias=default
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add curriculum', 17, 'add_curriculum'), ('Can change curriculum', 17, 'change_curriculum'), ('Can delete curriculum', 17, 'delete_curriculum'), ('Can view curriculum', 17, 'view_curriculum'), ('Can add skills', 18, 'add_skills'), ('Can change skills', 18, 'change_skills'), ('Can delete skills', 18, 'delete_skills'), ('Can view skills', 18, 'view_skills'), ('Can add informacion usuario', 19, 'add_informacionusuario'), ('Can change informacion usuario', 19, 'change_informacionusuario'), ('Can delete informacion usuario', 19, 'delete_informacionusuario'), ('Can view informacion usuario', 19, 'view_informacionusuario'), ('Can add idiomas', 20, 'add_idiomas'), ('Can change idiomas', 20, 'change_idiomas'), ('Can delete idiomas', 20, 'delete_idiomas'), ('Can view idiomas', 20, 'view_idiomas'), ('Can add experiencia laboral', 21, 'add_experiencialaboral'), ('Can change experiencia laboral', 21, 'change_experiencialaboral'), ('Can delete experiencia laboral', 21, 'delete_experiencialaboral'), ('Can view experiencia laboral', 21, 'view_experiencialaboral'), ('Can add datos academicos', 22, 'add_datosacademicos'), ('Can change datos academicos', 22, 'change_datosacademicos'), ('Can delete datos academicos', 22, 'delete_datosacademicos'), ('Can view datos academicos', 22, 'view_datosacademicos') RETURNING `auth_permission`.`id`; args=('Can add curriculum', 17, 'add_curriculum', 'Can change curriculum', 17, 'change_curriculum', 'Can delete curriculum', 17, 'delete_curriculum', 'Can view curriculum', 17, 'view_curriculum', 'Can add skills', 18, 'add_skills', 'Can change skills', 18, 'change_skills', 'Can delete skills', 18, 'delete_skills', 'Can view skills', 18, 'view_skills', 'Can add informacion usuario', 19, 'add_informacionusuario', 'Can change informacion usuario', 19, 'change_informacionusuario', 'Can delete informacion usuario', 19, 'delete_informacionusuario', 'Can view informacion usuario', 19, 'view_informacionusuario', 'Can add idiomas', 20, 'add_idiomas', 'Can change idiomas', 20, 'change_idiomas', 'Can delete idiomas', 20, 'delete_idiomas', 'Can view idiomas', 20, 'view_idiomas', 'Can add experiencia laboral', 21, 'add_experiencialaboral', 'Can change experiencia laboral', 21, 'change_experiencialaboral', 'Can delete experiencia laboral', 21, 'delete_experiencialaboral', 'Can view experiencia laboral', 21, 'view_experiencialaboral', 'Can add datos academicos', 22, 'add_datosacademicos', 'Can change datos academicos', 22, 'change_datosacademicos', 'Can delete datos academicos', 22, 'delete_datosacademicos', 'Can view datos academicos', 22, 'view_datosacademicos'); alias=default
+(0.003) COMMIT; args=None; alias=default
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'cvs'; args=('cvs',); alias=default
+(0.000) 
+                SELECT VERSION(),
+                       @@sql_mode,
+                       @@default_storage_engine,
+                       @@sql_auto_is_null,
+                       @@lower_case_table_names,
+                       CONVERT_TZ('2001-01-01 01:00:00', 'UTC', 'UTC') IS NOT NULL
+            ; args=None; alias=default
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`expire_date` > '2024-01-04 12:11:35.757307' AND `django_session`.`session_key` = 'sbcr5q8122iq1nsyjjwu1ue8db2wf7h5') LIMIT 21; args=('2024-01-04 12:11:35.757307', 'sbcr5q8122iq1nsyjjwu1ue8db2wf7h5'); alias=default
+Exception while resolving variable 'plan_activo_id' in template 'home.html'.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+  File "/usr/local/lib/python3.10/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+TypeError: 'AnonymousUser' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+  File "/usr/local/lib/python3.10/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'AnonymousUser' object has no attribute 'plan_activo_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'plan_activo_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [plan_activo_id] in <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x7fe6443e3460>>
+Exception while resolving variable 'null' in template 'home.html'.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+  File "/usr/local/lib/python3.10/site-packages/django/template/context.py", line 83, in __getitem__
+    raise KeyError(key)
+KeyError: 'null'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 886, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+AttributeError: type object 'RequestContext' has no attribute 'null'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'null'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [null] in [{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x7fe644201f30>>, 'request': <WSGIRequest: GET '/'>, 'user': <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x7fe6443e3460>>, 'perms': PermWrapper(<SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x7fe6443e3460>>), 'messages': <FallbackStorage: request=<WSGIRequest: GET '/'>>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}}, {}, {'block': <Block Node: footer. Contents: [<TextNode: '\n        <footer id="foot'>, <URLNode view_name=''vista_acerca_de'' args=[] kwargs={} as=None>, <TextNode: '">Acerca de</a>\n         '>, <IfNode>, <TextNode: '\n                    </li'>]>}]
+(0.000) 
+                SELECT VERSION(),
+                       @@sql_mode,
+                       @@default_storage_engine,
+                       @@sql_auto_is_null,
+                       @@lower_case_table_names,
+                       CONVERT_TZ('2001-01-01 01:00:00', 'UTC', 'UTC') IS NOT NULL
+            ; args=None; alias=default
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.000) SELECT `socialaccount_socialapp`.`id`, `socialaccount_socialapp`.`provider`, `socialaccount_socialapp`.`provider_id`, `socialaccount_socialapp`.`name`, `socialaccount_socialapp`.`client_id`, `socialaccount_socialapp`.`secret`, `socialaccount_socialapp`.`key`, `socialaccount_socialapp`.`settings` FROM `socialaccount_socialapp` WHERE (`socialaccount_socialapp`.`provider` = 'google' OR `socialaccount_socialapp`.`provider_id` = 'google'); args=('google', 'google'); alias=default
+Exception while resolving variable 'plan_activo_id' in template 'login.html'.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+  File "/usr/local/lib/python3.10/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+TypeError: 'AnonymousUser' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+  File "/usr/local/lib/python3.10/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'AnonymousUser' object has no attribute 'plan_activo_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'plan_activo_id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [plan_activo_id] in <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x7fe6443dfac0>>
+Exception while resolving variable 'null' in template 'login.html'.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+  File "/usr/local/lib/python3.10/site-packages/django/template/context.py", line 83, in __getitem__
+    raise KeyError(key)
+KeyError: 'null'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 886, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+AttributeError: type object 'RequestContext' has no attribute 'null'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'null'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [null] in [{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: 'PohTlJQqtXjifYRot1CwpR8wkV7QvBpGZoZNVM9CWB6TxBrgfy3uQJ0d28jQ8wjv'>, 'request': <WSGIRequest: GET '/users/login/'>, 'user': <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x7fe6443dfac0>>, 'perms': PermWrapper(<SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x7fe6443dfac0>>), 'messages': <FallbackStorage: request=<WSGIRequest: GET '/users/login/'>>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}}, {}, {'form': <LoginForm bound=False, valid=False, fields=(username;password)>, 'error_credenciales': False}, {'block': <Block Node: footer. Contents: [<TextNode: '\n        <footer id="foot'>, <URLNode view_name=''vista_acerca_de'' args=[] kwargs={} as=None>, <TextNode: '">Acerca de</a>\n         '>, <IfNode>, <TextNode: '\n                    </li'>]>}]
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/usr/local/lib/python3.10/site-packages/django/urls/resolvers.py", line 702, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLPattern '' [name='home']>], [<URLPattern 'logout/' [name='logout']>], [<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'customerUser.urls' from '/usr/src/app/customerUser/urls.py'> (customerUser:customerUser) 'users/'>], [<URLResolver <module 'allauth.urls' from '/usr/local/lib/python3.10/site-packages/allauth/urls.py'> (None:None) 'accounts/'>], [<URLResolver <module 'allauth.socialaccount.urls' from '/usr/local/lib/python3.10/site-packages/allauth/socialaccount/urls.py'> (None:None) 'accounts/'>], [<URLPattern 'create-checkout-session/<pk>/' [name='checkout']>], [<URLResolver <module 'product.urls' from '/usr/src/app/product/urls.py'> (product:product) 'products/'>], [<URLPattern 'success/' [name='success']>], [<URLPattern 'cancel/' [name='canceled']>], [<URLPattern 'unir-pdf/' [name='unir_pdf']>], [<URLPattern 'descargar-pdf/<str:filename>/' [name='descargar_pdf_combinado']>], [<URLResolver <module 'servicios.urls' from '/usr/src/app/servicios/urls.py'> (None:None) 'servicios/'>], [<URLPattern 'acerca-de/' [name='vista_acerca_de']>], [<URLPattern 'contacto/' [name='vista_contacto']>], [<URLPattern 'contacto/enviar_email/' [name='enviar_info_contacto']>], [<URLResolver <module 'cvs.urls' from '/usr/src/app/cvs/urls.py'> (cvs:cvs) 'cvs/'>], [<URLPattern 'media/carp_pdfs/<str:file_name>/' [name='serve_pdf']>], [<URLPattern 'media/carp_vids/yt/<str:file_name>/' [name='serve_vids']>], [<URLPattern 'media/carp_imgs/<str:file_name>/' [name='serve_imgs']>], [<URLPattern 'media/eliminar_archivo/<int:pk>/' [name='eliminar_archivo_media']>], [<URLPattern '^media/(?P<path>.*)$'>], [<URLPattern '^\^uploads/\(\?P<path>\.\*\)\$(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/usr/local/lib/python3.10/site-packages/django/urls/resolvers.py", line 702, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLPattern '' [name='home']>], [<URLPattern 'logout/' [name='logout']>], [<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'customerUser.urls' from '/usr/src/app/customerUser/urls.py'> (customerUser:customerUser) 'users/'>], [<URLResolver <module 'allauth.urls' from '/usr/local/lib/python3.10/site-packages/allauth/urls.py'> (None:None) 'accounts/'>], [<URLResolver <module 'allauth.socialaccount.urls' from '/usr/local/lib/python3.10/site-packages/allauth/socialaccount/urls.py'> (None:None) 'accounts/'>], [<URLPattern 'create-checkout-session/<pk>/' [name='checkout']>], [<URLResolver <module 'product.urls' from '/usr/src/app/product/urls.py'> (product:product) 'products/'>], [<URLPattern 'success/' [name='success']>], [<URLPattern 'cancel/' [name='canceled']>], [<URLPattern 'unir-pdf/' [name='unir_pdf']>], [<URLPattern 'descargar-pdf/<str:filename>/' [name='descargar_pdf_combinado']>], [<URLResolver <module 'servicios.urls' from '/usr/src/app/servicios/urls.py'> (None:None) 'servicios/'>], [<URLPattern 'acerca-de/' [name='vista_acerca_de']>], [<URLPattern 'contacto/' [name='vista_contacto']>], [<URLPattern 'contacto/enviar_email/' [name='enviar_info_contacto']>], [<URLResolver <module 'cvs.urls' from '/usr/src/app/cvs/urls.py'> (cvs:cvs) 'cvs/'>], [<URLPattern 'media/carp_pdfs/<str:file_name>/' [name='serve_pdf']>], [<URLPattern 'media/carp_vids/yt/<str:file_name>/' [name='serve_vids']>], [<URLPattern 'media/carp_imgs/<str:file_name>/' [name='serve_imgs']>], [<URLPattern 'media/eliminar_archivo/<int:pk>/' [name='eliminar_archivo_media']>], [<URLPattern '^media/(?P<path>.*)$'>], [<URLPattern '^\^uploads/\(\?P<path>\.\*\)\$(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'customerUser.urls' from '/usr/src/app/customerUser/urls.py'> (customerUser:customerUser) 'users/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/usr/local/lib/python3.10/site-packages/django/urls/resolvers.py", line 702, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLPattern '' [name='home']>], [<URLPattern 'logout/' [name='logout']>], [<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'customerUser.urls' from '/usr/src/app/customerUser/urls.py'> (customerUser:customerUser) 'users/'>], [<URLResolver <module 'allauth.urls' from '/usr/local/lib/python3.10/site-packages/allauth/urls.py'> (None:None) 'accounts/'>], [<URLResolver <module 'allauth.socialaccount.urls' from '/usr/local/lib/python3.10/site-packages/allauth/socialaccount/urls.py'> (None:None) 'accounts/'>], [<URLPattern 'create-checkout-session/<pk>/' [name='checkout']>], [<URLResolver <module 'product.urls' from '/usr/src/app/product/urls.py'> (product:product) 'products/'>], [<URLPattern 'success/' [name='success']>], [<URLPattern 'cancel/' [name='canceled']>], [<URLPattern 'unir-pdf/' [name='unir_pdf']>], [<URLPattern 'descargar-pdf/<str:filename>/' [name='descargar_pdf_combinado']>], [<URLResolver <module 'servicios.urls' from '/usr/src/app/servicios/urls.py'> (None:None) 'servicios/'>], [<URLPattern 'acerca-de/' [name='vista_acerca_de']>], [<URLPattern 'contacto/' [name='vista_contacto']>], [<URLPattern 'contacto/enviar_email/' [name='enviar_info_contacto']>], [<URLResolver <module 'cvs.urls' from '/usr/src/app/cvs/urls.py'> (cvs:cvs) 'cvs/'>], [<URLPattern 'media/carp_pdfs/<str:file_name>/' [name='serve_pdf']>], [<URLPattern 'media/carp_vids/yt/<str:file_name>/' [name='serve_vids']>], [<URLPattern 'media/carp_imgs/<str:file_name>/' [name='serve_imgs']>], [<URLPattern 'media/eliminar_archivo/<int:pk>/' [name='eliminar_archivo_media']>], [<URLPattern '^media/(?P<path>.*)$'>], [<URLPattern '^\^uploads/\(\?P<path>\.\*\)\$(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'allauth.urls' from '/usr/local/lib/python3.10/site-packages/allauth/urls.py'> (None:None) 'accounts/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/usr/local/lib/python3.10/site-packages/django/urls/resolvers.py", line 702, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLPattern '' [name='home']>], [<URLPattern 'logout/' [name='logout']>], [<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'customerUser.urls' from '/usr/src/app/customerUser/urls.py'> (customerUser:customerUser) 'users/'>], [<URLResolver <module 'allauth.urls' from '/usr/local/lib/python3.10/site-packages/allauth/urls.py'> (None:None) 'accounts/'>], [<URLResolver <module 'allauth.socialaccount.urls' from '/usr/local/lib/python3.10/site-packages/allauth/socialaccount/urls.py'> (None:None) 'accounts/'>], [<URLPattern 'create-checkout-session/<pk>/' [name='checkout']>], [<URLResolver <module 'product.urls' from '/usr/src/app/product/urls.py'> (product:product) 'products/'>], [<URLPattern 'success/' [name='success']>], [<URLPattern 'cancel/' [name='canceled']>], [<URLPattern 'unir-pdf/' [name='unir_pdf']>], [<URLPattern 'descargar-pdf/<str:filename>/' [name='descargar_pdf_combinado']>], [<URLResolver <module 'servicios.urls' from '/usr/src/app/servicios/urls.py'> (None:None) 'servicios/'>], [<URLPattern 'acerca-de/' [name='vista_acerca_de']>], [<URLPattern 'contacto/' [name='vista_contacto']>], [<URLPattern 'contacto/enviar_email/' [name='enviar_info_contacto']>], [<URLResolver <module 'cvs.urls' from '/usr/src/app/cvs/urls.py'> (cvs:cvs) 'cvs/'>], [<URLPattern 'media/carp_pdfs/<str:file_name>/' [name='serve_pdf']>], [<URLPattern 'media/carp_vids/yt/<str:file_name>/' [name='serve_vids']>], [<URLPattern 'media/carp_imgs/<str:file_name>/' [name='serve_imgs']>], [<URLPattern 'media/eliminar_archivo/<int:pk>/' [name='eliminar_archivo_media']>], [<URLPattern '^media/(?P<path>.*)$'>], [<URLPattern '^\^uploads/\(\?P<path>\.\*\)\$(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'allauth.socialaccount.urls' from '/usr/local/lib/python3.10/site-packages/allauth/socialaccount/urls.py'> (None:None) 'accounts/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/usr/local/lib/python3.10/site-packages/django/urls/resolvers.py", line 702, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLPattern '' [name='home']>], [<URLPattern 'logout/' [name='logout']>], [<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'customerUser.urls' from '/usr/src/app/customerUser/urls.py'> (customerUser:customerUser) 'users/'>], [<URLResolver <module 'allauth.urls' from '/usr/local/lib/python3.10/site-packages/allauth/urls.py'> (None:None) 'accounts/'>], [<URLResolver <module 'allauth.socialaccount.urls' from '/usr/local/lib/python3.10/site-packages/allauth/socialaccount/urls.py'> (None:None) 'accounts/'>], [<URLPattern 'create-checkout-session/<pk>/' [name='checkout']>], [<URLResolver <module 'product.urls' from '/usr/src/app/product/urls.py'> (product:product) 'products/'>], [<URLPattern 'success/' [name='success']>], [<URLPattern 'cancel/' [name='canceled']>], [<URLPattern 'unir-pdf/' [name='unir_pdf']>], [<URLPattern 'descargar-pdf/<str:filename>/' [name='descargar_pdf_combinado']>], [<URLResolver <module 'servicios.urls' from '/usr/src/app/servicios/urls.py'> (None:None) 'servicios/'>], [<URLPattern 'acerca-de/' [name='vista_acerca_de']>], [<URLPattern 'contacto/' [name='vista_contacto']>], [<URLPattern 'contacto/enviar_email/' [name='enviar_info_contacto']>], [<URLResolver <module 'cvs.urls' from '/usr/src/app/cvs/urls.py'> (cvs:cvs) 'cvs/'>], [<URLPattern 'media/carp_pdfs/<str:file_name>/' [name='serve_pdf']>], [<URLPattern 'media/carp_vids/yt/<str:file_name>/' [name='serve_vids']>], [<URLPattern 'media/carp_imgs/<str:file_name>/' [name='serve_imgs']>], [<URLPattern 'media/eliminar_archivo/<int:pk>/' [name='eliminar_archivo_media']>], [<URLPattern '^media/(?P<path>.*)$'>], [<URLPattern '^\^uploads/\(\?P<path>\.\*\)\$(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'product.urls' from '/usr/src/app/product/urls.py'> (product:product) 'products/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/usr/local/lib/python3.10/site-packages/django/urls/resolvers.py", line 702, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLPattern '' [name='home']>], [<URLPattern 'logout/' [name='logout']>], [<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'customerUser.urls' from '/usr/src/app/customerUser/urls.py'> (customerUser:customerUser) 'users/'>], [<URLResolver <module 'allauth.urls' from '/usr/local/lib/python3.10/site-packages/allauth/urls.py'> (None:None) 'accounts/'>], [<URLResolver <module 'allauth.socialaccount.urls' from '/usr/local/lib/python3.10/site-packages/allauth/socialaccount/urls.py'> (None:None) 'accounts/'>], [<URLPattern 'create-checkout-session/<pk>/' [name='checkout']>], [<URLResolver <module 'product.urls' from '/usr/src/app/product/urls.py'> (product:product) 'products/'>], [<URLPattern 'success/' [name='success']>], [<URLPattern 'cancel/' [name='canceled']>], [<URLPattern 'unir-pdf/' [name='unir_pdf']>], [<URLPattern 'descargar-pdf/<str:filename>/' [name='descargar_pdf_combinado']>], [<URLResolver <module 'servicios.urls' from '/usr/src/app/servicios/urls.py'> (None:None) 'servicios/'>], [<URLPattern 'acerca-de/' [name='vista_acerca_de']>], [<URLPattern 'contacto/' [name='vista_contacto']>], [<URLPattern 'contacto/enviar_email/' [name='enviar_info_contacto']>], [<URLResolver <module 'cvs.urls' from '/usr/src/app/cvs/urls.py'> (cvs:cvs) 'cvs/'>], [<URLPattern 'media/carp_pdfs/<str:file_name>/' [name='serve_pdf']>], [<URLPattern 'media/carp_vids/yt/<str:file_name>/' [name='serve_vids']>], [<URLPattern 'media/carp_imgs/<str:file_name>/' [name='serve_imgs']>], [<URLPattern 'media/eliminar_archivo/<int:pk>/' [name='eliminar_archivo_media']>], [<URLPattern '^media/(?P<path>.*)$'>], [<URLPattern '^\^uploads/\(\?P<path>\.\*\)\$(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'servicios.urls' from '/usr/src/app/servicios/urls.py'> (None:None) 'servicios/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/usr/local/lib/python3.10/site-packages/django/urls/resolvers.py", line 702, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLPattern '' [name='home']>], [<URLPattern 'logout/' [name='logout']>], [<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'customerUser.urls' from '/usr/src/app/customerUser/urls.py'> (customerUser:customerUser) 'users/'>], [<URLResolver <module 'allauth.urls' from '/usr/local/lib/python3.10/site-packages/allauth/urls.py'> (None:None) 'accounts/'>], [<URLResolver <module 'allauth.socialaccount.urls' from '/usr/local/lib/python3.10/site-packages/allauth/socialaccount/urls.py'> (None:None) 'accounts/'>], [<URLPattern 'create-checkout-session/<pk>/' [name='checkout']>], [<URLResolver <module 'product.urls' from '/usr/src/app/product/urls.py'> (product:product) 'products/'>], [<URLPattern 'success/' [name='success']>], [<URLPattern 'cancel/' [name='canceled']>], [<URLPattern 'unir-pdf/' [name='unir_pdf']>], [<URLPattern 'descargar-pdf/<str:filename>/' [name='descargar_pdf_combinado']>], [<URLResolver <module 'servicios.urls' from '/usr/src/app/servicios/urls.py'> (None:None) 'servicios/'>], [<URLPattern 'acerca-de/' [name='vista_acerca_de']>], [<URLPattern 'contacto/' [name='vista_contacto']>], [<URLPattern 'contacto/enviar_email/' [name='enviar_info_contacto']>], [<URLResolver <module 'cvs.urls' from '/usr/src/app/cvs/urls.py'> (cvs:cvs) 'cvs/'>], [<URLPattern 'media/carp_pdfs/<str:file_name>/' [name='serve_pdf']>], [<URLPattern 'media/carp_vids/yt/<str:file_name>/' [name='serve_vids']>], [<URLPattern 'media/carp_imgs/<str:file_name>/' [name='serve_imgs']>], [<URLPattern 'media/eliminar_archivo/<int:pk>/' [name='eliminar_archivo_media']>], [<URLPattern '^media/(?P<path>.*)$'>], [<URLPattern '^\^uploads/\(\?P<path>\.\*\)\$(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'cvs.urls' from '/usr/src/app/cvs/urls.py'> (cvs:cvs) 'cvs/'>
+Not Found: /favicon.ico
+(0.000) 
+                SELECT VERSION(),
+                       @@sql_mode,
+                       @@default_storage_engine,
+                       @@sql_auto_is_null,
+                       @@lower_case_table_names,
+                       CONVERT_TZ('2001-01-01 01:00:00', 'UTC', 'UTC') IS NOT NULL
+            ; args=None; alias=default
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.000) SELECT `customerUser_customuser`.`id`, `customerUser_customuser`.`password`, `customerUser_customuser`.`last_login`, `customerUser_customuser`.`is_superuser`, `customerUser_customuser`.`username`, `customerUser_customuser`.`first_name`, `customerUser_customuser`.`last_name`, `customerUser_customuser`.`email`, `customerUser_customuser`.`is_staff`, `customerUser_customuser`.`is_active`, `customerUser_customuser`.`date_joined`, `customerUser_customuser`.`fecha_nacimiento`, `customerUser_customuser`.`numero_telefono`, `customerUser_customuser`.`plan_activo_id`, `customerUser_customuser`.`plan_init`, `customerUser_customuser`.`plan_end`, `customerUser_customuser`.`days`, `customerUser_customuser`.`activar_plan_temporalmente`, `customerUser_customuser`.`es_admin` FROM `customerUser_customuser` WHERE `customerUser_customuser`.`username` LIKE 'admin' LIMIT 21; args=('admin',); alias=default
