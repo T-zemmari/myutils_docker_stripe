@@ -4,14 +4,14 @@ services:
   web:
     build:
       context: ./django/
-    #command: >
-      #sh -c "python manage.py migrate && python manage.py collectstatic --no-input && gunicorn utils_tar.wsgi:application --bind 0.0.0.0:8000 -k gevent --reload"
+    command: sh -c "python manage.py migrate && python manage.py collectstatic --no-input && gunicorn utils_tar.wsgi:application -c /usr/src/app/gunicorn.conf.py"
     volumes:
       - ./django/:/usr/src/app
       - static_files:/usr/src/app/staticfiles
       - ./wait-for-it.sh:/usr/src/app/wait-for-it.sh
-    expose:
-      - 8000  
+      - ./django/gunicorn.conf.py:/usr/src/app/gunicorn.conf.py
+    ports:
+    - "8000:8000"  
     env_file:
       - ./env/.env
     networks:

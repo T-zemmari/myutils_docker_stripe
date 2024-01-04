@@ -6,12 +6,12 @@ from cryptography.fernet import Fernet
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY',default='django-insecure-_)2$7q#f-7%_xc$-yxo7px#wjz&iwu%z_er=+a1sn21f2%8e&x')
 DEBUG = os.environ.get('DEBUG',default=0)
 
-MY_HOST=os.environ.get('MY_HOST')
+MY_HOST=os.environ.get('MY_HOST',default='127.0.0.1')
 MY_DOMAIN='http://'+ MY_HOST
-if DEBUG.lower() == 'false':
+if DEBUG == 0 or DEBUG.lower() == 'false':
     MY_DOMAIN = 'https://' + MY_HOST
 
 #ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS",default="127.0.0.1").split(" ")
