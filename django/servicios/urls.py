@@ -11,6 +11,9 @@ urlpatterns = [
     path('documentos/informacion_personal/',vista_servicios_informacion_personal,name="vista_servicios_informacion_personal"),
     path('documentos/historico/',vista_servicios_historico,name="vista_servicios_historico"),
 
+    path('documentos/comparar_excels/',comparar_excels,name="vista_comparar_excels"),
+
+
     path('documentos/unir_pdf/',vista_servicios_unir_pdf,name="vista_servicios_documentos_unir_pdf"),
     #path('documentos/firmar_pdf/',vista_servicios_firmar_pdf,name="vista_servicios_documentos_firmar_pdf"),
     path('documentos/firmar_pdf/', firma_view, name='firma_view'),

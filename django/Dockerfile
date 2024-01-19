@@ -12,7 +12,7 @@ WORKDIR /usr/src/app
 RUN pip install --upgrade pip
 
 # Install dependencies
-RUN apt-get update && apt-get install -y libgl1-mesa-glx mariadb-client
+RUN apt-get update && apt-get install -y libgl1-mesa-glx mariadb-client libmagic1
 RUN apt-get install -y build-essential libpq-dev
 # Uncomment the line above to install django-cors-headers
 # RUN pip install django-cors-headers

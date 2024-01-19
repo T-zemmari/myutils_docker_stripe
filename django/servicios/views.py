@@ -13,6 +13,10 @@ import subprocess
 import io
 import traceback
 import logging
+import pandas as pd
+import magic
+from io import StringIO
+
 
 
 
@@ -677,6 +681,98 @@ def delete_video_file(request):
         return JsonResponse(response_data)
     else:
         return JsonResponse({'success': False, 'message': 'Método no válido'})
+                            
+################################################################################
+############################ COMPARAR EXCELS  ##################################
+################################################################################
+    
+def is_excel(file_path):
+    mime = magic.Magic()
+    file_type = mime.from_file(file_path)
+    return "Excel" in file_type
+
+
+def comparar_excels(request):
+    if request.method == 'POST':
+        # Obtener los datos de Excel desde el formulario
+        data_excel1 = request.POST.get('excel1', '')
+        data_excel2 = request.POST.get('excel2', '')
+
+        # Procesar los datos de Excel
+        try:
+            # Utilizar pandas para leer los datos tabulares
+            df1 = pd.read_csv(StringIO(data_excel1), sep='\t')
+            df2 = pd.read_csv(StringIO(data_excel2), sep='\t')
+
+            # Convertir los datos a listas de diccionarios
+            array_1 = df1.to_dict(orient='records')
+            array_2 = df2.to_dict(orient='records')
+
+            # Inicializar el array de discrepancias
+            discrepancias = []
+
+            # Comparar los productos en ambos arrays
+            for producto_1 in array_1:
+                # Verificar si el producto en array_1 no está en array_2
+                if producto_1 not in array_2:
+                    discrepancias.append(f"Producto '{producto_1}' existe en el Array 1 pero no en el Array 2")
+
+            for producto_2 in array_2:
+                # Verificar si el producto en array_2 no está en array_1
+                if producto_2 not in array_1:
+                    discrepancias.append(f"Producto '{producto_2}' existe en el Array 2 pero no en el Array 1")
+
+            # Devolver el resultado como JSON
+            return render(request, 'comparar_excels.html', {'array_1': array_1, 'array_2': array_2, 'discrepancias': discrepancias})
+
+        except Exception as e:
+            # Manejar cualquier error que pueda ocurrir al procesar los datos
+            error_message = f"Error al procesar los datos: {str(e)}"
+            return JsonResponse({'error': error_message}, status=400)
+
+    return render(request, 'comparar_excels.html')
+
+# def comparar_excels(request):
+#     array_1 = []
+#     array_2 = []
+
+#     if request.method == 'POST':
+#         # Obtener los archivos desde el formulario
+#         excel1 = request.FILES['excel1']
+#         excel2 = request.FILES['excel2']
+
+#         # Leer los archivos Excel usando pandas
+#         df1 = pd.read_excel(excel1)
+#         df2 = pd.read_excel(excel2)
+
+#         # Convertir los DataFrames a listas de diccionarios
+#         array_1 = df1.to_dict(orient='records')
+#         array_2 = df2.to_dict(orient='records')
+
+#     context = {'array_1': array_1, 'array_2': array_2}
+#     return render(request, 'comparar_excels.html', context)   
+
+# def comparar_excels(request):
+#     if request.method == 'POST':
+#         # Obtener los archivos desde el formulario
+#         excel1 = request.FILES['excel1']
+#         excel2 = request.FILES['excel2']
+
+#         if not is_excel(excel1.temporary_file_path()) or not is_excel(excel2.temporary_file_path()):
+#         # Manejar el caso donde los archivos no son de Excel
+#            return JsonResponse({'error': 'Los archivos deben ser de Excel'})
+
+#         # Leer los archivos Excel usando pandas
+#         df1 = pd.read_excel(excel1, engine='openpyxl')
+#         df2 = pd.read_excel(excel2, engine='openpyxl')
+
+#         # Realizar la comparación (aquí puedes personalizar según tus necesidades)
+#         comparacion_resultado = df1.equals(df2)
+
+#         # Devolver el resultado como JSON
+#         return JsonResponse({'comparacion_resultado': comparacion_resultado})
+
+#     return render(request, 'comparar_excels.html')    
 
 ###################################################################################
 ############################ UNIR VARIOS VIDEOS  ##################################

@@ -1,0 +1,75 @@
+{% extends 'base_app.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/servicios.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/img_to_pdf.css' %}" />
+{% endblock %}
+{% block title %}
+  Comparar excels
+{% endblock %}
+{% block main %}
+  <div class="contenedor-servicios">
+    <div class="container-fluid" style="margin-top: 80px">
+      <form id="compareForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              <div>
+                <label class="form-label" for="excel1">Pegar datos de Excel 1:</label>
+                <textarea class="form-control" name="excel1" required rows="25"></textarea>
+              </div>
+            </div>
+            <div class="col-6">
+              <div>
+                <label class="form-label" for="excel2">Pegar datos de Excel 2:</label>
+                <textarea class="form-control" name="excel2" required rows="25"></textarea>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-12">
+              <div>
+                <button type="submit" class="btn btn-success btn-sm">Comparar Excels</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- Mostrar los arrays en la página -->
+      <div>
+        <h2>Array 1:</h2>
+        <pre>
+          {% for item in array_1 %}
+            {{ item }}<br />
+          {% endfor %}
+        </pre>
+      </div>
+      <div>
+        <h2>Array 2:</h2>
+        <pre>
+          {% for item in array_2 %}
+            {{ item }}<br />
+          {% endfor %}
+        </pre>
+      </div>
+
+      <!-- Mostrar las discrepancias -->
+      <div>
+        <h2>Discrepancias:</h2>
+        <pre>
+          {% for discrepancia in discrepancias %}
+            {{ discrepancia }}<br />
+          {% endfor %}
+        </pre>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_js %}
+  <script>
+    var MY_DOMAIN = '{{MY_DOMAIN}}'
+  </script>
+{% endblock %}
