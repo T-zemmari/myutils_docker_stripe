@@ -3,6 +3,13 @@
 ## Descripción
 Esta aplicación utiliza Docker para contenerizar la aplicación, Nginx como servidor web y Stripe para procesar pagos.
 
+## Responsabilidad sobre el Uso Comercial
+
+Este proyecto se proporciona exclusivamente con fines educativos y de aprendizaje. No me responsabilizo del uso que se le pueda dar con fines comerciales o en entornos de producción. Se recomienda encarecidamente realizar una revisión exhaustiva y una configuración adecuada antes de implementar este proyecto en un entorno de producción. Cualquier uso comercial o implementación en producción debe ser llevado a cabo bajo la responsabilidad y supervisión del usuario, garantizando el cumplimiento de los estándares de seguridad y rendimiento necesarios.
+
+## Estado de Desarrollo
+Por favor, ten en cuenta que la función de edición de videos (vista 'edito') aún está en desarrollo y no está completamente implementada. En futuras versiones del proyecto, se retomará este desarrollo para permitir la edición, corte y unión de videos.
+
 ## Requisitos
 Asegúrate de tener instalado lo siguiente:
 - [Docker](https://www.docker.com/)
@@ -14,6 +21,7 @@ Asegúrate de tener instalado lo siguiente:
 1. Crea una cuenta en [Stripe](https://stripe.com/).
 2. Obtén tus claves de API de Stripe.
 3. Actualiza las variables de entorno en el archivo `.env` con tus claves de Stripe.
+4. Después de crear el superusuario admin y loguearte con admin, accede al panel de administración en 127.0.0.1/admin.
 
 ### Configuración de la Aplicación
 1. Clona este repositorio: `git clone https://github.com/tu_usuario/myutils_docker_stripe.git`
