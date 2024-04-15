@@ -92,6 +92,6 @@ Esta aplicación permite la autenticación a través de Google. Para habilitar e
 
 
 ## Capturas
-![My_utils](./django/media/readme_my_utils/unir_pdfs_1.png)
+![My_utils](./django/media/readme_my_utils/imgs_to_pdf_1.png)
 
 
