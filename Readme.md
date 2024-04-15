@@ -3,6 +3,9 @@
 ## Descripción
 Esta aplicación utiliza Docker para contenerizar la aplicación, Nginx como servidor web y Stripe para procesar pagos.
 
+
+![My_utils](./django/media/readme_my_utils/unir_pdfs_1.png)
+
 ## Responsabilidad sobre el Uso Comercial
 
 Este proyecto se proporciona exclusivamente con fines educativos y de aprendizaje. No me responsabilizo del uso que se le pueda dar con fines comerciales o en entornos de producción. Se recomienda encarecidamente realizar una revisión exhaustiva y una configuración adecuada antes de implementar este proyecto en un entorno de producción. Cualquier uso comercial o implementación en producción debe ser llevado a cabo bajo la responsabilidad y supervisión del usuario, garantizando el cumplimiento de los estándares de seguridad y rendimiento necesarios.
@@ -88,7 +91,7 @@ Esta aplicación permite la autenticación a través de Google. Para habilitar e
 ¡Contribuciones son bienvenidas! Si encuentras un problema o tienes una sugerencia, por favor [crea un issue](https://github.com/t-zemmari/myutils_docker_stripe/issues).
 
 
-## Licencia
-Este proyecto está bajo la Licencia MIT - consulta el archivo [LICENSE](LICENSE) para más detalles.
+## Capturas
+![My_utils](./django/media/readme_my_utils/unir_pdfs_1.png)
 
 
