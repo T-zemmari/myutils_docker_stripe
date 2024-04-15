@@ -8,7 +8,9 @@ Esta aplicación utiliza Docker para contenerizar la aplicación, Nginx como ser
 Este proyecto se proporciona exclusivamente con fines educativos y de aprendizaje. No me responsabilizo del uso que se le pueda dar con fines comerciales o en entornos de producción. Se recomienda encarecidamente realizar una revisión exhaustiva y una configuración adecuada antes de implementar este proyecto en un entorno de producción. Cualquier uso comercial o implementación en producción debe ser llevado a cabo bajo la responsabilidad y supervisión del usuario, garantizando el cumplimiento de los estándares de seguridad y rendimiento necesarios.
 
 ## Estado de Desarrollo
-Por favor, ten en cuenta que la función de edición de videos (vista 'edito') aún está en desarrollo y no está completamente implementada. En futuras versiones del proyecto, se retomará este desarrollo para permitir la edición, corte y unión de videos.
+Por favor, ten en cuenta que la función de edición de videos (vista 'editor') aún está en desarrollo y no está completamente implementada. En futuras versiones del proyecto, se retomará este desarrollo para permitir la edición, corte y unión de videos.
+Ten en cuenta que algunas funcionalidad estan aun en fase de desarrollo y que estoy abierto a cualquier colaboración.
+El diseño de las vistas es basico, ten en cuenta que el objetivo del proyecto son las funcionalidad usando PYTHON con su freamework DJANGO.
 
 ## Requisitos
 Asegúrate de tener instalado lo siguiente:
